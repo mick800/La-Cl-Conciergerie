@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -47,9 +46,7 @@
 <div class="container">
 
 <a href="#" class="logo">
-
 <img src="logo.png" alt="La Clé Conciergerie">
-
 </a>
 
 <nav>
@@ -84,17 +81,12 @@ Demander un devis
 <div class="hero-content">
 
 <h1>
-
 La Clé
-
 <span>Conciergerie</span>
-
 </h1>
 
 <p>
-
 Gestion haut de gamme de vos locations courte durée à Metz, Thionville et dans toute la Moselle.
-
 </p>
 
 <div class="hero-buttons">
@@ -157,7 +149,9 @@ Découvrir nos services
 </section>
 
 
-<!-- ================= SERVICES ================= -->
+<!-- =========================================================
+     SERVICES
+========================================================= -->
 
 <section class="lc-services" id="services">
 
@@ -173,10 +167,8 @@ Une gestion complète de votre logement
 </h2>
 
 <p>
-
 Nous vous accompagnons dans la gestion opérationnelle de vos locations
 courte durée à Metz, Thionville et leurs alentours.
-
 </p>
 
 </div>
@@ -187,7 +179,9 @@ courte durée à Metz, Thionville et leurs alentours.
 <div class="lc-services-grid">
 
 
-<!-- 01 COMMUNICATION -->
+<!-- =====================================================
+     01 COMMUNICATION
+===================================================== -->
 
 <article class="lc-service-card">
 
@@ -207,10 +201,8 @@ Communication avec les voyageurs
 </h3>
 
 <p>
-
 Réponses rapides et précises : logement, secteur et résolution
 des problèmes rencontrés par vos voyageurs.
-
 </p>
 
 <div class="lc-service-rating">
@@ -226,6 +218,7 @@ Communication
 </div>
 
 <button
+type="button"
 class="lc-service-link"
 onclick="toggleService('communication', this)"
 >
@@ -239,7 +232,9 @@ En savoir plus <span>→</span>
 </article>
 
 
-<!-- 02 ENTREES / SORTIES -->
+<!-- =====================================================
+     02 ENTREES / SORTIES
+===================================================== -->
 
 <article class="lc-service-card">
 
@@ -259,10 +254,8 @@ Entrées et sorties
 </h3>
 
 <p>
-
 Nous prenons en charge l'accueil de vos voyageurs ainsi que
 l'organisation des arrivées et des départs.
-
 </p>
 
 <div class="lc-service-rating">
@@ -278,6 +271,7 @@ Accueil
 </div>
 
 <button
+type="button"
 class="lc-service-link"
 onclick="toggleService('entrees-sorties', this)"
 >
@@ -291,15 +285,17 @@ En savoir plus <span>→</span>
 </article>
 
 
-<!-- 03 MAINTENANCE -->
+<!-- =====================================================
+     03 MAINTENANCE
+===================================================== -->
 
 <article class="lc-service-card">
 
 <div class="lc-service-image">
 
 <img
-src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80"
-alt="Maintenance du logement"
+src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=80"
+alt="Maintenance et intervention technique dans le logement"
 >
 
 </div>
@@ -311,10 +307,8 @@ Maintenance
 </h3>
 
 <p>
-
 Prise en charge des petits incidents et signalement rapide
 des problèmes techniques rencontrés dans votre logement.
-
 </p>
 
 <div class="lc-service-rating">
@@ -330,6 +324,7 @@ Suivi du logement
 </div>
 
 <button
+type="button"
 class="lc-service-link"
 onclick="toggleService('maintenance', this)"
 >
@@ -343,7 +338,9 @@ En savoir plus <span>→</span>
 </article>
 
 
-<!-- 04 NETTOYAGE -->
+<!-- =====================================================
+     04 NETTOYAGE
+===================================================== -->
 
 <article class="lc-service-card">
 
@@ -363,10 +360,8 @@ Nettoyage et gestion du linge
 </h3>
 
 <p>
-
 Entretien complet du logement et préparation après chaque séjour
 pour garantir un accueil propre et soigné.
-
 </p>
 
 <div class="lc-service-rating">
@@ -382,6 +377,7 @@ Propreté
 </div>
 
 <button
+type="button"
 class="lc-service-link"
 onclick="toggleService('nettoyage', this)"
 >
@@ -398,16 +394,26 @@ En savoir plus <span>→</span>
 </div>
 
 
-<!-- ================= DETAILS CACHES ================= -->
+<!-- =========================================================
+     DETAILS CACHES
+     
+     IMPORTANT :
+     Ces blocs sont display:none.
+     Ils ne sont donc PAS visibles quand on descend la page.
+     Ils apparaissent uniquement après un clic sur
+     "En savoir plus".
+========================================================= -->
 
 
-<!-- COMMUNICATION -->
+<!-- ================= COMMUNICATION ================= -->
 
 <div class="lc-service-popup" id="communication">
 
 <button
+type="button"
 class="lc-close"
 onclick="closeService('communication')"
+aria-label="Fermer"
 >
 ×
 </button>
@@ -427,20 +433,16 @@ Une communication fluide et réactive pour des séjours sans stress.
 <p>
 
 <strong>
-
 LA CLÉ CONCIERGERIE prend en charge la communication avec
 vos voyageurs afin de vous libérer des échanges du quotidien.
-
 </strong>
 
 </p>
 
 <p>
-
 Nous répondons aux demandes des voyageurs, transmettons les
 informations utiles concernant le logement et son environnement
 et assurons le suivi des demandes pendant leur séjour.
-
 </p>
 
 <h4>
@@ -462,13 +464,15 @@ Les avantages clés
 </div>
 
 
-<!-- ENTREES / SORTIES -->
+<!-- ================= ENTREES / SORTIES ================= -->
 
 <div class="lc-service-popup" id="entrees-sorties">
 
 <button
+type="button"
 class="lc-close"
 onclick="closeService('entrees-sorties')"
+aria-label="Fermer"
 >
 ×
 </button>
@@ -488,19 +492,15 @@ Un accueil organisé pour une arrivée et un départ en toute simplicité.
 <p>
 
 <strong>
-
 Nous organisons les arrivées et les départs de vos voyageurs
 selon les modalités définies avec vous.
-
 </strong>
 
 </p>
 
 <p>
-
 Nous pouvons notamment assurer la remise des clés ou la gestion
 des accès au logement lorsque cette prestation est prévue.
-
 </p>
 
 <h4>
@@ -522,13 +522,15 @@ Les avantages clés
 </div>
 
 
-<!-- MAINTENANCE -->
+<!-- ================= MAINTENANCE ================= -->
 
 <div class="lc-service-popup" id="maintenance">
 
 <button
+type="button"
 class="lc-close"
 onclick="closeService('maintenance')"
+aria-label="Fermer"
 >
 ×
 </button>
@@ -548,20 +550,16 @@ Un suivi rapide des problèmes rencontrés dans votre logement.
 <p>
 
 <strong>
-
 LA CLÉ CONCIERGERIE assure le suivi des incidents constatés
 dans les logements pendant les prestations ou les séjours.
-
 </strong>
 
 </p>
 
 <p>
-
 En cas de problème, nous vous informons rapidement et pouvons,
 selon vos instructions, organiser l'intervention d'un professionnel
 compétent lorsque cela est nécessaire.
-
 </p>
 
 <h4>
@@ -583,13 +581,15 @@ Les avantages clés
 </div>
 
 
-<!-- NETTOYAGE -->
+<!-- ================= NETTOYAGE ================= -->
 
 <div class="lc-service-popup" id="nettoyage">
 
 <button
+type="button"
 class="lc-close"
 onclick="closeService('nettoyage')"
+aria-label="Fermer"
 >
 ×
 </button>
@@ -609,19 +609,15 @@ Un logement propre, soigné et prêt à accueillir vos prochains voyageurs.
 <p>
 
 <strong>
-
 Après chaque départ, nous préparons votre logement afin
 qu'il soit propre et prêt pour la prochaine arrivée.
-
 </strong>
 
 </p>
 
 <p>
-
 La prestation comprend notamment le nettoyage des pièces,
 des sols, de la cuisine, de la salle de bains et des sanitaires.
-
 </p>
 
 <h4>
@@ -648,7 +644,9 @@ Les avantages clés
 </section>
 
 
-<!-- ================= STYLE SERVICES ================= -->
+<!-- =========================================================
+     STYLE SERVICES
+========================================================= -->
 
 <style>
 
@@ -657,269 +655,450 @@ scroll-behavior: smooth;
 }
 
 
-/* SERVICES */
+/* ================= SERVICES ================= */
 
 .lc-services {
+
 padding: 90px 25px;
+
 background: #f6f8fb;
+
 }
 
 .lc-services-header {
+
 max-width: 850px;
+
 margin: 0 auto 55px;
+
 text-align: center;
+
 }
 
 .lc-services-label {
+
 display: inline-block;
+
 font-size: 13px;
+
 font-weight: 700;
+
 letter-spacing: 2px;
+
 margin-bottom: 12px;
+
 }
 
 .lc-services-header h2 {
+
 font-size: 42px;
+
 line-height: 1.15;
+
 margin: 0 0 18px;
+
 }
 
 .lc-services-header p {
+
 font-size: 17px;
+
 line-height: 1.7;
+
 max-width: 700px;
+
 margin: 0 auto;
+
 opacity: .75;
+
 }
 
 
-/* 4 CARTES */
+/* ================= 4 CARTES ================= */
 
 .lc-services-grid {
+
 max-width: 1150px;
+
 margin: auto;
+
 display: grid;
+
 grid-template-columns: repeat(2, 1fr);
+
 gap: 25px;
+
 }
 
 .lc-service-card {
+
 background: white;
+
 border-radius: 20px;
+
 overflow: hidden;
+
 display: flex;
+
 min-height: 300px;
+
 box-shadow: 0 10px 35px rgba(0,0,0,.06);
+
 transition: .3s ease;
+
 }
 
 .lc-service-card:hover {
+
 transform: translateY(-5px);
+
 box-shadow: 0 18px 45px rgba(0,0,0,.10);
+
 }
 
 .lc-service-image {
+
 width: 45%;
+
 min-height: 300px;
+
 overflow: hidden;
+
 }
 
 .lc-service-image img {
+
 width: 100%;
+
 height: 100%;
+
 object-fit: cover;
+
 display: block;
+
 }
 
 .lc-service-content {
+
 width: 55%;
+
 padding: 30px;
+
 display: flex;
+
 flex-direction: column;
+
 box-sizing: border-box;
+
 }
 
 .lc-service-content h3 {
+
 font-size: 21px;
+
 margin: 0 0 15px;
+
 }
 
 .lc-service-content p {
+
 font-size: 15px;
+
 line-height: 1.7;
+
 opacity: .75;
+
 margin: 0 0 20px;
+
 }
 
 .lc-service-rating {
+
 margin-top: auto;
+
 margin-bottom: 18px;
+
 font-size: 13px;
+
 }
 
 .lc-service-rating strong {
+
 display: block;
+
 margin-bottom: 4px;
+
 }
 
 .lc-service-rating span {
+
 opacity: .7;
+
 }
 
 
-/* BOUTON */
+/* ================= BOUTON EN SAVOIR PLUS ================= */
 
 .lc-service-link {
+
 color: inherit;
+
 background: none;
+
 border: none;
+
 border-bottom: 1px solid currentColor;
+
 padding: 0 0 4px;
+
 font-family: inherit;
+
 font-size: 15px;
+
 font-weight: 700;
+
 display: inline-flex;
+
 align-items: center;
+
 gap: 10px;
+
 width: fit-content;
+
 cursor: pointer;
+
 }
 
 .lc-service-link span {
+
 transition: .3s ease;
+
 }
 
 .lc-service-link:hover span {
+
 transform: translateX(6px);
+
 }
 
 
-/* DETAILS CACHES */
+/* =========================================================
+   DETAILS DES SERVICES
+   
+   C'EST ICI QUE LE DETAIL EST CACHE.
+   
+   display:none = invisible au chargement.
+========================================================= */
 
 .lc-service-popup {
+
 display: none;
+
 max-width: 900px;
+
 margin: 50px auto 0;
+
 padding: 45px;
+
 background: white;
+
 border-radius: 25px;
+
 box-shadow: 0 15px 50px rgba(0,0,0,.10);
+
 position: relative;
+
 animation: serviceOpen .35s ease;
+
 }
 
+
+/* Le détail apparaît seulement quand JavaScript
+   ajoute la classe active */
+
 .lc-service-popup.active {
+
 display: block;
+
 }
+
 
 @keyframes serviceOpen {
 
 from {
+
 opacity: 0;
+
 transform: translateY(20px);
+
 }
 
 to {
+
 opacity: 1;
+
 transform: translateY(0);
+
 }
 
 }
+
+
+/* ================= BOUTON FERMER ================= */
 
 .lc-close {
+
 position: absolute;
+
 top: 18px;
+
 right: 22px;
+
 border: none;
+
 background: none;
+
 font-size: 32px;
+
 cursor: pointer;
+
 opacity: .6;
+
 }
 
 .lc-close:hover {
+
 opacity: 1;
+
 }
 
+
+/* ================= TEXTE DETAIL ================= */
+
 .lc-service-popup h2 {
+
 font-size: 34px;
+
 line-height: 1.2;
+
 margin: 10px 0 18px;
+
 }
 
 .lc-service-popup h3 {
+
 font-size: 19px;
+
 line-height: 1.5;
+
 margin-bottom: 20px;
+
 }
 
 .lc-service-popup p {
+
 font-size: 16px;
+
 line-height: 1.8;
+
 opacity: .75;
+
 }
 
 .lc-service-popup h4 {
+
 font-size: 18px;
+
 margin-top: 30px;
+
 }
 
 .lc-service-popup ul {
+
 list-style: none;
+
 padding: 0;
+
 margin: 15px 0 0;
+
 }
 
 .lc-service-popup li {
+
 margin-bottom: 10px;
+
 font-size: 15px;
+
 }
 
 .lc-detail-number {
+
 font-size: 14px;
+
 font-weight: 800;
+
 letter-spacing: 2px;
+
 opacity: .5;
+
 }
 
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media (max-width: 850px) {
 
 .lc-services {
+
 padding: 60px 18px;
+
 }
 
 .lc-services-header h2 {
+
 font-size: 31px;
+
 }
 
 .lc-services-grid {
+
 grid-template-columns: 1fr;
+
 }
 
 .lc-service-card {
+
 flex-direction: column;
+
 }
 
 .lc-service-image,
 .lc-service-content {
+
 width: 100%;
+
 }
 
 .lc-service-image {
+
 height: 230px;
+
 min-height: 230px;
+
 }
 
 .lc-service-popup {
+
 padding: 35px 25px;
+
 margin-top: 35px;
+
 }
 
 .lc-service-popup h2 {
+
 font-size: 28px;
+
 }
 
 }
@@ -927,7 +1106,9 @@ font-size: 28px;
 </style>
 
 
-<!-- ================= POURQUOI NOUS ================= -->
+<!-- =========================================================
+     POURQUOI NOUS
+========================================================= -->
 
 <section class="why-us">
 
@@ -935,13 +1116,16 @@ font-size: 28px;
 
 <div class="section-title">
 
-<span>LA CLÉ CONCIERGERIE</span>
+<span>
+LA CLÉ CONCIERGERIE
+</span>
 
 <h2>
 Pourquoi nous faire confiance ?
 </h2>
 
 </div>
+
 
 <div class="advantages">
 
@@ -1013,7 +1197,9 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
 </section>
 
 
-<!-- ================= TARIFS ================= -->
+<!-- =========================================================
+     TARIFS
+========================================================= -->
 
 <section id="tarifs" class="pricing">
 
@@ -1141,7 +1327,9 @@ Nous contacter
 </section>
 
 
-<!-- ================= AVIS ================= -->
+<!-- =========================================================
+     AVIS
+========================================================= -->
 
 <section class="reviews" id="avis">
 
@@ -1227,7 +1415,9 @@ Julien R.
 </section>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- =========================================================
+     CONTACT
+========================================================= -->
 
 <section id="contact" class="contact">
 
@@ -1250,7 +1440,10 @@ Nous vous répondrons rapidement.
 </div>
 
 
-<form action="https://formspree.io/f/mzdljvyl" method="POST">
+<form
+action="https://formspree.io/f/mzdljvyl"
+method="POST"
+>
 
 <input
 type="text"
@@ -1278,7 +1471,10 @@ placeholder="Décrivez votre projet"
 required
 ></textarea>
 
-<button type="submit" class="btn-gold">
+<button
+type="submit"
+class="btn-gold"
+>
 Envoyer ma demande
 </button>
 
@@ -1306,7 +1502,9 @@ Envoyer ma demande
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer>
 
@@ -1340,7 +1538,9 @@ Gestion haut de gamme de locations courte durée.
 <script src="script.js"></script>
 
 
-<!-- ================= SCRIPT SERVICES ================= -->
+<!-- =========================================================
+     SCRIPT SERVICES
+========================================================= -->
 
 <script>
 
@@ -1355,7 +1555,22 @@ const allButtons =
 document.querySelectorAll('.lc-service-link');
 
 
-/* Fermer tous les autres détails */
+/* Si le service est déjà ouvert,
+   on le ferme */
+
+if (service.classList.contains('active')) {
+
+service.classList.remove('active');
+
+button.innerHTML =
+'En savoir plus <span>→</span>';
+
+return;
+
+}
+
+
+/* Fermer tous les autres services */
 
 allServices.forEach(function(item) {
 
@@ -1374,16 +1589,15 @@ btn.innerHTML =
 });
 
 
-/* Ouvrir le détail sélectionné */
+/* Ouvrir uniquement le service choisi */
 
 service.classList.add('active');
-
 
 button.innerHTML =
 'Fermer <span>↑</span>';
 
 
-/* Descendre automatiquement vers le détail */
+/* Aller automatiquement au détail */
 
 setTimeout(function() {
 
@@ -1400,6 +1614,8 @@ block: 'center'
 }
 
 
+/* ================= FERMER ================= */
+
 function closeService(id) {
 
 const service =
@@ -1408,7 +1624,10 @@ document.getElementById(id);
 service.classList.remove('active');
 
 
-document.querySelectorAll('.lc-service-link')
+/* Remettre tous les boutons */
+
+document
+.querySelectorAll('.lc-service-link')
 .forEach(function(btn) {
 
 btn.innerHTML =
