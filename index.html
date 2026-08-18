@@ -21,8 +21,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
 
 
 <script type="application/ld+json">
@@ -34,1200 +35,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   "url": "https://lacleconciergerie.org/"
 }
 </script>
-
-
-<style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Poppins", sans-serif;
-    color: #222;
-    background: #fff;
-    line-height: 1.6;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(255,255,255,.97);
-    border-bottom: 1px solid #eee;
-    backdrop-filter: blur(10px);
-}
-
-header .container {
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 170px;
-    max-height: 65px;
-    object-fit: contain;
-}
-
-nav ul {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    list-style: none;
-}
-
-nav a {
-    font-size: 14px;
-    font-weight: 500;
-    transition: .3s;
-}
-
-nav a:hover {
-    opacity: .55;
-}
-
-.btn-header {
-    background: #222;
-    color: white;
-    padding: 11px 20px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-    min-height: 680px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-
-    background:
-        linear-gradient(
-            rgba(0,0,0,.55),
-            rgba(0,0,0,.55)
-        ),
-        url("logo.png") center/cover no-repeat;
-}
-
-.hero-content {
-    max-width: 850px;
-    padding: 90px 20px;
-}
-
-.hero h1 {
-    font-size: clamp(48px, 8vw, 82px);
-    line-height: 1.05;
-    margin-bottom: 25px;
-    font-weight: 800;
-}
-
-.hero h1 span {
-    display: block;
-    font-weight: 400;
-}
-
-.hero p {
-    font-size: 19px;
-    max-width: 720px;
-    margin: 0 auto 35px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.btn-gold,
-.btn-white {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 25px;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.btn-gold {
-    background: #222;
-    color: white;
-}
-
-.btn-white {
-    border: 1px solid white;
-    color: white;
-}
-
-.btn-gold:hover,
-.btn-white:hover {
-    transform: translateY(-3px);
-}
-
-
-/* =====================================================
-   STATS
-===================================================== */
-
-.stats {
-    background: #222;
-    color: white;
-    padding: 35px 0;
-}
-
-.stats .container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    text-align: center;
-}
-
-.stat h2 {
-    font-size: 34px;
-}
-
-.stat p {
-    color: #ccc;
-    font-size: 14px;
-}
-
-
-/* =====================================================
-   SERVICES
-===================================================== */
-
-.lc-services {
-    padding: 90px 25px;
-    background: #f6f8fb;
-}
-
-.lc-services-header {
-    max-width: 850px;
-    margin: 0 auto 55px;
-    text-align: center;
-}
-
-.lc-services-label {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-}
-
-.lc-services-header h2 {
-    font-size: 42px;
-    line-height: 1.15;
-    margin-bottom: 18px;
-}
-
-.lc-services-header p {
-    font-size: 17px;
-    line-height: 1.7;
-    max-width: 700px;
-    margin: auto;
-    opacity: .75;
-}
-
-.lc-services-grid {
-    max-width: 1150px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-.lc-service-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    min-height: 300px;
-    box-shadow: 0 10px 35px rgba(0,0,0,.06);
-    transition: .3s ease;
-}
-
-.lc-service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 45px rgba(0,0,0,.10);
-}
-
-.lc-service-image {
-    width: 45%;
-    min-height: 300px;
-    overflow: hidden;
-}
-
-.lc-service-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.lc-service-content {
-    width: 55%;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
-.lc-service-content h3 {
-    font-size: 21px;
-    margin-bottom: 15px;
-}
-
-.lc-service-content p {
-    font-size: 15px;
-    line-height: 1.7;
-    opacity: .75;
-    margin-bottom: 20px;
-}
-
-.lc-service-rating {
-    margin-top: auto;
-    margin-bottom: 18px;
-    font-size: 13px;
-}
-
-.lc-service-rating strong {
-    display: block;
-    margin-bottom: 4px;
-}
-
-.lc-service-rating span {
-    opacity: .7;
-}
-
-.lc-service-link {
-    color: inherit;
-    background: none;
-    border: none;
-    border-bottom: 1px solid currentColor;
-    padding: 0 0 4px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    width: fit-content;
-    cursor: pointer;
-}
-
-.lc-service-link span {
-    transition: .3s;
-}
-
-.lc-service-link:hover span {
-    transform: translateX(6px);
-}
-
-
-/* =====================================================
-   DETAILS SERVICES
-===================================================== */
-
-.lc-service-details {
-    max-width: 1150px;
-    margin: auto;
-}
-
-.lc-service-popup {
-    display: none;
-    max-width: 900px;
-    margin: 50px auto 0;
-    padding: 45px;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 15px 50px rgba(0,0,0,.10);
-    position: relative;
-    animation: serviceOpen .35s ease;
-}
-
-.lc-service-popup.active {
-    display: block;
-}
-
-@keyframes serviceOpen {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.lc-close {
-    position: absolute;
-    top: 18px;
-    right: 22px;
-    border: none;
-    background: none;
-    font-size: 32px;
-    cursor: pointer;
-    opacity: .6;
-}
-
-.lc-close:hover {
-    opacity: 1;
-}
-
-.lc-service-popup h2 {
-    font-size: 34px;
-    line-height: 1.2;
-    margin: 10px 0 18px;
-}
-
-.lc-service-popup h3 {
-    font-size: 19px;
-    margin-bottom: 20px;
-}
-
-.lc-service-popup p {
-    font-size: 16px;
-    line-height: 1.8;
-    opacity: .75;
-}
-
-.lc-service-popup h4 {
-    font-size: 18px;
-    margin-top: 30px;
-}
-
-.lc-service-popup ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-}
-
-.lc-service-popup li {
-    margin-bottom: 10px;
-}
-
-.lc-detail-number {
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    opacity: .5;
-}
-
-
-/* =====================================================
-   À PROPOS
-===================================================== */
-
-.about-company {
-    padding: 100px 25px;
-    background: #fff;
-}
-
-.about-company-content {
-    max-width: 1150px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1.4fr .8fr;
-    gap: 80px;
-    align-items: center;
-}
-
-.about-company-text {
-    max-width: 700px;
-}
-
-.about-label {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.about-company-text h2 {
-    font-size: 40px;
-    line-height: 1.2;
-    margin-bottom: 25px;
-}
-
-.about-company-text > p {
-    font-size: 16px;
-    line-height: 1.8;
-    opacity: .75;
-    margin-bottom: 18px;
-}
-
-.about-values {
-    margin-top: 35px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.about-value {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-}
-
-.about-value i {
-    font-size: 20px;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: #f6f8fb;
-}
-
-.about-value h3 {
-    margin-bottom: 5px;
-    font-size: 17px;
-}
-
-.about-value p {
-    font-size: 14px;
-    opacity: .7;
-}
-
-.about-company-card {
-    background: #f6f8fb;
-    border-radius: 25px;
-    padding: 45px 35px;
-    text-align: center;
-    box-shadow: 0 15px 45px rgba(0,0,0,.06);
-}
-
-.about-card-icon {
-    width: 65px;
-    height: 65px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    font-size: 24px;
-}
-
-.about-company-card > span {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    opacity: .6;
-}
-
-.about-company-card h3 {
-    font-size: 25px;
-    line-height: 1.4;
-    margin: 18px 0;
-}
-
-.about-company-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    opacity: .7;
-    margin-bottom: 28px;
-}
-
-
-/* =====================================================
-   POURQUOI NOUS
-===================================================== */
-
-.why-us {
-    padding: 100px 25px;
-    background: #f6f8fb;
-}
-
-.section-title {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 55px;
-}
-
-.section-title span {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.section-title h2 {
-    font-size: 40px;
-    line-height: 1.2;
-    margin: 12px 0;
-}
-
-.section-title p {
-    opacity: .7;
-}
-
-.advantages {
-    max-width: 1150px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-}
-
-.advantage {
-    background: white;
-    padding: 35px 25px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 8px 30px rgba(0,0,0,.05);
-}
-
-.advantage i {
-    font-size: 28px;
-    margin-bottom: 18px;
-}
-
-.advantage h3 {
-    margin-bottom: 12px;
-}
-
-.advantage p {
-    font-size: 14px;
-    opacity: .7;
-}
-
-
-/* =====================================================
-   TARIFS
-===================================================== */
-
-.pricing {
-    padding: 100px 25px;
-    background: white;
-}
-
-.pricing-grid {
-    max-width: 1100px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.price-card {
-    background: white;
-    border: 1px solid #eee;
-    border-radius: 25px;
-    padding: 40px 30px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 10px 35px rgba(0,0,0,.05);
-}
-
-.price-card.featured {
-    border: 2px solid #222;
-    transform: translateY(-8px);
-}
-
-.badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #222;
-    color: white;
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.price-card h3 {
-    font-size: 25px;
-    margin-bottom: 10px;
-}
-
-.price {
-    font-size: 50px;
-    font-weight: 800;
-    margin: 10px 0 20px;
-}
-
-.price-card p {
-    color: #666;
-    margin: 10px 0;
-    font-size: 14px;
-}
-
-.price-card .btn-gold {
-    margin-top: 20px;
-}
-
-
-/* =====================================================
-   FAQ
-===================================================== */
-
-.faq {
-    padding: 100px 25px;
-    background: #f6f8fb;
-}
-
-.faq-container {
-    max-width: 850px;
-    margin: 50px auto 0;
-}
-
-.faq-item {
-    background: white;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,.04);
-}
-
-.faq-question {
-    width: 100%;
-    border: none;
-    background: white;
-    padding: 22px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: left;
-    cursor: pointer;
-}
-
-.faq-question span {
-    font-size: 24px;
-    transition: .3s;
-}
-
-.faq-item.active .faq-question span {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    display: none;
-    padding: 0 25px 22px;
-}
-
-.faq-item.active .faq-answer {
-    display: block;
-}
-
-.faq-answer p {
-    font-size: 15px;
-    line-height: 1.8;
-    opacity: .7;
-}
-
-
-/* =====================================================
-   AVIS FIREBASE
-===================================================== */
-
-.reviews {
-    padding: 100px 25px;
-    background: white;
-}
-
-.review-form {
-    max-width: 700px;
-    margin: 0 auto 60px;
-    background: #f6f8fb;
-    padding: 35px;
-    border-radius: 25px;
-    box-shadow: 0 10px 40px rgba(0,0,0,.06);
-}
-
-.review-form h3 {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 25px;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 7px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 13px 15px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 14px;
-    outline: none;
-    background: white;
-}
-
-.form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #222;
-}
-
-.stars-input {
-    display: flex;
-    gap: 5px;
-    font-size: 35px;
-    cursor: pointer;
-}
-
-.stars-input span {
-    color: #ccc;
-    transition: .2s;
-    user-select: none;
-}
-
-.stars-input span.active {
-    color: #f5b301;
-}
-
-.rating-text {
-    font-size: 13px;
-    color: #777;
-    margin-top: 5px;
-}
-
-.review-submit {
-    width: 100%;
-    border: 0;
-    background: #222;
-    color: white;
-    padding: 14px;
-    border-radius: 30px;
-    font-family: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 15px;
-    transition: .3s;
-}
-
-.review-submit:hover {
-    transform: translateY(-2px);
-}
-
-.review-submit:disabled {
-    opacity: .6;
-    cursor: wait;
-}
-
-.reviews-grid {
-    max-width: 1150px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.review-card {
-    background: #f6f8fb;
-    padding: 25px;
-    border-radius: 20px;
-    border: 1px solid #eee;
-}
-
-.review-stars {
-    color: #f5b301;
-    font-size: 18px;
-    margin-bottom: 13px;
-    letter-spacing: 2px;
-}
-
-.review-card p {
-    color: #555;
-    font-size: 14px;
-    margin-bottom: 18px;
-    word-break: break-word;
-}
-
-.review-name {
-    font-weight: 700;
-    font-size: 14px;
-}
-
-.review-date {
-    font-size: 11px;
-    color: #999;
-    margin-top: 3px;
-}
-
-.reviews-empty {
-    text-align: center;
-    color: #777;
-    grid-column: 1 / -1;
-    padding: 30px;
-}
-
-.google-review {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.google-review p {
-    color: #666;
-    margin-bottom: 15px;
-}
-
-
-/* =====================================================
-   CONTACT
-===================================================== */
-
-.contact {
-    padding: 100px 25px;
-    background: #222;
-    color: white;
-}
-
-.contact-form {
-    max-width: 700px;
-    margin: auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    border: 1px solid #444;
-    border-radius: 10px;
-    padding: 14px;
-    font-family: inherit;
-    margin-bottom: 14px;
-    background: white;
-    color: #222;
-}
-
-.contact-form textarea {
-    min-height: 150px;
-}
-
-.contact-form button {
-    border: 0;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.contact-info {
-    max-width: 700px;
-    margin: 35px auto 0;
-    text-align: center;
-}
-
-.contact-info p {
-    margin: 10px 0;
-    color: #ccc;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-    background: #111;
-    color: #aaa;
-    padding: 45px 0;
-    text-align: center;
-}
-
-.footer-logo {
-    width: 140px;
-    max-height: 70px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-footer h3 {
-    color: white;
-    margin-bottom: 8px;
-}
-
-.footer-links {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.footer-links button,
-.footer-links a {
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: inherit;
-    font-size: 13px;
-    color: inherit;
-    cursor: pointer;
-    opacity: .7;
-}
-
-.footer-links button:hover,
-.footer-links a:hover {
-    opacity: 1;
-}
-
-
-/* =====================================================
-   MODALES
-===================================================== */
-
-.legal-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    padding: 25px;
-    align-items: center;
-    justify-content: center;
-}
-
-.legal-modal.active {
-    display: flex;
-}
-
-.legal-box {
-    position: relative;
-    background: white;
-    max-width: 650px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 45px;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.2);
-}
-
-.legal-box h2 {
-    font-size: 30px;
-    margin-bottom: 25px;
-}
-
-.legal-box p {
-    font-size: 15px;
-    line-height: 1.8;
-    opacity: .75;
-    margin-bottom: 15px;
-}
-
-.legal-close {
-    position: absolute;
-    right: 18px;
-    top: 12px;
-    background: none;
-    border: none;
-    font-size: 32px;
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 950px) {
-
-    nav ul {
-        gap: 12px;
-    }
-
-    .stats .container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .advantages {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-    }
-
-    .price-card.featured {
-        transform: none;
-    }
-
-    .reviews-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-@media (max-width: 850px) {
-
-    header .container {
-        min-height: 70px;
-    }
-
-    nav ul {
-        display: none;
-    }
-
-    .btn-header {
-        padding: 9px 15px;
-        font-size: 12px;
-    }
-
-    .lc-services {
-        padding: 60px 18px;
-    }
-
-    .lc-services-header h2 {
-        font-size: 31px;
-    }
-
-    .lc-services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .lc-service-card {
-        flex-direction: column;
-    }
-
-    .lc-service-image,
-    .lc-service-content {
-        width: 100%;
-    }
-
-    .lc-service-image {
-        height: 230px;
-        min-height: 230px;
-    }
-
-    .lc-service-popup {
-        padding: 35px 25px;
-        margin-top: 35px;
-    }
-
-    .lc-service-popup h2 {
-        font-size: 28px;
-    }
-
-    .about-company {
-        padding: 70px 18px;
-    }
-
-    .about-company-content {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
-
-    .about-company-text h2 {
-        font-size: 31px;
-    }
-
-    .why-us,
-    .pricing,
-    .faq,
-    .reviews,
-    .contact {
-        padding: 70px 18px;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    .logo img {
-        width: 130px;
-    }
-
-    .hero {
-        min-height: 600px;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .stats .container {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .advantages {
-        grid-template-columns: 1fr;
-    }
-
-    .reviews-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .review-form {
-        padding: 25px;
-    }
-
-    .legal-box {
-        padding: 35px 25px;
-    }
-
-}
-
-</style>
 
 </head>
 
@@ -1254,19 +61,33 @@ footer h3 {
 
 <ul>
 
-<li><a href="#accueil">Accueil</a></li>
+<li>
+<a href="#accueil">Accueil</a>
+</li>
 
-<li><a href="#services">Services</a></li>
+<li>
+<a href="#services">Services</a>
+</li>
 
-<li><a href="#a-propos">À propos</a></li>
+<li>
+<a href="#a-propos">À propos</a>
+</li>
 
-<li><a href="#tarifs">Tarifs</a></li>
+<li>
+<a href="#tarifs">Tarifs</a>
+</li>
 
-<li><a href="#faq">FAQ</a></li>
+<li>
+<a href="#faq">FAQ</a>
+</li>
 
-<li><a href="#avis">Avis</a></li>
+<li>
+<a href="#avis">Avis</a>
+</li>
 
-<li><a href="#contact">Contact</a></li>
+<li>
+<a href="#contact">Contact</a>
+</li>
 
 </ul>
 
@@ -1274,9 +95,7 @@ footer h3 {
 
 
 <a href="#contact" class="btn-header">
-
 Demander un devis
-
 </a>
 
 </div>
@@ -1313,16 +132,12 @@ Thionville et dans toute la Moselle.
 <div class="hero-buttons">
 
 <a href="#contact" class="btn-gold">
-
 Demander un devis
-
 </a>
 
 
 <a href="#services" class="btn-white">
-
 Découvrir nos services
-
 </a>
 
 </div>
@@ -1341,11 +156,14 @@ Découvrir nos services
 
 <div class="container">
 
+
 <div class="stat">
 
 <h2>150+</h2>
 
-<p>Voyageurs accueillis</p>
+<p>
+Voyageurs accueillis
+</p>
 
 </div>
 
@@ -1354,7 +172,9 @@ Découvrir nos services
 
 <h2>98%</h2>
 
-<p>Clients satisfaits</p>
+<p>
+Clients satisfaits
+</p>
 
 </div>
 
@@ -1363,7 +183,9 @@ Découvrir nos services
 
 <h2>7j/7</h2>
 
-<p>Assistance</p>
+<p>
+Assistance
+</p>
 
 </div>
 
@@ -1372,9 +194,12 @@ Découvrir nos services
 
 <h2>30%</h2>
 
-<p>Revenus optimisés</p>
+<p>
+Revenus optimisés
+</p>
 
 </div>
+
 
 </div>
 
@@ -1388,30 +213,26 @@ Découvrir nos services
 
 <section class="lc-services" id="services">
 
+
 <div class="lc-services-header">
 
 <span class="lc-services-label">
-
 LA CLÉ CONCIERGERIE
-
 </span>
 
 
 <h2>
-
 Une gestion complète de votre logement
-
 </h2>
 
 
 <p>
-
 Nous vous accompagnons dans la gestion opérationnelle
 de vos locations courte durée à Metz, Thionville et leurs alentours.
-
 </p>
 
 </div>
+
 
 
 <div class="lc-services-grid">
@@ -1437,12 +258,12 @@ alt="Communication avec les voyageurs"
 Communication avec les voyageurs
 </h3>
 
-<p>
 
+<p>
 Réponses rapides et précises : logement, secteur et résolution
 des problèmes rencontrés par vos voyageurs.
-
 </p>
+
 
 <div class="lc-service-rating">
 
@@ -1492,12 +313,12 @@ alt="Entrées et sorties des voyageurs"
 Entrées et sorties
 </h3>
 
-<p>
 
+<p>
 Nous prenons en charge l'accueil de vos voyageurs ainsi que
 l'organisation des arrivées et des départs.
-
 </p>
+
 
 <div class="lc-service-rating">
 
@@ -1547,12 +368,12 @@ alt="Maintenance du logement"
 Maintenance
 </h3>
 
-<p>
 
+<p>
 Prise en charge des petits incidents et signalement rapide
 des problèmes techniques rencontrés dans votre logement.
-
 </p>
+
 
 <div class="lc-service-rating">
 
@@ -1602,12 +423,12 @@ alt="Nettoyage professionnel du logement"
 Nettoyage et gestion du linge
 </h3>
 
-<p>
 
+<p>
 Entretien complet du logement et préparation après chaque séjour
 pour garantir un accueil propre et soigné.
-
 </p>
+
 
 <div class="lc-service-rating">
 
@@ -1639,7 +460,9 @@ En savoir plus <span>→</span>
 
 
 
-<!-- DETAILS SERVICES -->
+<!-- =====================================================
+     DETAILS SERVICES
+===================================================== -->
 
 <div class="lc-service-details">
 
@@ -1655,38 +478,41 @@ onclick="closeService('communication')"
 ×
 </button>
 
+
 <span class="lc-detail-number">
 01
 </span>
+
 
 <h2>
 Communication avec les voyageurs
 </h2>
 
+
 <h3>
 Une communication fluide et réactive pour des séjours sans stress.
 </h3>
 
-<p>
 
+<p>
 <strong>
 La Clé Conciergerie prend en charge la communication avec
 vos voyageurs afin de vous libérer des échanges du quotidien.
 </strong>
-
 </p>
 
-<p>
 
+<p>
 Nous répondons aux demandes des voyageurs, transmettons les
 informations utiles concernant le logement et son environnement
 et assurons le suivi des demandes pendant leur séjour.
-
 </p>
+
 
 <h4>
 Les avantages clés
 </h4>
+
 
 <ul>
 
@@ -1712,37 +538,40 @@ onclick="closeService('entrees-sorties')"
 ×
 </button>
 
+
 <span class="lc-detail-number">
 02
 </span>
+
 
 <h2>
 Entrées et sorties
 </h2>
 
+
 <h3>
 Un accueil organisé pour une arrivée et un départ en toute simplicité.
 </h3>
 
-<p>
 
+<p>
 <strong>
 Nous organisons les arrivées et les départs de vos voyageurs
 selon les modalités définies avec vous.
 </strong>
-
 </p>
+
 
 <p>
-
 Nous pouvons notamment assurer la remise des clés ou la gestion
 des accès au logement lorsque cette prestation est prévue.
-
 </p>
+
 
 <h4>
 Les avantages clés
 </h4>
+
 
 <ul>
 
@@ -1768,38 +597,41 @@ onclick="closeService('maintenance')"
 ×
 </button>
 
+
 <span class="lc-detail-number">
 03
 </span>
+
 
 <h2>
 Maintenance
 </h2>
 
+
 <h3>
 Un suivi rapide des problèmes rencontrés dans votre logement.
 </h3>
 
-<p>
 
+<p>
 <strong>
 La Clé Conciergerie assure le suivi des incidents constatés
 dans les logements pendant les prestations ou les séjours.
 </strong>
-
 </p>
 
-<p>
 
+<p>
 En cas de problème, nous vous informons rapidement et pouvons,
 selon vos instructions, organiser l'intervention d'un professionnel
 compétent lorsque cela est nécessaire.
-
 </p>
+
 
 <h4>
 Les avantages clés
 </h4>
+
 
 <ul>
 
@@ -1825,37 +657,40 @@ onclick="closeService('nettoyage')"
 ×
 </button>
 
+
 <span class="lc-detail-number">
 04
 </span>
+
 
 <h2>
 Nettoyage et gestion du linge
 </h2>
 
+
 <h3>
 Un logement propre, soigné et prêt à accueillir vos prochains voyageurs.
 </h3>
 
-<p>
 
+<p>
 <strong>
 Après chaque départ, nous préparons votre logement afin
 qu'il soit propre et prêt pour la prochaine arrivée.
 </strong>
-
 </p>
+
 
 <p>
-
 La prestation comprend notamment le nettoyage des pièces,
 des sols, de la cuisine, de la salle de bains et des sanitaires.
-
 </p>
+
 
 <h4>
 Les avantages clés
 </h4>
+
 
 <ul>
 
@@ -1891,38 +726,37 @@ Les avantages clés
 LA CLÉ CONCIERGERIE
 </span>
 
+
 <h2>
 Une conciergerie à taille humaine,
 au service de votre logement
 </h2>
 
-<p>
 
+<p>
 <strong>La Clé Conciergerie</strong> accompagne les propriétaires
 dans la gestion de leurs locations courte durée à Metz,
 Thionville et leurs alentours.
-
 </p>
 
-<p>
 
+<p>
 Notre objectif est simple : vous permettre de profiter pleinement
 de votre investissement tout en vous libérant des contraintes
 liées à la gestion quotidienne de votre logement.
-
 </p>
 
-<p>
 
+<p>
 Nous accordons une attention particulière à chaque logement
 et à chaque voyageur. Communication, arrivées et départs,
 suivi du logement, nettoyage et gestion des imprévus :
 nous vous accompagnons avec sérieux, réactivité et transparence.
-
 </p>
 
 
 <div class="about-values">
+
 
 <div class="about-value">
 
@@ -1941,6 +775,7 @@ Une relation transparente et durable avec chaque propriétaire.
 </div>
 
 </div>
+
 
 
 <div class="about-value">
@@ -1962,6 +797,7 @@ Une gestion attentive et une réponse rapide aux demandes.
 </div>
 
 
+
 <div class="about-value">
 
 <i class="fa-solid fa-star"></i>
@@ -1980,9 +816,11 @@ Un service soigné pour offrir une expérience agréable aux voyageurs.
 
 </div>
 
+
 </div>
 
 </div>
+
 
 
 <div class="about-company-card">
@@ -1993,28 +831,26 @@ Un service soigné pour offrir une expérience agréable aux voyageurs.
 
 </div>
 
+
 <span>
 NOTRE ENGAGEMENT
 </span>
 
-<h3>
 
+<h3>
 Vous profitez de votre logement.
 Nous nous occupons du reste.
-
 </h3>
 
-<p>
 
+<p>
 Une gestion professionnelle, locale et adaptée
 aux besoins de chaque propriétaire.
-
 </p>
 
+
 <a href="#contact" class="btn-gold">
-
 Parlons de votre projet
-
 </a>
 
 </div>
@@ -2048,7 +884,9 @@ Pourquoi nous faire confiance ?
 </div>
 
 
+
 <div class="advantages">
+
 
 <div class="advantage">
 
@@ -2063,6 +901,7 @@ Nous ajustons les tarifs afin d'augmenter les revenus de votre logement.
 </p>
 
 </div>
+
 
 
 <div class="advantage">
@@ -2080,6 +919,7 @@ Nous gérons l'intégralité de votre location pendant que vous profitez de votr
 </div>
 
 
+
 <div class="advantage">
 
 <i class="fa-solid fa-star"></i>
@@ -2095,6 +935,7 @@ Chaque voyageur bénéficie d'un accueil haut de gamme et personnalisé.
 </div>
 
 
+
 <div class="advantage">
 
 <i class="fa-solid fa-clock"></i>
@@ -2108,6 +949,7 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
 </p>
 
 </div>
+
 
 </div>
 
@@ -2138,7 +980,9 @@ Des offres adaptées à chaque propriétaire
 </div>
 
 
+
 <div class="pricing-grid">
+
 
 <div class="price-card">
 
@@ -2146,9 +990,11 @@ Des offres adaptées à chaque propriétaire
 Essentiel
 </h3>
 
+
 <div class="price">
 20%
 </div>
+
 
 <p>
 Gestion des réservations
@@ -2162,11 +1008,13 @@ Accueil voyageurs
 Support 7j/7
 </p>
 
+
 <a href="#contact" class="btn-gold">
 Choisir cette formule
 </a>
 
 </div>
+
 
 
 <div class="price-card featured">
@@ -2175,13 +1023,16 @@ Choisir cette formule
 La plus demandée
 </div>
 
+
 <h3>
 Premium
 </h3>
 
+
 <div class="price">
 25%
 </div>
+
 
 <p>
 Gestion complète
@@ -2199,11 +1050,13 @@ Gestion du linge
 Optimisation des revenus
 </p>
 
+
 <a href="#contact" class="btn-gold">
 Demander un devis
 </a>
 
 </div>
+
 
 
 <div class="price-card">
@@ -2212,9 +1065,11 @@ Demander un devis
 Prestige
 </h3>
 
+
 <div class="price">
 30%
 </div>
+
 
 <p>
 Gestion haut de gamme
@@ -2232,11 +1087,13 @@ Reporting personnalisé
 Accompagnement VIP
 </p>
 
+
 <a href="#contact" class="btn-gold">
 Nous contacter
 </a>
 
 </div>
+
 
 </div>
 
@@ -2260,15 +1117,18 @@ Nous contacter
 QUESTIONS FRÉQUENTES
 </span>
 
+
 <h2>
 Les réponses à vos questions
 </h2>
+
 
 <p>
 Tout ce qu'il faut savoir avant de nous confier votre logement.
 </p>
 
 </div>
+
 
 
 <div class="faq-container">
@@ -2284,19 +1144,19 @@ Combien coûte votre service ?
 
 </button>
 
+
 <div class="faq-answer">
 
 <p>
-
 Nos formules de gestion sont proposées à partir de 20% des revenus
 générés par le logement. Le tarif peut être adapté selon les services
 choisis et les caractéristiques du logement.
-
 </p>
 
 </div>
 
 </div>
+
 
 
 <div class="faq-item">
@@ -2309,19 +1169,19 @@ Gérez-vous le ménage ?
 
 </button>
 
+
 <div class="faq-answer">
 
 <p>
-
 Oui. Nous pouvons prendre en charge le nettoyage et la préparation
 du logement après chaque séjour, ainsi que la mise en place du linge
 lorsque cette prestation est prévue.
-
 </p>
 
 </div>
 
 </div>
+
 
 
 <div class="faq-item">
@@ -2334,19 +1194,19 @@ Qui accueille les voyageurs ?
 
 </button>
 
+
 <div class="faq-answer">
 
 <p>
-
 Nous organisons les arrivées et les départs selon les modalités
 définies avec le propriétaire et les équipements disponibles dans
 le logement.
-
 </p>
 
 </div>
 
 </div>
+
 
 
 <div class="faq-item">
@@ -2359,19 +1219,19 @@ Intervenez-vous en cas de problème ?
 
 </button>
 
+
 <div class="faq-answer">
 
 <p>
-
 Oui. Nous assurons le suivi des incidents constatés dans le logement
 et vous informons rapidement. Selon vos instructions, nous pouvons
 également coordonner l'intervention d'un professionnel.
-
 </p>
 
 </div>
 
 </div>
+
 
 
 <div class="faq-item">
@@ -2384,19 +1244,19 @@ Dans quelles villes intervenez-vous ?
 
 </button>
 
+
 <div class="faq-answer">
 
 <p>
-
 Nous intervenons principalement à Metz, Thionville et dans leurs
 alentours, ainsi que dans différents secteurs de la Moselle selon
 les besoins du propriétaire.
-
 </p>
 
 </div>
 
 </div>
+
 
 
 <div class="faq-item">
@@ -2409,19 +1269,19 @@ Comment se passe la mise en place ?
 
 </button>
 
+
 <div class="faq-answer">
 
 <p>
-
 Nous commençons par échanger avec vous afin de comprendre votre logement,
 vos attentes et les services souhaités. Nous définissons ensuite
 ensemble les modalités de gestion avant le démarrage des prestations.
-
 </p>
 
 </div>
 
 </div>
+
 
 </div>
 
@@ -2432,12 +1292,13 @@ ensemble les modalités de gestion avant le démarrage des prestations.
 
 
 <!-- =====================================================
-     AVIS FIREBASE
+     AVIS CLIENTS - FIREBASE
 ===================================================== -->
 
 <section class="reviews" id="avis">
 
 <div class="container">
+
 
 <div class="section-title">
 
@@ -2445,108 +1306,28 @@ ensemble les modalités de gestion avant le démarrage des prestations.
 NOS CLIENTS
 </span>
 
+
 <h2>
 Ils nous font confiance
 </h2>
 
+
 <p>
-Partagez votre expérience avec La Clé Conciergerie.
+La satisfaction de nos propriétaires est notre priorité.
 </p>
 
 </div>
 
 
-<!-- FORMULAIRE AVIS -->
 
-<div class="review-form">
-
-<h3>
-Laisser un avis
-</h3>
-
-
-<form id="reviewForm">
-
-
-<div class="form-group">
-
-<label for="reviewName">
-Votre prénom
-</label>
-
-<input
-type="text"
-id="reviewName"
-placeholder="Votre prénom"
-maxlength="50"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-Votre note
-</label>
-
-<div class="stars-input" id="starsInput">
-
-<span data-value="1">★</span>
-<span data-value="2">★</span>
-<span data-value="3">★</span>
-<span data-value="4">★</span>
-<span data-value="5">★</span>
-
-</div>
-
-<div class="rating-text" id="ratingText">
-Sélectionnez une note
-</div>
-
-</div>
-
-
-<div class="form-group">
-
-<label for="reviewText">
-Votre commentaire
-</label>
-
-<textarea
-id="reviewText"
-placeholder="Écrivez votre avis..."
-maxlength="500"
-required
-></textarea>
-
-</div>
-
-
-<button
-type="submit"
-class="review-submit"
->
-
-Publier mon avis
-
-</button>
-
-</form>
-
-</div>
-
-
-
-<!-- AVIS CHARGÉS DEPUIS FIREBASE -->
+<!-- AVIS APPROUVÉS -->
 
 <div
+id="firebaseReviewsList"
 class="reviews-grid"
-id="reviewsContainer"
 >
 
-<div class="reviews-empty">
+<div class="review-loading">
 
 Chargement des avis...
 
@@ -2556,27 +1337,166 @@ Chargement des avis...
 
 
 
-<!-- GOOGLE -->
+<!-- =====================================================
+     FORMULAIRE AVIS
+===================================================== -->
 
-<div class="google-review">
+<div class="review-form-wrapper">
+
+
+<div class="review-form-title">
+
+<h3>
+Partagez votre expérience
+</h3>
 
 <p>
-Vous pouvez également nous laisser un avis sur Google.
+Vous avez fait appel à La Clé Conciergerie ?
+Laissez-nous votre avis.
 </p>
 
+</div>
 
-<a
-href="https://g.page/r/CYKbx1y_dSWlEBM/review"
-target="_blank"
-rel="noopener noreferrer"
-class="btn-gold"
+
+
+<form
+id="reviewForm"
+class="review-form"
+autocomplete="off"
 >
 
-<i class="fa-brands fa-google"></i>
 
-&nbsp; Laisser un avis Google
+<!-- HONEYPOT ANTI-SPAM -->
 
-</a>
+<div
+class="review-honeypot"
+aria-hidden="true"
+>
+
+<label for="website">
+Ne pas remplir
+</label>
+
+<input
+type="text"
+id="website"
+name="website"
+tabindex="-1"
+autocomplete="off"
+>
+
+</div>
+
+
+
+<div class="review-field">
+
+<label for="reviewName">
+Votre prénom
+</label>
+
+<input
+type="text"
+id="reviewName"
+name="name"
+maxlength="50"
+minlength="2"
+placeholder="Ex. Thomas"
+required
+>
+
+</div>
+
+
+
+<div class="review-field">
+
+<label>
+Votre note
+</label>
+
+
+<div
+class="star-rating"
+id="starRating"
+>
+
+<button type="button" data-rating="1">★</button>
+<button type="button" data-rating="2">★</button>
+<button type="button" data-rating="3">★</button>
+<button type="button" data-rating="4">★</button>
+<button type="button" data-rating="5">★</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="reviewRating"
+name="rating"
+value=""
+required
+>
+
+</div>
+
+
+
+<div class="review-field">
+
+<label for="reviewText">
+Votre avis
+</label>
+
+<textarea
+id="reviewText"
+name="text"
+maxlength="500"
+minlength="5"
+rows="5"
+placeholder="Écrivez votre expérience..."
+required
+></textarea>
+
+
+<div class="review-counter">
+
+<span id="reviewCounter">0</span>/500
+
+</div>
+
+</div>
+
+
+
+<button
+type="submit"
+class="btn-gold review-submit"
+id="reviewSubmit"
+>
+
+Envoyer mon avis
+
+</button>
+
+
+<div
+id="reviewMessage"
+class="review-message"
+role="status"
+aria-live="polite"
+></div>
+
+
+<p class="review-security">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+Votre avis sera vérifié avant d'être publié.
+
+</p>
+
+</form>
 
 </div>
 
@@ -2600,9 +1520,11 @@ class="btn-gold"
 CONTACT
 </span>
 
+
 <h2>
 Demandez votre devis gratuit
 </h2>
+
 
 <p>
 Nous vous répondrons rapidement.
@@ -2611,11 +1533,12 @@ Nous vous répondrons rapidement.
 </div>
 
 
+
 <form
-class="contact-form"
 action="https://formspree.io/f/mzdljvyl"
 method="POST"
 >
+
 
 <input
 type="text"
@@ -2624,6 +1547,7 @@ placeholder="Nom"
 required
 >
 
+
 <input
 type="email"
 name="email"
@@ -2631,17 +1555,20 @@ placeholder="Adresse e-mail"
 required
 >
 
+
 <input
 type="tel"
 name="telephone"
 placeholder="Téléphone"
 >
 
+
 <textarea
 name="message"
 placeholder="Décrivez votre projet"
 required
 ></textarea>
+
 
 <button
 type="submit"
@@ -2653,6 +1580,7 @@ Envoyer ma demande
 </button>
 
 </form>
+
 
 
 <div class="contact-info">
@@ -2685,23 +1613,28 @@ Envoyer ma demande
 
 <div class="container">
 
+
 <img
 src="logo.png"
 class="footer-logo"
 alt="Logo La Clé Conciergerie"
 >
 
+
 <h3>
 La Clé Conciergerie
 </h3>
+
 
 <p>
 Gestion haut de gamme de locations courte durée.
 </p>
 
+
 <p>
 © 2026 La Clé Conciergerie - Tous droits réservés
 </p>
+
 
 
 <div class="footer-links">
@@ -2710,13 +1643,17 @@ Gestion haut de gamme de locations courte durée.
 Mentions légales
 </button>
 
+
 <span>|</span>
+
 
 <button onclick="openLegal('confidentialite')">
 Politique de confidentialité
 </button>
 
+
 <span>|</span>
+
 
 <a href="#contact">
 Contact
@@ -2745,9 +1682,11 @@ onclick="closeLegal('mentions')"
 ×
 </button>
 
+
 <h2>
 Mentions légales
 </h2>
+
 
 <p>
 <strong>
@@ -2755,22 +1694,27 @@ La Clé Conciergerie
 </strong>
 </p>
 
+
 <p>
 Responsable : Lefevre Mickel
 </p>
 
+
 <p>
 SIRET : 10676421000014
 </p>
+
 
 <p>
 86 Bis Rue du Général de Gaulle<br>
 57860 Montois-la-Montagne
 </p>
 
+
 <p>
 Activité exercée en micro-entreprise.
 </p>
+
 
 <p>
 TVA non applicable, article 293 B du Code général des impôts.
@@ -2797,45 +1741,42 @@ onclick="closeLegal('confidentialite')"
 ×
 </button>
 
+
 <h2>
 Politique de confidentialité
 </h2>
 
-<p>
 
+<p>
 Les informations transmises via le formulaire de contact sont
 utilisées uniquement afin de répondre aux demandes des personnes
 qui souhaitent contacter La Clé Conciergerie.
-
 </p>
 
-<p>
 
+<p>
 Les données ne sont pas utilisées à des fins commerciales
 étrangères à la demande et ne sont pas vendues à des tiers.
-
 </p>
 
+
 <p>
-
-Les avis publiés via le formulaire d'avis sont enregistrés
-dans Firebase afin de permettre leur affichage sur le site.
-
+Les avis envoyés via le formulaire d'avis sont enregistrés
+dans Firebase uniquement afin d'être vérifiés puis éventuellement
+publiés sur le site.
 </p>
 
-<p>
 
+<p>
 Vous pouvez demander l'accès, la rectification ou la suppression
 de vos données en contactant La Clé Conciergerie à l'adresse :
-
 </p>
 
-<p>
 
+<p>
 <strong>
 lacleconciergerie.contact@gmail.com
 </strong>
-
 </p>
 
 </div>
@@ -2845,8 +1786,1533 @@ lacleconciergerie.contact@gmail.com
 
 
 <!-- =====================================================
-     JAVASCRIPT SERVICES / FAQ / MODALES
+     STYLE AJOUTÉ POUR LES AVIS
 ===================================================== -->
+
+<style>
+
+html {
+scroll-behavior: smooth;
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.lc-services {
+padding: 90px 25px;
+background: #f6f8fb;
+}
+
+.lc-services-header {
+max-width: 850px;
+margin: 0 auto 55px;
+text-align: center;
+}
+
+.lc-services-label {
+display: inline-block;
+font-size: 13px;
+font-weight: 700;
+letter-spacing: 2px;
+margin-bottom: 12px;
+}
+
+.lc-services-header h2 {
+font-size: 42px;
+line-height: 1.15;
+margin: 0 0 18px;
+}
+
+.lc-services-header p {
+font-size: 17px;
+line-height: 1.7;
+max-width: 700px;
+margin: 0 auto;
+opacity: .75;
+}
+
+
+.lc-services-grid {
+max-width: 1150px;
+margin: auto;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 25px;
+}
+
+
+.lc-service-card {
+background: white;
+border-radius: 20px;
+overflow: hidden;
+display: flex;
+min-height: 300px;
+box-shadow: 0 10px 35px rgba(0,0,0,.06);
+transition: .3s ease;
+}
+
+
+.lc-service-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 18px 45px rgba(0,0,0,.10);
+}
+
+
+.lc-service-image {
+width: 45%;
+min-height: 300px;
+overflow: hidden;
+}
+
+
+.lc-service-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+
+.lc-service-content {
+width: 55%;
+padding: 30px;
+display: flex;
+flex-direction: column;
+box-sizing: border-box;
+}
+
+
+.lc-service-content h3 {
+font-size: 21px;
+margin: 0 0 15px;
+}
+
+
+.lc-service-content p {
+font-size: 15px;
+line-height: 1.7;
+opacity: .75;
+margin: 0 0 20px;
+}
+
+
+.lc-service-rating {
+margin-top: auto;
+margin-bottom: 18px;
+font-size: 13px;
+}
+
+
+.lc-service-rating strong {
+display: block;
+margin-bottom: 4px;
+}
+
+
+.lc-service-rating span {
+opacity: .7;
+}
+
+
+.lc-service-link {
+color: inherit;
+background: none;
+border: none;
+border-bottom: 1px solid currentColor;
+padding: 0 0 4px;
+font-family: inherit;
+font-size: 15px;
+font-weight: 700;
+display: inline-flex;
+align-items: center;
+gap: 10px;
+width: fit-content;
+cursor: pointer;
+}
+
+
+.lc-service-link span {
+transition: .3s ease;
+}
+
+
+.lc-service-link:hover span {
+transform: translateX(6px);
+}
+
+
+
+/* =====================================================
+   DETAILS SERVICES
+===================================================== */
+
+.lc-service-details {
+max-width: 1150px;
+margin: auto;
+}
+
+
+.lc-service-popup {
+display: none;
+max-width: 900px;
+margin: 50px auto 0;
+padding: 45px;
+background: white;
+border-radius: 25px;
+box-shadow: 0 15px 50px rgba(0,0,0,.10);
+position: relative;
+animation: serviceOpen .35s ease;
+}
+
+
+.lc-service-popup.active {
+display: block;
+}
+
+
+@keyframes serviceOpen {
+
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+
+}
+
+
+.lc-close {
+position: absolute;
+top: 18px;
+right: 22px;
+border: none;
+background: none;
+font-size: 32px;
+cursor: pointer;
+opacity: .6;
+}
+
+
+.lc-close:hover {
+opacity: 1;
+}
+
+
+.lc-service-popup h2 {
+font-size: 34px;
+line-height: 1.2;
+margin: 10px 0 18px;
+}
+
+
+.lc-service-popup h3 {
+font-size: 19px;
+line-height: 1.5;
+margin-bottom: 20px;
+}
+
+
+.lc-service-popup p {
+font-size: 16px;
+line-height: 1.8;
+opacity: .75;
+}
+
+
+.lc-service-popup h4 {
+font-size: 18px;
+margin-top: 30px;
+}
+
+
+.lc-service-popup ul {
+list-style: none;
+padding: 0;
+margin: 15px 0 0;
+}
+
+
+.lc-service-popup li {
+margin-bottom: 10px;
+font-size: 15px;
+}
+
+
+.lc-detail-number {
+font-size: 14px;
+font-weight: 800;
+letter-spacing: 2px;
+opacity: .5;
+}
+
+
+
+/* =====================================================
+   À PROPOS
+===================================================== */
+
+.about-company {
+padding: 100px 25px;
+background: #ffffff;
+}
+
+
+.about-company-content {
+max-width: 1150px;
+margin: auto;
+display: grid;
+grid-template-columns: 1.4fr .8fr;
+gap: 80px;
+align-items: center;
+}
+
+
+.about-company-text {
+max-width: 700px;
+}
+
+
+.about-label {
+display: inline-block;
+font-size: 13px;
+font-weight: 700;
+letter-spacing: 2px;
+margin-bottom: 15px;
+}
+
+
+.about-company-text h2 {
+font-size: 40px;
+line-height: 1.2;
+margin: 0 0 25px;
+}
+
+
+.about-company-text > p {
+font-size: 16px;
+line-height: 1.8;
+opacity: .75;
+margin-bottom: 18px;
+}
+
+
+.about-values {
+margin-top: 35px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+
+.about-value {
+display: flex;
+align-items: flex-start;
+gap: 18px;
+}
+
+
+.about-value i {
+font-size: 20px;
+width: 42px;
+height: 42px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+background: #f6f8fb;
+}
+
+
+.about-value h3 {
+margin: 0 0 5px;
+font-size: 17px;
+}
+
+
+.about-value p {
+margin: 0;
+font-size: 14px;
+line-height: 1.6;
+opacity: .7;
+}
+
+
+.about-company-card {
+background: #f6f8fb;
+border-radius: 25px;
+padding: 45px 35px;
+text-align: center;
+box-shadow: 0 15px 45px rgba(0,0,0,.06);
+}
+
+
+.about-card-icon {
+width: 65px;
+height: 65px;
+margin: 0 auto 25px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+background: white;
+font-size: 24px;
+}
+
+
+.about-company-card > span {
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 2px;
+opacity: .6;
+}
+
+
+.about-company-card h3 {
+font-size: 25px;
+line-height: 1.4;
+margin: 18px 0;
+}
+
+
+.about-company-card p {
+font-size: 15px;
+line-height: 1.7;
+opacity: .7;
+margin-bottom: 28px;
+}
+
+
+.about-company-card .btn-gold {
+display: inline-block;
+text-decoration: none;
+}
+
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+.faq {
+padding: 100px 25px;
+background: #f6f8fb;
+}
+
+
+.faq-container {
+max-width: 850px;
+margin: 50px auto 0;
+}
+
+
+.faq-item {
+background: white;
+border-radius: 15px;
+margin-bottom: 15px;
+overflow: hidden;
+box-shadow: 0 5px 20px rgba(0,0,0,.04);
+}
+
+
+.faq-question {
+width: 100%;
+border: none;
+background: white;
+padding: 22px 25px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-family: inherit;
+font-size: 16px;
+font-weight: 600;
+text-align: left;
+cursor: pointer;
+}
+
+
+.faq-question span {
+font-size: 24px;
+font-weight: 400;
+transition: .3s ease;
+}
+
+
+.faq-item.active .faq-question span {
+transform: rotate(45deg);
+}
+
+
+.faq-answer {
+display: none;
+padding: 0 25px 22px;
+}
+
+
+.faq-item.active .faq-answer {
+display: block;
+}
+
+
+.faq-answer p {
+font-size: 15px;
+line-height: 1.8;
+opacity: .7;
+margin: 0;
+}
+
+
+
+/* =====================================================
+   AVIS FIREBASE
+===================================================== */
+
+.reviews {
+padding: 100px 25px;
+}
+
+
+.reviews-grid {
+max-width: 1150px;
+margin: 50px auto 0;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 25px;
+}
+
+
+.review-card {
+background: #ffffff;
+border-radius: 20px;
+padding: 30px;
+box-shadow: 0 10px 35px rgba(0,0,0,.06);
+}
+
+
+.review-card .stars {
+font-size: 20px;
+letter-spacing: 3px;
+margin-bottom: 15px;
+}
+
+
+.review-card p {
+font-size: 15px;
+line-height: 1.8;
+opacity: .75;
+}
+
+
+.review-card h4 {
+margin: 20px 0 0;
+font-size: 15px;
+}
+
+
+.review-loading {
+grid-column: 1 / -1;
+text-align: center;
+padding: 30px;
+opacity: .6;
+}
+
+
+.review-form-wrapper {
+max-width: 750px;
+margin: 65px auto 0;
+padding: 45px;
+background: #f6f8fb;
+border-radius: 25px;
+}
+
+
+.review-form-title {
+text-align: center;
+margin-bottom: 30px;
+}
+
+
+.review-form-title h3 {
+font-size: 28px;
+margin: 0 0 10px;
+}
+
+
+.review-form-title p {
+margin: 0;
+opacity: .7;
+}
+
+
+.review-form {
+position: relative;
+}
+
+
+.review-field {
+margin-bottom: 22px;
+}
+
+
+.review-field label {
+display: block;
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 8px;
+}
+
+
+.review-field input[type="text"],
+.review-field textarea {
+width: 100%;
+box-sizing: border-box;
+border: 1px solid rgba(0,0,0,.12);
+background: white;
+border-radius: 10px;
+padding: 14px 15px;
+font-family: inherit;
+font-size: 15px;
+outline: none;
+transition: .2s ease;
+}
+
+
+.review-field input[type="text"]:focus,
+.review-field textarea:focus {
+border-color: #b8944d;
+box-shadow: 0 0 0 3px rgba(184,148,77,.10);
+}
+
+
+.review-field textarea {
+resize: vertical;
+min-height: 130px;
+}
+
+
+.star-rating {
+display: flex;
+gap: 5px;
+}
+
+
+.star-rating button {
+border: none;
+background: transparent;
+padding: 0;
+font-size: 32px;
+cursor: pointer;
+opacity: .25;
+transition: .2s ease;
+}
+
+
+.star-rating button:hover,
+.star-rating button.selected {
+opacity: 1;
+}
+
+
+.review-counter {
+text-align: right;
+font-size: 12px;
+opacity: .55;
+margin-top: 5px;
+}
+
+
+.review-submit {
+border: none;
+cursor: pointer;
+font-family: inherit;
+}
+
+
+.review-submit:disabled {
+opacity: .6;
+cursor: not-allowed;
+}
+
+
+.review-message {
+display: none;
+margin-top: 18px;
+padding: 14px;
+border-radius: 10px;
+font-size: 14px;
+text-align: center;
+}
+
+
+.review-message.success {
+display: block;
+background: rgba(30,130,76,.10);
+}
+
+
+.review-message.error {
+display: block;
+background: rgba(180,50,50,.10);
+}
+
+
+.review-security {
+text-align: center;
+font-size: 12px;
+opacity: .6;
+margin: 18px 0 0;
+}
+
+
+.review-honeypot {
+position: absolute !important;
+left: -9999px !important;
+width: 1px !important;
+height: 1px !important;
+overflow: hidden !important;
+}
+
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer-links {
+margin-top: 25px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+
+.footer-links button,
+.footer-links a {
+background: none;
+border: none;
+padding: 0;
+font-family: inherit;
+font-size: 13px;
+color: inherit;
+text-decoration: none;
+cursor: pointer;
+opacity: .7;
+}
+
+
+.footer-links button:hover,
+.footer-links a:hover {
+opacity: 1;
+}
+
+
+
+/* =====================================================
+   MODALES
+===================================================== */
+
+.legal-modal {
+display: none;
+position: fixed;
+z-index: 9999;
+inset: 0;
+background: rgba(0,0,0,.65);
+padding: 25px;
+align-items: center;
+justify-content: center;
+}
+
+
+.legal-modal.active {
+display: flex;
+}
+
+
+.legal-box {
+position: relative;
+background: white;
+max-width: 650px;
+width: 100%;
+max-height: 85vh;
+overflow-y: auto;
+padding: 45px;
+border-radius: 20px;
+box-sizing: border-box;
+box-shadow: 0 20px 60px rgba(0,0,0,.2);
+}
+
+
+.legal-box h2 {
+font-size: 30px;
+margin: 0 0 25px;
+}
+
+
+.legal-box p {
+font-size: 15px;
+line-height: 1.8;
+opacity: .75;
+}
+
+
+.legal-close {
+position: absolute;
+right: 18px;
+top: 12px;
+background: none;
+border: none;
+font-size: 32px;
+cursor: pointer;
+opacity: .6;
+}
+
+
+.legal-close:hover {
+opacity: 1;
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 850px) {
+
+.lc-services {
+padding: 60px 18px;
+}
+
+
+.lc-services-header h2 {
+font-size: 31px;
+}
+
+
+.lc-services-grid {
+grid-template-columns: 1fr;
+}
+
+
+.lc-service-card {
+flex-direction: column;
+}
+
+
+.lc-service-image,
+.lc-service-content {
+width: 100%;
+}
+
+
+.lc-service-image {
+height: 230px;
+min-height: 230px;
+}
+
+
+.lc-service-popup {
+padding: 35px 25px;
+margin-top: 35px;
+}
+
+
+.lc-service-popup h2 {
+font-size: 28px;
+}
+
+
+.about-company {
+padding: 70px 18px;
+}
+
+
+.about-company-content {
+grid-template-columns: 1fr;
+gap: 45px;
+}
+
+
+.about-company-text h2 {
+font-size: 31px;
+}
+
+
+.about-company-card {
+padding: 40px 25px;
+}
+
+
+.faq {
+padding: 70px 18px;
+}
+
+
+.faq-question {
+padding: 20px;
+}
+
+
+.legal-box {
+padding: 35px 25px;
+}
+
+
+.reviews {
+padding: 70px 18px;
+}
+
+
+.reviews-grid {
+grid-template-columns: 1fr;
+margin-top: 35px;
+}
+
+
+.review-form-wrapper {
+padding: 30px 20px;
+}
+
+
+.review-form-title h3 {
+font-size: 24px;
+}
+
+
+}
+
+</style>
+
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push,
+set,
+onValue
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+
+
+/* =====================================================
+   CONFIGURATION FIREBASE
+===================================================== */
+
+/*
+   IMPORTANT :
+
+   Mets ici EXACTEMENT la configuration Web
+   fournie par ton projet Firebase.
+
+   Le databaseURL de ton projet est :
+
+   https://lacleconciergerie-a3e94-default-rtdb.europe-west1.firebasedatabase.app
+*/
+
+const firebaseConfig = {
+
+apiKey: "TON_API_KEY",
+
+authDomain: "lacleconciergerie-a3e94.firebaseapp.com",
+
+databaseURL: "https://lacleconciergerie-a3e94-default-rtdb.europe-west1.firebasedatabase.app",
+
+projectId: "lacleconciergerie-a3e94",
+
+storageBucket: "TON_STORAGE_BUCKET",
+
+messagingSenderId: "TON_MESSAGING_SENDER_ID",
+
+appId: "TON_APP_ID"
+
+};
+
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+
+
+/* =====================================================
+   CHARGER LES AVIS APPROUVÉS
+===================================================== */
+
+const reviewsList =
+document.getElementById("firebaseReviewsList");
+
+
+const approvedReviewsRef =
+ref(db, "reviews/approved");
+
+
+onValue(
+approvedReviewsRef,
+(snapshot) => {
+
+reviewsList.innerHTML = "";
+
+const reviews =
+snapshot.val();
+
+
+if (!reviews) {
+
+reviewsList.innerHTML = `
+
+<div class="review-loading">
+
+Aucun avis publié pour le moment.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const reviewsArray =
+Object.values(reviews);
+
+
+/*
+   Afficher les plus récents en premier
+*/
+
+reviewsArray.reverse();
+
+
+
+reviewsArray.forEach((review) => {
+
+
+const card =
+document.createElement("div");
+
+card.className =
+"review-card";
+
+
+
+/* Protection contre l'injection HTML */
+
+const safeName =
+escapeHTML(review.name || "Client");
+
+
+const safeText =
+escapeHTML(review.text || "");
+
+
+
+let rating =
+Number(review.rating);
+
+
+if (rating < 1) rating = 1;
+
+if (rating > 5) rating = 5;
+
+
+
+const stars =
+"★".repeat(rating) +
+"☆".repeat(5 - rating);
+
+
+
+card.innerHTML = `
+
+<div class="stars">
+${stars}
+</div>
+
+<p>
+"${safeText}"
+</p>
+
+<h4>
+${safeName}
+</h4>
+
+`;
+
+
+
+reviewsList.appendChild(card);
+
+});
+
+
+},
+
+(error) => {
+
+console.error(
+"Erreur Firebase :",
+error
+);
+
+
+reviewsList.innerHTML = `
+
+<div class="review-loading">
+
+Impossible de charger les avis pour le moment.
+
+</div>
+
+`;
+
+}
+
+);
+
+
+
+/* =====================================================
+   SÉCURISATION DU TEXTE
+===================================================== */
+
+function escapeHTML(value) {
+
+const div =
+document.createElement("div");
+
+div.textContent =
+value;
+
+return div.innerHTML;
+
+}
+
+
+
+/* =====================================================
+   ÉTOILES
+===================================================== */
+
+const starButtons =
+document.querySelectorAll(
+"#starRating button"
+);
+
+
+const ratingInput =
+document.getElementById(
+"reviewRating"
+);
+
+
+
+starButtons.forEach(
+(button) => {
+
+button.addEventListener(
+"click",
+() => {
+
+const rating =
+Number(
+button.dataset.rating
+);
+
+ratingInput.value =
+rating;
+
+
+
+starButtons.forEach(
+(btn) => {
+
+const btnRating =
+Number(
+btn.dataset.rating
+);
+
+btn.classList.toggle(
+"selected",
+btnRating <= rating
+);
+
+});
+
+});
+
+});
+
+
+
+/* =====================================================
+   COMPTEUR TEXTE
+===================================================== */
+
+const reviewText =
+document.getElementById(
+"reviewText"
+);
+
+
+const reviewCounter =
+document.getElementById(
+"reviewCounter"
+);
+
+
+reviewText.addEventListener(
+"input",
+() => {
+
+reviewCounter.textContent =
+reviewText.value.length;
+
+});
+
+
+
+/* =====================================================
+   ENVOI DE L'AVIS
+===================================================== */
+
+const reviewForm =
+document.getElementById(
+"reviewForm"
+);
+
+
+const reviewSubmit =
+document.getElementById(
+"reviewSubmit"
+);
+
+
+const reviewMessage =
+document.getElementById(
+"reviewMessage"
+);
+
+
+
+reviewForm.addEventListener(
+"submit",
+async (event) => {
+
+event.preventDefault();
+
+
+
+/* ===============================
+   ANTI-SPAM HONEYPOT
+================================ */
+
+const honeypot =
+document.getElementById(
+"website"
+);
+
+
+if (honeypot.value.trim() !== "") {
+
+return;
+
+}
+
+
+
+/* ===============================
+   RÉCUPÉRATION
+================================ */
+
+const name =
+document.getElementById(
+"reviewName"
+).value.trim();
+
+
+const rating =
+Number(
+ratingInput.value
+);
+
+
+const text =
+reviewText.value.trim();
+
+
+
+/* ===============================
+   VALIDATIONS
+================================ */
+
+if (
+name.length < 2 ||
+name.length > 50
+) {
+
+showReviewMessage(
+"Veuillez entrer un prénom valide.",
+"error"
+);
+
+return;
+
+}
+
+
+
+if (
+rating < 1 ||
+rating > 5
+) {
+
+showReviewMessage(
+"Veuillez sélectionner une note.",
+"error"
+);
+
+return;
+
+}
+
+
+
+if (
+text.length < 5 ||
+text.length > 500
+) {
+
+showReviewMessage(
+"Votre avis doit contenir entre 5 et 500 caractères.",
+"error"
+);
+
+return;
+
+}
+
+
+
+/* ===============================
+   ANTI-SPAM LOCAL
+================================ */
+
+const lastReview =
+localStorage.getItem(
+"lc_last_review"
+);
+
+
+if (lastReview) {
+
+const elapsed =
+Date.now() -
+Number(lastReview);
+
+
+const twelveHours =
+12 * 60 * 60 * 1000;
+
+
+if (elapsed < twelveHours) {
+
+showReviewMessage(
+"Vous avez déjà envoyé un avis récemment. Merci de patienter.",
+"error"
+);
+
+return;
+
+}
+
+}
+
+
+
+/* ===============================
+   BOUTON
+================================ */
+
+reviewSubmit.disabled =
+true;
+
+reviewSubmit.textContent =
+"Envoi en cours...";
+
+
+
+try {
+
+
+/*
+   Les avis arrivent ici :
+
+   /reviews/pending
+
+   Ils ne sont PAS affichés automatiquement.
+*/
+
+const pendingRef =
+ref(
+db,
+"reviews/pending"
+);
+
+
+
+const newReviewRef =
+push(pendingRef);
+
+
+
+await set(
+newReviewRef,
+{
+
+name: name,
+
+rating: rating,
+
+text: text,
+
+createdAt: Date.now(),
+
+status: "pending"
+
+}
+
+);
+
+
+
+/*
+   Enregistrer localement
+   le dernier envoi.
+*/
+
+localStorage.setItem(
+"lc_last_review",
+Date.now().toString()
+);
+
+
+
+/* ===============================
+   SUCCÈS
+================================ */
+
+reviewForm.reset();
+
+ratingInput.value =
+"";
+
+reviewCounter.textContent =
+"0";
+
+
+starButtons.forEach(
+(btn) => {
+
+btn.classList.remove(
+"selected"
+);
+
+});
+
+
+showReviewMessage(
+
+"Merci pour votre avis ! Il sera vérifié avant d'être publié.",
+
+"success"
+
+);
+
+
+
+}
+
+catch (error) {
+
+console.error(
+"Erreur lors de l'envoi :",
+error
+);
+
+
+showReviewMessage(
+
+"Une erreur est survenue. Veuillez réessayer.",
+
+"error"
+
+);
+
+}
+
+
+
+reviewSubmit.disabled =
+false;
+
+reviewSubmit.textContent =
+"Envoyer mon avis";
+
+});
+
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showReviewMessage(
+message,
+type
+) {
+
+reviewMessage.textContent =
+message;
+
+reviewMessage.className =
+"review-message " + type;
+
+}
+
+</script>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT DU SITE
+===================================================== -->
+
+<script src="script.js"></script>
+
 
 <script>
 
@@ -2856,70 +3322,96 @@ lacleconciergerie.contact@gmail.com
 
 function toggleService(id, button) {
 
-    const service =
-    document.getElementById(id);
+const service =
+document.getElementById(id);
 
-    const allServices =
-    document.querySelectorAll('.lc-service-popup');
+const allServices =
+document.querySelectorAll(
+".lc-service-popup"
+);
 
-    const allButtons =
-    document.querySelectorAll('.lc-service-link');
-
-
-    allServices.forEach(function(item) {
-
-        item.classList.remove('active');
-
-    });
+const allButtons =
+document.querySelectorAll(
+".lc-service-link"
+);
 
 
-    allButtons.forEach(function(btn) {
 
-        btn.innerHTML =
-        'En savoir plus <span>→</span>';
+allServices.forEach(
+function(item) {
 
-    });
+item.classList.remove(
+"active"
+);
 
-
-    service.classList.add('active');
-
-    button.innerHTML =
-    'Fermer <span>↑</span>';
+});
 
 
-    setTimeout(function() {
 
-        service.scrollIntoView({
+allButtons.forEach(
+function(btn) {
 
-            behavior: 'smooth',
+btn.innerHTML =
+"En savoir plus <span>→</span>";
 
-            block: 'center'
+});
 
-        });
 
-    }, 100);
+
+service.classList.add(
+"active"
+);
+
+
+button.innerHTML =
+"Fermer <span>↑</span>";
+
+
+
+setTimeout(
+function() {
+
+service.scrollIntoView({
+
+behavior: "smooth",
+
+block: "center"
+
+});
+
+},
+100
+);
 
 }
+
 
 
 function closeService(id) {
 
-    const service =
-    document.getElementById(id);
+const service =
+document.getElementById(id);
 
-    service.classList.remove('active');
+service.classList.remove(
+"active"
+);
 
 
-    document
-    .querySelectorAll('.lc-service-link')
-    .forEach(function(btn) {
 
-        btn.innerHTML =
-        'En savoir plus <span>→</span>';
+document
+.querySelectorAll(
+".lc-service-link"
+)
+.forEach(
+function(btn) {
 
-    });
+btn.innerHTML =
+"En savoir plus <span>→</span>";
+
+});
 
 }
+
 
 
 /* =====================================================
@@ -2927,33 +3419,48 @@ function closeService(id) {
 ===================================================== */
 
 document
-.querySelectorAll('.faq-question')
-.forEach(function(question) {
+.querySelectorAll(
+".faq-question"
+)
+.forEach(
+function(question) {
 
-    question.addEventListener('click', function() {
+question.addEventListener(
+"click",
+function() {
 
-        const item =
-        this.parentElement;
-
-
-        document
-        .querySelectorAll('.faq-item')
-        .forEach(function(other) {
-
-            if (other !== item) {
-
-                other.classList.remove('active');
-
-            }
-
-        });
+const item =
+this.parentElement;
 
 
-        item.classList.toggle('active');
 
-    });
+document
+.querySelectorAll(
+".faq-item"
+)
+.forEach(
+function(other) {
+
+if (other !== item) {
+
+other.classList.remove(
+"active"
+);
+
+}
 
 });
+
+
+
+item.classList.toggle(
+"active"
+);
+
+});
+
+});
+
 
 
 /* =====================================================
@@ -2962,567 +3469,83 @@ document
 
 function openLegal(id) {
 
-    document
-    .getElementById(id)
-    .classList.add('active');
+document
+.getElementById(id)
+.classList.add(
+"active"
+);
 
 }
+
 
 
 function closeLegal(id) {
 
-    document
-    .getElementById(id)
-    .classList.remove('active');
+document
+.getElementById(id)
+.classList.remove(
+"active"
+);
 
 }
 
+
+
+/* =====================================================
+   FERMER MODALE
+===================================================== */
 
 document
-.querySelectorAll('.legal-modal')
-.forEach(function(modal) {
+.querySelectorAll(
+".legal-modal"
+)
+.forEach(
+function(modal) {
 
-    modal.addEventListener('click', function(event) {
+modal.addEventListener(
+"click",
+function(event) {
 
-        if (event.target === modal) {
+if (event.target === modal) {
 
-            modal.classList.remove('active');
+modal.classList.remove(
+"active"
+);
 
-        }
+}
 
-    });
+});
 
 });
 
 
-document.addEventListener('keydown', function(event) {
 
-    if (event.key === 'Escape') {
+/* =====================================================
+   ESC
+===================================================== */
 
-        document
-        .querySelectorAll('.legal-modal')
-        .forEach(function(modal) {
+document.addEventListener(
+"keydown",
+function(event) {
 
-            modal.classList.remove('active');
+if (event.key === "Escape") {
 
-        });
+document
+.querySelectorAll(
+".legal-modal"
+)
+.forEach(
+function(modal) {
 
-    }
+modal.classList.remove(
+"active"
+);
 
 });
 
-</script>
-
-
-
-<!-- =====================================================
-     FIREBASE AVIS
-===================================================== -->
-
-<script type="module">
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-    getDatabase,
-    ref,
-    push,
-    set,
-    onValue
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
-
-
-/* =====================================================
-   CONFIGURATION FIREBASE
-===================================================== */
-
-const firebaseConfig = {
-
-    apiKey:
-    "AIzaSyC1GfrCkZrrvAnIo-yiJP1gyIxoWFfW9Cg",
-
-    authDomain:
-    "lacleconciergerie-a3e94.firebaseapp.com",
-
-    projectId:
-    "lacleconciergerie-a3e94",
-
-    storageBucket:
-    "lacleconciergerie-a3e94.firebasestorage.app",
-
-    messagingSenderId:
-    "190906565909",
-
-    appId:
-    "1:190906565909:web:25e073e959dba471c9951c",
-
-    measurementId:
-    "G-TXWJ6XNN0D"
-
-};
-
-
-/* =====================================================
-   INITIALISATION FIREBASE
-===================================================== */
-
-const app =
-initializeApp(firebaseConfig);
-
-
-const db =
-getDatabase(
-    app,
-    "https://lacleconciergerie-a3e94-default-rtdb.europe-west1.firebasedatabase.app"
-);
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const reviewForm =
-document.getElementById("reviewForm");
-
-const reviewName =
-document.getElementById("reviewName");
-
-const reviewText =
-document.getElementById("reviewText");
-
-const reviewsContainer =
-document.getElementById("reviewsContainer");
-
-const stars =
-document.querySelectorAll("#starsInput span");
-
-const ratingText =
-document.getElementById("ratingText");
-
-
-let selectedRating = 0;
-
-
-/* =====================================================
-   SELECTION DES ÉTOILES
-===================================================== */
-
-stars.forEach(function(star) {
-
-    star.addEventListener("click", function() {
-
-        selectedRating =
-        Number(this.dataset.value);
-
-
-        stars.forEach(function(currentStar) {
-
-            const value =
-            Number(currentStar.dataset.value);
-
-
-            if (value <= selectedRating) {
-
-                currentStar.classList.add("active");
-
-            } else {
-
-                currentStar.classList.remove("active");
-
-            }
-
-        });
-
-
-        ratingText.textContent =
-        selectedRating + " / 5 étoiles";
-
-    });
+}
 
 });
-
-
-/* =====================================================
-   PROTECTION HTML
-===================================================== */
-
-function escapeHTML(value) {
-
-    const div =
-    document.createElement("div");
-
-    div.textContent =
-    value || "";
-
-    return div.innerHTML;
-
-}
-
-
-/* =====================================================
-   AFFICHAGE DES ÉTOILES
-===================================================== */
-
-function displayStars(rating) {
-
-    let html = "";
-
-    for (let i = 1; i <= 5; i++) {
-
-        if (i <= rating) {
-
-            html += "★";
-
-        } else {
-
-            html += "☆";
-
-        }
-
-    }
-
-    return html;
-
-}
-
-
-/* =====================================================
-   DATE
-===================================================== */
-
-function formatDate(timestamp) {
-
-    if (!timestamp) {
-
-        return "";
-
-    }
-
-
-    const date =
-    new Date(timestamp);
-
-
-    return date.toLocaleDateString(
-        "fr-FR",
-        {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        }
-    );
-
-}
-
-
-/* =====================================================
-   RÉFÉRENCE FIREBASE
-===================================================== */
-
-const reviewsRef =
-ref(db, "reviews");
-
-
-/* =====================================================
-   CHARGEMENT DES AVIS
-===================================================== */
-
-onValue(
-    reviewsRef,
-
-    function(snapshot) {
-
-        reviewsContainer.innerHTML = "";
-
-
-        if (!snapshot.exists()) {
-
-            reviewsContainer.innerHTML = `
-
-                <div class="reviews-empty">
-
-                    Aucun avis pour le moment.<br>
-
-                    Soyez le premier à partager
-                    votre expérience !
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        const reviews =
-        snapshot.val();
-
-
-        const reviewList =
-        Object.entries(reviews);
-
-
-        /* Plus récent en premier */
-
-        reviewList.sort(function(a, b) {
-
-            return (
-                (b[1].createdAt || 0) -
-                (a[1].createdAt || 0)
-            );
-
-        });
-
-
-        reviewList.forEach(function([id, review]) {
-
-            const card =
-            document.createElement("div");
-
-
-            card.className =
-            "review-card";
-
-
-            const rating =
-            Number(review.rating);
-
-
-            card.innerHTML = `
-
-                <div class="review-stars">
-
-                    ${displayStars(rating)}
-
-                </div>
-
-
-                <p>
-
-                    ${escapeHTML(review.text)}
-
-                </p>
-
-
-                <div class="review-name">
-
-                    ${escapeHTML(review.name)}
-
-                </div>
-
-
-                <div class="review-date">
-
-                    ${formatDate(review.createdAt)}
-
-                </div>
-
-            `;
-
-
-            reviewsContainer.appendChild(card);
-
-        });
-
-    },
-
-    function(error) {
-
-        console.error(
-            "Erreur Firebase :",
-            error
-        );
-
-
-        reviewsContainer.innerHTML = `
-
-            <div class="reviews-empty">
-
-                Les avis ne peuvent pas être
-                chargés pour le moment.
-
-            </div>
-
-        `;
-
-    }
-
-);
-
-
-/* =====================================================
-   ENREGISTREMENT D'UN AVIS
-===================================================== */
-
-reviewForm.addEventListener(
-    "submit",
-    async function(event) {
-
-        event.preventDefault();
-
-
-        const name =
-        reviewName.value.trim();
-
-
-        const text =
-        reviewText.value.trim();
-
-
-        /* Vérification note */
-
-        if (
-            selectedRating < 1 ||
-            selectedRating > 5
-        ) {
-
-            alert(
-                "Veuillez sélectionner une note entre 1 et 5 étoiles."
-            );
-
-            return;
-
-        }
-
-
-        /* Vérification prénom */
-
-        if (
-            name.length < 2 ||
-            name.length > 50
-        ) {
-
-            alert(
-                "Veuillez indiquer un prénom valide."
-            );
-
-            return;
-
-        }
-
-
-        /* Vérification commentaire */
-
-        if (
-            text.length < 5 ||
-            text.length > 500
-        ) {
-
-            alert(
-                "Votre avis doit contenir entre 5 et 500 caractères."
-            );
-
-            return;
-
-        }
-
-
-        const submitButton =
-        reviewForm.querySelector(
-            ".review-submit"
-        );
-
-
-        submitButton.disabled = true;
-
-        submitButton.textContent =
-        "Publication en cours...";
-
-
-        try {
-
-            /* Création d'un nouvel avis */
-
-            const newReviewRef =
-            push(reviewsRef);
-
-
-            /* Enregistrement Firebase */
-
-            await set(
-                newReviewRef,
-                {
-
-                    name:
-                    name,
-
-                    rating:
-                    selectedRating,
-
-                    text:
-                    text,
-
-                    createdAt:
-                    Date.now()
-
-                }
-            );
-
-
-            /* Réinitialisation */
-
-            reviewForm.reset();
-
-
-            selectedRating =
-            0;
-
-
-            stars.forEach(function(star) {
-
-                star.classList.remove("active");
-
-            });
-
-
-            ratingText.textContent =
-            "Sélectionnez une note";
-
-
-            alert(
-                "Merci pour votre avis !"
-            );
-
-
-            document
-            .getElementById("avis")
-            .scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-
-        catch(error) {
-
-            console.error(
-                "Erreur lors de l'enregistrement Firebase :",
-                error
-            );
-
-
-            alert(
-                "Impossible d'enregistrer votre avis pour le moment. Vérifiez les règles Firebase."
-            );
-
-        }
-
-
-        submitButton.disabled =
-        false;
-
-
-        submitButton.textContent =
-        "Publier mon avis";
-
-    }
-
-);
 
 </script>
 
