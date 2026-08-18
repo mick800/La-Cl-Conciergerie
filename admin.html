@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Administration - La Clé Conciergerie</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 0;
+      color: #ccc;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .status {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .status strong {
+      color: #b08d57;
+    }
+
+    .review {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .review h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .stars {
+      color: #d4a017;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .review-text {
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .date {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .accept {
+      background: #198754;
+      color: white;
+    }
+
+    .accept:hover {
+      background: #146c43;
+    }
+
+    .reject {
+      background: #dc3545;
+      color: white;
+    }
+
+    .reject:hover {
+      background: #b02a37;
+    }
+
+    .empty {
+      background: white;
+      padding: 40px;
+      text-align: center;
+      border-radius: 14px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .error {
+      background: #ffe5e5;
+      color: #a00000;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 22px;
+      }
+
+      .container {
+        margin-top: 25px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Administration</h1>
+  <p>La Clé Conciergerie — Gestion des avis clients</p>
+</header>
+
+<div class="container">
+
+  <div class="status">
+    <strong>Avis en attente :</strong>
+    <span id="count">Chargement...</span>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="reviews">
+    <div class="loading">
+      Chargement des avis...
+    </div>
+  </div>
+
+</div>
+
+
+<script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+  import {
+    getDatabase,
+    ref,
+    onValue,
+    get,
+    set,
+    remove
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+
+  // =========================================================
+  // CONFIGURATION FIREBASE
+  // =========================================================
+
+  const firebaseConfig = {
+
+    apiKey: "TON_API_KEY",
+
+    authDomain: "TON_PROJET.firebaseapp.com",
+
+    databaseURL: "https://TON_PROJET-default-rtdb.europe-west1.firebasedatabase.app",
+
+    projectId: "TON_PROJET",
+
+    storageBucket: "TON_PROJET.firebasestorage.app",
+
+    messagingSenderId: "TON_MESSAGING_SENDER_ID",
+
+    appId: "TON_APP_ID"
+
+  };
+
+
+  // =========================================================
+  // INITIALISATION FIREBASE
+  // =========================================================
+
+  const app = initializeApp(firebaseConfig);
+
+  const db = getDatabase(app);
+
+
+  const pendingRef = ref(db, "reviews/pending");
+
+  const approvedRef = ref(db, "reviews/approved");
+
+
+  const reviewsContainer = document.getElementById("reviews");
+
+  const countElement = document.getElementById("count");
+
+  const messageElement = document.getElementById("message");
+
+
+  // =========================================================
+  // AFFICHAGE DES AVIS EN ATTENTE
+  // =========================================================
+
+  onValue(
+    pendingRef,
+    (snapshot) => {
+
+      reviewsContainer.innerHTML = "";
+
+      if (!snapshot.exists()) {
+
+        countElement.textContent = "0";
+
+        reviewsContainer.innerHTML = `
+          <div class="empty">
+            <h2>Aucun avis en attente</h2>
+            <p>Les nouveaux avis apparaîtront ici.</p>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      const reviews = snapshot.val();
+
+      const ids = Object.keys(reviews);
+
+      countElement.textContent = ids.length;
+
+
+      ids.reverse().forEach((id) => {
+
+        const review = reviews[id];
+
+        const card = document.createElement("div");
+
+        card.className = "review";
+
+
+        const name = review.name || "Client";
+
+        const rating = Number(review.rating) || 0;
+
+        const text = review.text || "";
+
+        const createdAt = review.createdAt || "";
+
+
+        let stars = "";
+
+        for (let i = 1; i <= 5; i++) {
+
+          stars += i <= rating ? "★" : "☆";
+
+        }
+
+
+        card.innerHTML = `
+
+          <h3>${escapeHTML(name)}</h3>
+
+          <div class="stars">
+            ${stars}
+          </div>
+
+          <div class="review-text">
+            ${escapeHTML(text)}
+          </div>
+
+          <div class="date">
+            ${formatDate(createdAt)}
+          </div>
+
+          <div class="buttons">
+
+            <button
+              class="accept"
+              data-id="${id}">
+              ✓ Accepter
+            </button>
+
+            <button
+              class="reject"
+              data-id="${id}">
+              ✕ Refuser
+            </button>
+
+          </div>
+
+        `;
+
+
+        reviewsContainer.appendChild(card);
+
+
+        card
+          .querySelector(".accept")
+          .addEventListener("click", () => acceptReview(id));
+
+
+        card
+          .querySelector(".reject")
+          .addEventListener("click", () => rejectReview(id));
+
+      });
+
+    },
+
+    (error) => {
+
+      console.error(error);
+
+      countElement.textContent = "Erreur";
+
+      reviewsContainer.innerHTML = `
+        <div class="error">
+          Impossible de charger les avis.
+          <br><br>
+          Vérifie ta configuration Firebase et tes règles Realtime Database.
+        </div>
+      `;
+
+    }
+  );
+
+
+  // =========================================================
+  // ACCEPTER UN AVIS
+  // =========================================================
+
+  async function acceptReview(id) {
+
+    try {
+
+      const reviewRef = ref(db, "reviews/pending/" + id);
+
+      const snapshot = await get(reviewRef);
+
+
+      if (!snapshot.exists()) {
+
+        alert("Cet avis n'existe plus.");
+
+        return;
+
+      }
+
+
+      const review = snapshot.val();
+
+
+      review.status = "approved";
+
+
+      await set(
+        ref(db, "reviews/approved/" + id),
+        review
+      );
+
+
+      await remove(reviewRef);
+
+
+      showMessage("Avis accepté avec succès.", "success");
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "Impossible d'accepter cet avis : " + error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  // =========================================================
+  // REFUSER UN AVIS
+  // =========================================================
+
+  async function rejectReview(id) {
+
+    const confirmation = confirm(
+      "Voulez-vous vraiment refuser cet avis ?"
+    );
+
+
+    if (!confirmation) {
+
+      return;
+
+    }
+
+
+    try {
+
+      await remove(
+        ref(db, "reviews/pending/" + id)
+      );
+
+
+      showMessage("Avis refusé.", "success");
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "Impossible de refuser cet avis : " + error.message,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  // =========================================================
+  // MESSAGE
+  // =========================================================
+
+  function showMessage(text, type) {
+
+    messageElement.innerHTML = `
+
+      <div
+        class="${type === "success" ? "" : "error"}"
+        style="
+          background:${type === "success" ? "#e7f7ed" : "#ffe5e5"};
+          color:${type === "success" ? "#146c43" : "#a00000"};
+          padding:15px;
+          border-radius:10px;
+          margin-bottom:20px;
+        "
+      >
+        ${escapeHTML(text)}
+      </div>
+
+    `;
+
+
+    setTimeout(() => {
+
+      messageElement.innerHTML = "";
+
+    }, 4000);
+
+  }
+
+
+  // =========================================================
+  // SECURITE AFFICHAGE
+  // =========================================================
+
+  function escapeHTML(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  // =========================================================
+  // DATE
+  // =========================================================
+
+  function formatDate(timestamp) {
+
+    if (!timestamp) {
+
+      return "";
+
+    }
+
+
+    const date = new Date(timestamp);
+
+
+    if (isNaN(date.getTime())) {
+
+      return "";
+
+    }
+
+
+    return date.toLocaleString("fr-FR");
+
+  }
+
+</script>
+
+</body>
+</html>
