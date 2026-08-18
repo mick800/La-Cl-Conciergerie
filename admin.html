@@ -1,16 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Administration | La Clé Conciergerie</title>
 
@@ -22,228 +17,314 @@ rel="stylesheet"
 <style>
 
 * {
-box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 body {
-margin:0;
-font-family:Poppins,sans-serif;
-background:#f5f6f8;
-color:#222;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: #f5f6f8;
+    color: #222;
 }
 
+/* ==============================
+   HEADER
+============================== */
+
 header {
-background:#111;
-color:#fff;
-padding:20px;
+    background: #111;
+    color: #fff;
+    padding: 20px;
 }
 
 .header-inner {
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
 header h1 {
-font-size:20px;
-margin:0;
+    font-size: 20px;
+    margin: 0;
 }
 
+/* ==============================
+   CONTAINER
+============================== */
+
 .container {
-max-width:1100px;
-margin:40px auto;
-padding:0 20px;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
+
+/* ==============================
+   LOGIN
+============================== */
 
 .login-box,
 .admin-box {
-background:#fff;
-border-radius:20px;
-padding:35px;
-box-shadow:0 10px 35px rgba(0,0,0,.07);
+    background: #fff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
 }
 
 .login-box {
-max-width:500px;
-margin:80px auto;
+    max-width: 500px;
+    margin: 80px auto;
 }
 
 h2 {
-margin-top:0;
+    margin-top: 0;
 }
 
 .field {
-margin-bottom:18px;
+    margin-bottom: 18px;
 }
 
 label {
-display:block;
-font-size:14px;
-font-weight:600;
-margin-bottom:7px;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
 }
 
 input {
-width:100%;
-padding:13px;
-border:1px solid #ddd;
-border-radius:9px;
-font-family:inherit;
-font-size:15px;
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 15px;
 }
 
+input:focus {
+    outline: none;
+    border-color: #b8944d;
+    box-shadow: 0 0 0 3px rgba(184,148,77,.12);
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
 button {
-font-family:inherit;
-cursor:pointer;
+    font-family: inherit;
+    cursor: pointer;
 }
 
 .btn {
-border:none;
-border-radius:9px;
-padding:12px 20px;
-font-weight:600;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 20px;
+    font-weight: 600;
 }
 
 .btn-login {
-width:100%;
-background:#b8944d;
-color:white;
+    width: 100%;
+    background: #b8944d;
+    color: white;
+}
+
+.btn-login:hover {
+    background: #a48242;
+}
+
+.btn-login:disabled {
+    opacity: .6;
+    cursor: wait;
 }
 
 .btn-logout {
-background:#fff;
-color:#111;
+    background: #fff;
+    color: #111;
 }
 
+.btn-logout:hover {
+    background: #eee;
+}
+
+/* ==============================
+   MESSAGES
+============================== */
+
 .message {
-display:none;
-padding:13px;
-border-radius:9px;
-margin-top:15px;
-font-size:14px;
+    display: none;
+    padding: 13px;
+    border-radius: 9px;
+    margin-top: 15px;
+    font-size: 14px;
 }
 
 .message.error {
-display:block;
-background:#ffe9e9;
-color:#a00000;
+    display: block;
+    background: #ffe9e9;
+    color: #a00000;
 }
 
 .message.success {
-display:block;
-background:#e8f7ed;
-color:#147333;
+    display: block;
+    background: #e8f7ed;
+    color: #147333;
 }
 
+/* ==============================
+   ADMIN
+============================== */
+
 #adminPanel {
-display:none;
+    display: none;
 }
 
 .admin-top {
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-margin-bottom:30px;
-flex-wrap:wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
+/* ==============================
+   STATS
+============================== */
+
 .stats {
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-margin-bottom:30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
 }
 
 .stat-box {
-background:#fff;
-padding:25px;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.05);
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+}
+
+.stat-box span {
+    font-size: 14px;
+    color: #777;
 }
 
 .stat-box strong {
-display:block;
-font-size:30px;
+    display: block;
+    font-size: 30px;
+    margin-top: 5px;
 }
 
+/* ==============================
+   REVIEWS
+============================== */
+
 .review-list {
-display:flex;
-flex-direction:column;
-gap:20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .review {
-border:1px solid #e5e5e5;
-border-radius:15px;
-padding:25px;
-background:#fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    padding: 25px;
+    background: #fff;
 }
 
 .review-stars {
-font-size:22px;
-letter-spacing:3px;
-margin-bottom:10px;
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
 .review-name {
-font-weight:700;
-font-size:17px;
+    font-weight: 700;
+    font-size: 17px;
 }
 
 .review-text {
-margin:15px 0;
-line-height:1.7;
-color:#555;
-white-space:pre-wrap;
+    margin: 15px 0;
+    line-height: 1.7;
+    color: #555;
+    white-space: pre-wrap;
 }
 
 .review-date {
-font-size:12px;
-color:#888;
-margin-bottom:20px;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 20px;
 }
 
+/* ==============================
+   ACTIONS
+============================== */
+
 .actions {
-display:flex;
-gap:10px;
-flex-wrap:wrap;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .btn-accept {
-background:#198754;
-color:white;
+    background: #198754;
+    color: white;
+}
+
+.btn-accept:hover {
+    background: #157347;
 }
 
 .btn-reject {
-background:#dc3545;
-color:white;
+    background: #dc3545;
+    color: white;
 }
 
+.btn-reject:hover {
+    background: #bb2d3b;
+}
+
+/* ==============================
+   EMPTY / LOADING
+============================== */
+
 .empty {
-padding:30px;
-text-align:center;
-color:#777;
+    padding: 30px;
+    text-align: center;
+    color: #777;
 }
 
 .loading {
-padding:30px;
-text-align:center;
+    padding: 30px;
+    text-align: center;
+    color: #777;
 }
+
+/* ==============================
+   MOBILE
+============================== */
 
 @media(max-width:650px) {
 
-.stats {
-grid-template-columns:1fr;
-}
+    .stats {
+        grid-template-columns: 1fr;
+    }
 
-.login-box,
-.admin-box {
-padding:25px;
-}
+    .login-box,
+    .admin-box {
+        padding: 25px;
+    }
+
+    header h1 {
+        font-size: 16px;
+    }
+
+    .header-inner {
+        align-items: flex-start;
+    }
 
 }
 
@@ -252,6 +333,11 @@ padding:25px;
 </head>
 
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -274,9 +360,14 @@ Déconnexion
 </header>
 
 
-<!-- CONNEXION -->
+<!-- =====================================================
+     CONNEXION
+===================================================== -->
 
-<div id="loginPanel" class="container">
+<div
+id="loginPanel"
+class="container"
+>
 
 <div class="login-box">
 
@@ -287,6 +378,7 @@ Connexion administrateur
 <p>
 Connectez-vous pour gérer les avis clients.
 </p>
+
 
 <form id="loginForm">
 
@@ -301,6 +393,7 @@ type="email"
 id="email"
 required
 autocomplete="username"
+placeholder="Votre adresse e-mail"
 >
 
 </div>
@@ -317,6 +410,7 @@ type="password"
 id="password"
 required
 autocomplete="current-password"
+placeholder="Votre mot de passe"
 >
 
 </div>
@@ -343,16 +437,21 @@ class="message"
 </div>
 
 
-<!-- ADMIN -->
+<!-- =====================================================
+     ADMINISTRATION
+===================================================== -->
 
-<div id="adminPanel" class="container">
+<div
+id="adminPanel"
+class="container"
+>
 
 <div class="admin-top">
 
 <div>
 
 <h2>
-Avis en attente
+Gestion des avis
 </h2>
 
 <p>
@@ -363,6 +462,8 @@ Acceptez ou refusez les avis avant leur publication.
 
 </div>
 
+
+<!-- STATISTIQUES -->
 
 <div class="stats">
 
@@ -394,6 +495,8 @@ Avis publiés
 </div>
 
 
+<!-- LISTE DES AVIS -->
+
 <div class="admin-box">
 
 <div
@@ -412,66 +515,78 @@ Chargement des avis...
 </div>
 
 
-<!-- FIREBASE -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
 
+/* =====================================================
+   IMPORT FIREBASE
+===================================================== */
+
 import {
-initializeApp
+    initializeApp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 import {
-getDatabase,
-ref,
-onValue,
-get,
-remove,
-set
+    getDatabase,
+    ref,
+    onValue,
+    get,
+    remove,
+    set
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 
 import {
-getAuth,
-signInWithEmailAndPassword,
-onAuthStateChanged,
-signOut
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-/* CONFIGURATION FIREBASE */
+/* =====================================================
+   CONFIGURATION FIREBASE
+===================================================== */
 
 const firebaseConfig = {
 
-apiKey:
-"AIzaSyC1GfrCkZrrvAnIo-yiJP1gyIxoWFfW9Cg",
+    apiKey:
+    "AIzaSyC1GfrCkZrrvAnIo-yiJP1gyIxoWFfW9Cg",
 
-authDomain:
-"lacleconciergerie-a3e94.firebaseapp.com",
+    authDomain:
+    "lacleconciergerie-a3e94.firebaseapp.com",
 
-databaseURL:
-"https://lacleconciergerie-a3e94-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL:
+    "https://lacleconciergerie-a3e94-default-rtdb.europe-west1.firebasedatabase.app",
 
-projectId:
-"lacleconciergerie-a3e94",
+    projectId:
+    "lacleconciergerie-a3e94",
 
-storageBucket:
-"lacleconciergerie-a3e94.firebasestorage.app",
+    storageBucket:
+    "lacleconciergerie-a3e94.firebasestorage.app",
 
-messagingSenderId:
-"190906565909",
+    messagingSenderId:
+    "190906565909",
 
-appId:
-"1:190906565909:web:25e073e959dba471c9951c",
+    appId:
+    "1:190906565909:web:25e073e959dba471c9951c",
 
-measurementId:
-"G-TXWJ6XNN0D"
+    measurementId:
+    "G-TXWJ6XNN0D"
 
 };
 
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
 
 const app =
 initializeApp(firebaseConfig);
@@ -483,7 +598,9 @@ const auth =
 getAuth(app);
 
 
-/* ELEMENTS */
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
 const loginPanel =
 document.getElementById("loginPanel");
@@ -513,503 +630,728 @@ const approvedCount =
 document.getElementById("approvedCount");
 
 
-/* CONNEXION */
+/* =====================================================
+   CONNEXION
+===================================================== */
 
 loginForm.addEventListener(
 "submit",
 async event => {
 
-event.preventDefault();
+    event.preventDefault();
+
+    const email =
+    document
+    .getElementById("email")
+    .value
+    .trim();
+
+    const password =
+    document
+    .getElementById("password")
+    .value;
 
 
-const email =
-document.getElementById("email")
-.value
-.trim();
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+    "Connexion...";
 
 
-const password =
-document.getElementById("password")
-.value;
+    hideMessage(loginMessage);
 
 
-loginButton.disabled = true;
+    try {
 
-loginButton.textContent =
-"Connexion...";
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
+    }
 
-try {
+    catch(error) {
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-showMessage(
-loginMessage,
-"Connexion réussie.",
-"success"
-);
-
-}
-catch(error) {
-
-console.error(error);
-
-showMessage(
-loginMessage,
-"Adresse e-mail ou mot de passe incorrect.",
-"error"
-);
-
-}
+        console.error(
+            "Erreur Firebase Authentication :",
+            error
+        );
 
 
-loginButton.disabled = false;
+        let message =
+        "Adresse e-mail ou mot de passe incorrect.";
 
-loginButton.textContent =
-"Se connecter";
+
+        if (
+            error.code ===
+            "auth/invalid-credential"
+        ) {
+
+            message =
+            "Adresse e-mail ou mot de passe incorrect.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/user-not-found"
+        ) {
+
+            message =
+            "Aucun compte administrateur ne correspond à cette adresse.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/wrong-password"
+        ) {
+
+            message =
+            "Le mot de passe est incorrect.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
+
+            message =
+            "L'adresse e-mail n'est pas valide.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/too-many-requests"
+        ) {
+
+            message =
+            "Trop de tentatives. Réessayez plus tard.";
+
+        }
+
+        else if (
+            error.code ===
+            "auth/network-request-failed"
+        ) {
+
+            message =
+            "Problème de connexion Internet.";
+
+        }
+
+
+        showMessage(
+            loginMessage,
+            message,
+            "error"
+        );
+
+    }
+
+
+    loginButton.disabled = false;
+
+    loginButton.textContent =
+    "Se connecter";
 
 });
 
 
-/* AUTH */
+/* =====================================================
+   ETAT DE CONNEXION
+===================================================== */
 
 onAuthStateChanged(
 auth,
 user => {
 
-if (user) {
+    if (user) {
 
-loginPanel.style.display =
-"none";
+        loginPanel.style.display =
+        "none";
 
-adminPanel.style.display =
-"block";
+        adminPanel.style.display =
+        "block";
 
-logoutButton.style.display =
-"block";
+        logoutButton.style.display =
+        "block";
 
-loadReviews();
+        loadReviews();
 
-}
-else {
+    }
 
-loginPanel.style.display =
-"block";
+    else {
 
-adminPanel.style.display =
-"none";
+        loginPanel.style.display =
+        "block";
 
-logoutButton.style.display =
-"none";
+        adminPanel.style.display =
+        "none";
 
-}
+        logoutButton.style.display =
+        "none";
+
+    }
 
 });
 
 
-/* DECONNEXION */
+/* =====================================================
+   DECONNEXION
+===================================================== */
 
 logoutButton.addEventListener(
 "click",
 async () => {
 
-await signOut(auth);
+    try {
+
+        await signOut(auth);
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Erreur déconnexion :",
+            error
+        );
+
+    }
 
 });
 
 
-/* CHARGER LES AVIS */
+/* =====================================================
+   CHARGER LES AVIS
+===================================================== */
 
 function loadReviews() {
 
-const pendingRef =
-ref(db,"reviews/pending");
 
-const approvedRef =
-ref(db,"reviews/approved");
-
-
-onValue(
-pendingRef,
-snapshot => {
-
-const data =
-snapshot.val();
+    const pendingRef =
+    ref(
+        db,
+        "reviews/pending"
+    );
 
 
-if (!data) {
+    const approvedRef =
+    ref(
+        db,
+        "reviews/approved"
+    );
 
-pendingCount.textContent =
-"0";
 
-reviewList.innerHTML = `
+    /* ==========================
+       AVIS EN ATTENTE
+    ========================== */
 
-<div class="empty">
-Aucun avis en attente.
-</div>
+    onValue(
+        pendingRef,
 
-`;
+        snapshot => {
 
-return;
+            const data =
+            snapshot.val();
+
+
+            if (!data) {
+
+                pendingCount.textContent =
+                "0";
+
+                reviewList.innerHTML = `
+
+                    <div class="empty">
+                        Aucun avis en attente.
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            const reviews =
+            Object.entries(data)
+
+            .map(
+                ([id, review]) => ({
+                    id,
+                    ...review
+                })
+            )
+
+            .sort(
+                (a, b) =>
+                Number(a.createdAt || 0) -
+                Number(b.createdAt || 0)
+            );
+
+
+            pendingCount.textContent =
+            reviews.length;
+
+
+            reviewList.innerHTML =
+            "";
+
+
+            reviews.forEach(
+                review => {
+
+                    reviewList.appendChild(
+                        createReviewElement(review)
+                    );
+
+                }
+            );
+
+        },
+
+        error => {
+
+            console.error(
+                "Erreur lecture avis :",
+                error
+            );
+
+
+            reviewList.innerHTML = `
+
+                <div class="empty">
+                    Impossible de charger les avis.
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    /* ==========================
+       AVIS APPROUVÉS
+    ========================== */
+
+    onValue(
+        approvedRef,
+
+        snapshot => {
+
+            const data =
+            snapshot.val();
+
+
+            approvedCount.textContent =
+            data
+            ? Object.keys(data).length
+            : "0";
+
+        },
+
+        error => {
+
+            console.error(
+                "Erreur lecture avis approuvés :",
+                error
+            );
+
+        }
+    );
 
 }
 
 
-const reviews =
-Object.entries(data)
-.map(([id,review]) => ({
-id,
-...review
-}))
-.sort(
-(a,b) =>
-Number(a.createdAt || 0) -
-Number(b.createdAt || 0)
-);
-
-
-pendingCount.textContent =
-reviews.length;
-
-
-reviewList.innerHTML =
-"";
-
-
-reviews.forEach(review => {
-
-reviewList.appendChild(
-createReviewElement(review)
-);
-
-});
-
-},
-error => {
-
-console.error(error);
-
-reviewList.innerHTML = `
-
-<div class="empty">
-Impossible de charger les avis.
-</div>
-
-`;
-
-});
-
-
-onValue(
-approvedRef,
-snapshot => {
-
-const data =
-snapshot.val();
-
-approvedCount.textContent =
-data
-? Object.keys(data).length
-: "0";
-
-});
-
-}
-
-
-/* CARTE AVIS */
+/* =====================================================
+   CREER UNE CARTE AVIS
+===================================================== */
 
 function createReviewElement(review) {
 
-const article =
-document.createElement("article");
 
-article.className =
-"review";
+    const article =
+    document.createElement("article");
+
+    article.className =
+    "review";
 
 
-let rating =
-Number(review.rating);
+    /* NOTE */
 
-if (!Number.isFinite(rating)) {
-rating = 5;
+    let rating =
+    Number(review.rating);
+
+
+    if (!Number.isFinite(rating)) {
+
+        rating = 5;
+
+    }
+
+
+    rating =
+    Math.max(
+        1,
+        Math.min(
+            5,
+            Math.round(rating)
+        )
+    );
+
+
+    const stars =
+    "★".repeat(rating) +
+    "☆".repeat(5 - rating);
+
+
+    /* DATE */
+
+    const date =
+    review.createdAt
+
+    ? new Date(
+        Number(review.createdAt)
+      ).toLocaleString(
+        "fr-FR"
+      )
+
+    : "Date inconnue";
+
+
+    /* ETOILES */
+
+    const starsDiv =
+    document.createElement("div");
+
+    starsDiv.className =
+    "review-stars";
+
+    starsDiv.textContent =
+    stars;
+
+
+    /* NOM */
+
+    const nameDiv =
+    document.createElement("div");
+
+    nameDiv.className =
+    "review-name";
+
+    nameDiv.textContent =
+    review.name ||
+    "Client";
+
+
+    /* TEXTE */
+
+    const textDiv =
+    document.createElement("div");
+
+    textDiv.className =
+    "review-text";
+
+    textDiv.textContent =
+    review.text ||
+    "";
+
+
+    /* DATE */
+
+    const dateDiv =
+    document.createElement("div");
+
+    dateDiv.className =
+    "review-date";
+
+    dateDiv.textContent =
+    "Envoyé le " +
+    date;
+
+
+    /* ACTIONS */
+
+    const actions =
+    document.createElement("div");
+
+    actions.className =
+    "actions";
+
+
+    /* ACCEPTER */
+
+    const acceptButton =
+    document.createElement("button");
+
+    acceptButton.className =
+    "btn btn-accept";
+
+    acceptButton.textContent =
+    "✓ Accepter";
+
+
+    /* REFUSER */
+
+    const rejectButton =
+    document.createElement("button");
+
+    rejectButton.className =
+    "btn btn-reject";
+
+    rejectButton.textContent =
+    "✕ Refuser";
+
+
+    acceptButton.addEventListener(
+        "click",
+        () =>
+        acceptReview(review.id)
+    );
+
+
+    rejectButton.addEventListener(
+        "click",
+        () =>
+        rejectReview(review.id)
+    );
+
+
+    actions.appendChild(
+        acceptButton
+    );
+
+    actions.appendChild(
+        rejectButton
+    );
+
+
+    article.appendChild(
+        starsDiv
+    );
+
+    article.appendChild(
+        nameDiv
+    );
+
+    article.appendChild(
+        textDiv
+    );
+
+    article.appendChild(
+        dateDiv
+    );
+
+    article.appendChild(
+        actions
+    );
+
+
+    return article;
+
 }
 
-rating =
-Math.max(
-1,
-Math.min(
-5,
-Math.round(rating)
-)
-);
 
-
-const stars =
-"★".repeat(rating) +
-"☆".repeat(5-rating);
-
-
-const date =
-review.createdAt
-? new Date(
-Number(review.createdAt)
-).toLocaleString("fr-FR")
-: "Date inconnue";
-
-
-const starsDiv =
-document.createElement("div");
-
-starsDiv.className =
-"review-stars";
-
-starsDiv.textContent =
-stars;
-
-
-const nameDiv =
-document.createElement("div");
-
-nameDiv.className =
-"review-name";
-
-nameDiv.textContent =
-review.name || "Client";
-
-
-const textDiv =
-document.createElement("div");
-
-textDiv.className =
-"review-text";
-
-textDiv.textContent =
-review.text || "";
-
-
-const dateDiv =
-document.createElement("div");
-
-dateDiv.className =
-"review-date";
-
-dateDiv.textContent =
-"Envoyé le " + date;
-
-
-const actions =
-document.createElement("div");
-
-actions.className =
-"actions";
-
-
-const acceptButton =
-document.createElement("button");
-
-acceptButton.className =
-"btn btn-accept";
-
-acceptButton.textContent =
-"✓ Accepter";
-
-
-const rejectButton =
-document.createElement("button");
-
-rejectButton.className =
-"btn btn-reject";
-
-rejectButton.textContent =
-"✕ Refuser";
-
-
-acceptButton.addEventListener(
-"click",
-() => acceptReview(review.id)
-);
-
-
-rejectButton.addEventListener(
-"click",
-() => rejectReview(review.id)
-);
-
-
-actions.appendChild(
-acceptButton
-);
-
-actions.appendChild(
-rejectButton
-);
-
-
-article.appendChild(starsDiv);
-article.appendChild(nameDiv);
-article.appendChild(textDiv);
-article.appendChild(dateDiv);
-article.appendChild(actions);
-
-
-return article;
-
-}
-
-
-/* ACCEPTER */
+/* =====================================================
+   ACCEPTER UN AVIS
+===================================================== */
 
 async function acceptReview(id) {
 
-if (!auth.currentUser) {
-return;
+
+    if (!auth.currentUser) {
+
+        alert(
+            "Vous devez être connecté."
+        );
+
+        return;
+
+    }
+
+
+    const pendingReviewRef =
+    ref(
+        db,
+        "reviews/pending/" + id
+    );
+
+
+    try {
+
+        const snapshot =
+        await get(
+            pendingReviewRef
+        );
+
+
+        if (!snapshot.exists()) {
+
+            alert(
+                "Cet avis n'existe plus."
+            );
+
+            return;
+
+        }
+
+
+        const review =
+        snapshot.val();
+
+
+        const approvedReviewRef =
+        ref(
+            db,
+            "reviews/approved/" + id
+        );
+
+
+        await set(
+            approvedReviewRef,
+            {
+
+                name:
+                review.name ||
+                "Client",
+
+                rating:
+                review.rating ||
+                5,
+
+                text:
+                review.text ||
+                "",
+
+                createdAt:
+                review.createdAt ||
+                Date.now(),
+
+                status:
+                "approved"
+
+            }
+        );
+
+
+        await remove(
+            pendingReviewRef
+        );
+
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Erreur acceptation :",
+            error
+        );
+
+
+        alert(
+            "Impossible d'accepter cet avis."
+        );
+
+    }
+
 }
 
 
-const pendingReviewRef =
-ref(
-db,
-"reviews/pending/" + id
-);
-
-
-try {
-
-const snapshot =
-await get(
-pendingReviewRef
-);
-
-
-if (!snapshot.exists()) {
-return;
-}
-
-
-const review =
-snapshot.val();
-
-
-const approvedReviewRef =
-ref(
-db,
-"reviews/approved/" + id
-);
-
-
-await set(
-approvedReviewRef,
-{
-
-name:
-review.name || "Client",
-
-rating:
-review.rating || 5,
-
-text:
-review.text || "",
-
-createdAt:
-review.createdAt || Date.now(),
-
-status:
-"approved"
-
-}
-);
-
-
-await remove(
-pendingReviewRef
-);
-
-
-}
-catch(error) {
-
-console.error(
-"Erreur acceptation :",
-error
-);
-
-alert(
-"Impossible d'accepter cet avis."
-);
-
-}
-
-}
-
-
-/* REFUSER */
+/* =====================================================
+   REFUSER UN AVIS
+===================================================== */
 
 async function rejectReview(id) {
 
-if (!auth.currentUser) {
-return;
+
+    if (!auth.currentUser) {
+
+        alert(
+            "Vous devez être connecté."
+        );
+
+        return;
+
+    }
+
+
+    const confirmation =
+    confirm(
+        "Voulez-vous vraiment refuser cet avis ?"
+    );
+
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+
+    const pendingReviewRef =
+    ref(
+        db,
+        "reviews/pending/" + id
+    );
+
+
+    try {
+
+        await remove(
+            pendingReviewRef
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Erreur refus :",
+            error
+        );
+
+
+        alert(
+            "Impossible de refuser cet avis."
+        );
+
+    }
+
 }
 
 
-const confirmation =
-confirm(
-"Voulez-vous vraiment refuser cet avis ?"
-);
-
-
-if (!confirmation) {
-return;
-}
-
-
-const pendingReviewRef =
-ref(
-db,
-"reviews/pending/" + id
-);
-
-
-try {
-
-await remove(
-pendingReviewRef
-);
-
-}
-catch(error) {
-
-console.error(
-"Erreur refus :",
-error
-);
-
-alert(
-"Impossible de refuser cet avis."
-);
-
-}
-
-}
-
-
-/* MESSAGE */
+/* =====================================================
+   MESSAGES
+===================================================== */
 
 function showMessage(
-element,
-message,
-type
+    element,
+    message,
+    type
 ) {
 
-element.textContent =
-message;
+    element.textContent =
+    message;
 
-element.className =
-"message " + type;
+    element.className =
+    "message " + type;
+
+}
+
+
+function hideMessage(element) {
+
+    element.textContent =
+    "";
+
+    element.className =
+    "message";
 
 }
 
