@@ -10,6 +10,8 @@ name="viewport"
 content="width=device-width, initial-scale=1.0"
 >
 
+<link rel="icon" type="image/png" href="favicon.png">
+
 <title>Administration | La Clé Conciergerie</title>
 
 <link
@@ -251,7 +253,6 @@ padding:25px;
 
 <body>
 
-
 <header>
 
 <div class="header-inner">
@@ -273,14 +274,9 @@ Déconnexion
 </header>
 
 
-<!-- =====================================================
-     CONNEXION
-===================================================== -->
+<!-- CONNEXION -->
 
-<div
-id="loginPanel"
-class="container"
->
+<div id="loginPanel" class="container">
 
 <div class="login-box">
 
@@ -291,7 +287,6 @@ Connexion administrateur
 <p>
 Connectez-vous pour gérer les avis clients.
 </p>
-
 
 <form id="loginForm">
 
@@ -348,14 +343,9 @@ class="message"
 </div>
 
 
-<!-- =====================================================
-     ADMINISTRATION
-===================================================== -->
+<!-- ADMIN -->
 
-<div
-id="adminPanel"
-class="container"
->
+<div id="adminPanel" class="container">
 
 <div class="admin-top">
 
@@ -422,9 +412,7 @@ Chargement des avis...
 </div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
+<!-- FIREBASE -->
 
 <script type="module">
 
@@ -454,13 +442,12 @@ signOut
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-/* =====================================================
-   CONFIGURATION FIREBASE
-===================================================== */
+/* CONFIGURATION FIREBASE */
 
 const firebaseConfig = {
 
-apiKey: "TON_API_KEY",
+apiKey:
+"AIzaSyC1GfrCkZrrvAnIo-yiJP1gyIxoWFfW9Cg",
 
 authDomain:
 "lacleconciergerie-a3e94.firebaseapp.com",
@@ -472,13 +459,16 @@ projectId:
 "lacleconciergerie-a3e94",
 
 storageBucket:
-"TON_STORAGE_BUCKET",
+"lacleconciergerie-a3e94.firebasestorage.app",
 
 messagingSenderId:
-"TON_MESSAGING_SENDER_ID",
+"190906565909",
 
 appId:
-"TON_APP_ID"
+"1:190906565909:web:25e073e959dba471c9951c",
+
+measurementId:
+"G-TXWJ6XNN0D"
 
 };
 
@@ -493,9 +483,7 @@ const auth =
 getAuth(app);
 
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+/* ELEMENTS */
 
 const loginPanel =
 document.getElementById("loginPanel");
@@ -525,9 +513,7 @@ const approvedCount =
 document.getElementById("approvedCount");
 
 
-/* =====================================================
-   CONNEXION
-===================================================== */
+/* CONNEXION */
 
 loginForm.addEventListener(
 "submit",
@@ -535,10 +521,12 @@ async event => {
 
 event.preventDefault();
 
+
 const email =
 document.getElementById("email")
 .value
 .trim();
+
 
 const password =
 document.getElementById("password")
@@ -561,7 +549,7 @@ password
 
 showMessage(
 loginMessage,
-"",
+"Connexion réussie.",
 "success"
 );
 
@@ -587,9 +575,7 @@ loginButton.textContent =
 });
 
 
-/* =====================================================
-   ETAT DE CONNEXION
-===================================================== */
+/* AUTH */
 
 onAuthStateChanged(
 auth,
@@ -625,9 +611,7 @@ logoutButton.style.display =
 });
 
 
-/* =====================================================
-   DECONNEXION
-===================================================== */
+/* DECONNEXION */
 
 logoutButton.addEventListener(
 "click",
@@ -638,18 +622,15 @@ await signOut(auth);
 });
 
 
-/* =====================================================
-   CHARGER LES AVIS
-===================================================== */
+/* CHARGER LES AVIS */
 
 function loadReviews() {
 
 const pendingRef =
-ref(db, "reviews/pending");
-
+ref(db,"reviews/pending");
 
 const approvedRef =
-ref(db, "reviews/approved");
+ref(db,"reviews/approved");
 
 
 onValue(
@@ -658,6 +639,7 @@ snapshot => {
 
 const data =
 snapshot.val();
+
 
 if (!data) {
 
@@ -679,7 +661,7 @@ return;
 
 const reviews =
 Object.entries(data)
-.map(([id, review]) => ({
+.map(([id,review]) => ({
 id,
 ...review
 }))
@@ -694,7 +676,8 @@ pendingCount.textContent =
 reviews.length;
 
 
-reviewList.innerHTML = "";
+reviewList.innerHTML =
+"";
 
 
 reviews.forEach(review => {
@@ -738,9 +721,7 @@ data
 }
 
 
-/* =====================================================
-   CREER UNE CARTE AVIS
-===================================================== */
+/* CARTE AVIS */
 
 function createReviewElement(review) {
 
@@ -770,7 +751,7 @@ Math.round(rating)
 
 const stars =
 "★".repeat(rating) +
-"☆".repeat(5 - rating);
+"☆".repeat(5-rating);
 
 
 const date =
@@ -869,25 +850,11 @@ rejectButton
 );
 
 
-article.appendChild(
-starsDiv
-);
-
-article.appendChild(
-nameDiv
-);
-
-article.appendChild(
-textDiv
-);
-
-article.appendChild(
-dateDiv
-);
-
-article.appendChild(
-actions
-);
+article.appendChild(starsDiv);
+article.appendChild(nameDiv);
+article.appendChild(textDiv);
+article.appendChild(dateDiv);
+article.appendChild(actions);
 
 
 return article;
@@ -895,9 +862,7 @@ return article;
 }
 
 
-/* =====================================================
-   ACCEPTER
-===================================================== */
+/* ACCEPTER */
 
 async function acceptReview(id) {
 
@@ -941,15 +906,17 @@ await set(
 approvedReviewRef,
 {
 
-name: review.name || "Client",
+name:
+review.name || "Client",
 
-rating: review.rating || 5,
+rating:
+review.rating || 5,
 
-text: review.text || "",
+text:
+review.text || "",
 
 createdAt:
-review.createdAt ||
-Date.now(),
+review.createdAt || Date.now(),
 
 status:
 "approved"
@@ -980,9 +947,7 @@ alert(
 }
 
 
-/* =====================================================
-   REFUSER
-===================================================== */
+/* REFUSER */
 
 async function rejectReview(id) {
 
@@ -1032,9 +997,7 @@ alert(
 }
 
 
-/* =====================================================
-   MESSAGE
-===================================================== */
+/* MESSAGE */
 
 function showMessage(
 element,
