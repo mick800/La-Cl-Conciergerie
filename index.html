@@ -233,38 +233,135 @@ Découvrir nos services
 
     </article>
 
+<!-- ========================= -->
+<!-- SERVICE : MAINTENANCE -->
+<!-- ========================= -->
 
-    <!-- MAINTENANCE -->
-    <article class="lc-service-card">
+<div class="service-card maintenance-card">
 
-      <div class="lc-service-image">
-        <img
-          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80"
-          alt="Maintenance et entretien du logement"
-        >
-      </div>
+    <!-- Illustration maintenance -->
+    <div class="service-image maintenance-image">
+        <svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
 
-      <div class="lc-service-content">
+            <!-- Fond -->
+            <rect width="600" height="350" rx="20" fill="#f4f1ec"/>
+
+            <!-- Maison -->
+            <path d="M150 165 L300 55 L450 165"
+                  fill="none"
+                  stroke="#333"
+                  stroke-width="14"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+
+            <path d="M185 150 V285 H415 V150"
+                  fill="#ffffff"
+                  stroke="#333"
+                  stroke-width="10"/>
+
+            <!-- Porte -->
+            <rect x="270" y="205" width="60" height="80"
+                  rx="5"
+                  fill="#e8e2d8"
+                  stroke="#333"
+                  stroke-width="8"/>
+
+            <!-- Fenêtre -->
+            <rect x="215" y="175" width="45" height="45"
+                  fill="#dce8ee"
+                  stroke="#333"
+                  stroke-width="7"/>
+
+            <line x1="237" y1="175" x2="237" y2="220"
+                  stroke="#333" stroke-width="5"/>
+
+            <line x1="215" y1="197" x2="260" y2="197"
+                  stroke="#333" stroke-width="5"/>
+
+            <!-- Clé à molette -->
+            <g transform="rotate(-35 430 170)">
+                <path d="M410 115
+                         C390 95 390 65 410 45
+                         C430 25 460 25 480 42
+                         L450 72
+                         L475 97
+                         L505 67
+                         C520 90 515 120 495 138
+                         C475 158 445 158 425 138
+                         Z"
+                      fill="#c9a46a"
+                      stroke="#333"
+                      stroke-width="8"
+                      stroke-linejoin="round"/>
+
+                <rect x="425" y="130"
+                      width="35"
+                      height="135"
+                      rx="15"
+                      fill="#c9a46a"
+                      stroke="#333"
+                      stroke-width="8"/>
+            </g>
+
+            <!-- Petit engrenage -->
+            <g transform="translate(120 235)">
+                <circle cx="0" cy="0" r="35"
+                        fill="#ffffff"
+                        stroke="#333"
+                        stroke-width="8"/>
+
+                <circle cx="0" cy="0" r="12"
+                        fill="#c9a46a"
+                        stroke="#333"
+                        stroke-width="6"/>
+
+                <path d="M0-55 V-35 M0 35 V55
+                         M-55 0 H-35 M35 0 H55
+                         M-39-39 L-25-25
+                         M39 39 L25 25
+                         M39-39 L25-25
+                         M-39 39 L-25 25"
+                      stroke="#333"
+                      stroke-width="9"
+                      stroke-linecap="round"/>
+            </g>
+
+            <!-- Texte -->
+            <text x="300" y="325"
+                  text-anchor="middle"
+                  font-family="Arial, sans-serif"
+                  font-size="22"
+                  font-weight="bold"
+                  fill="#333">
+                ENTRETIEN &amp; MAINTENANCE
+            </text>
+
+        </svg>
+    </div>
+
+
+    <!-- Contenu -->
+    <div class="service-content">
 
         <h3>Maintenance</h3>
 
         <p>
-          Prise en charge des petits incidents et signalement rapide
-          des problèmes techniques rencontrés dans votre logement.
+            Prise en charge des petits incidents et signalement rapide
+            des problèmes techniques rencontrés dans votre logement.
         </p>
 
-        <div class="lc-service-rating">
-          <strong>Suivi du logement</strong>
-          <span>★ Intervention réactive</span>
+        <div class="service-meta">
+            <strong>Suivi du logement</strong>
+            <span>★ Intervention réactive</span>
         </div>
 
-        <a href="#maintenance" class="lc-service-link">
-          En savoir plus <span>→</span>
+        <a href="#maintenance" class="service-link">
+            <strong>En savoir plus →</strong>
         </a>
 
-      </div>
+    </div>
 
-    </article>
+</div>
 
 
     <!-- NETTOYAGE -->
