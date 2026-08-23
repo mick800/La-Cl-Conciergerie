@@ -1,3 +1,8 @@
+index_lacleconciergerie_MENU_CORRIGE.html
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -2005,6 +2010,12 @@ button,input,select,textarea{font-family:inherit}
   .lc-leadbox{margin-left:18px;margin-right:18px;flex-direction:column;align-items:flex-start}
 }
 
+
+/* CORRECTION MENU 3 BARRES — PRIORITÉ D'AFFICHAGE */
+.lc-menu-overlay.open{display:block !important;visibility:visible !important;opacity:1 !important;}
+.lc-menu-trigger{position:relative;z-index:7001;}
+.lc-menu-overlay{z-index:7000 !important;}
+
 </style>
 
 
@@ -2056,7 +2067,7 @@ button,input,select,textarea{font-family:inherit}
 Demander un devis
 </a>
 
-<button class="lc-menu-trigger" id="lcMenuTrigger" aria-label="Ouvrir le menu" aria-expanded="false">
+<button type="button" class="lc-menu-trigger" id="lcMenuTrigger" aria-label="Ouvrir le menu" aria-expanded="false" onclick="window.lcToggleMenu && window.lcToggleMenu(event)">
   <span></span><span></span><span></span>
 </button>
 
@@ -4443,5 +4454,41 @@ modal.classList.remove("active")
 </script>
 
 <script id="lc-robust-navigation">(function(){const menuTrigger=document.getElementById("lcMenuTrigger"),menuOverlay=document.getElementById("lcMenuOverlay"),menuClose=document.getElementById("lcMenuClose"),backHome=document.getElementById("lcBackHome");function closeMenu(){if(menuOverlay){menuOverlay.classList.remove("open");menuOverlay.setAttribute("aria-hidden","true")}if(menuTrigger){menuTrigger.classList.remove("active");menuTrigger.setAttribute("aria-expanded","false")}document.body.style.overflow=""}function openMenu(){if(menuOverlay){menuOverlay.classList.add("open");menuOverlay.setAttribute("aria-hidden","false")}if(menuTrigger){menuTrigger.classList.add("active");menuTrigger.setAttribute("aria-expanded","true")}document.body.style.overflow="hidden"}function showView(id){if(id==="accueil"){document.body.classList.remove("lc-view-open");document.querySelectorAll(".lc-secondary-view").forEach(x=>x.classList.remove("lc-active-view"));if(backHome)backHome.style.display="none";closeMenu();window.scrollTo({top:0,behavior:"smooth"});return true}const target=document.getElementById(id);if(!target){console.warn("Section introuvable",id);return false}document.body.classList.add("lc-view-open");document.querySelectorAll(".lc-secondary-view").forEach(x=>x.classList.remove("lc-active-view"));target.classList.add("lc-active-view");if(backHome)backHome.style.display="block";closeMenu();setTimeout(()=>target.scrollIntoView({behavior:"smooth",block:"start"}),50);return true}window.lcShowView=showView;if(menuTrigger)menuTrigger.addEventListener("click",()=>menuOverlay&&menuOverlay.classList.contains("open")?closeMenu():openMenu());if(menuClose)menuClose.addEventListener("click",closeMenu);if(menuOverlay)menuOverlay.addEventListener("click",e=>{if(e.target===menuOverlay)closeMenu()});document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>showView(b.getAttribute("data-view"))));if(backHome){const b=backHome.querySelector("button");if(b)b.addEventListener("click",()=>showView("accueil"))}document.addEventListener("click",function(e){const link=e.target.closest("a[href^='#']");if(!link)return;const id=(link.getAttribute("href")||"").slice(1);const target=document.getElementById(id);if(!target)return;if(target.classList.contains("lc-secondary-view")){e.preventDefault();showView(id)}});const logo=document.getElementById("lcLogo");if(logo)logo.addEventListener("click",e=>{e.preventDefault();showView("accueil")});})();</script>
+
+<script id="lc-menu-final-fix">
+(function(){
+  function get(id){ return document.getElementById(id); }
+  window.lcToggleMenu = function(e){
+    if(e){ e.preventDefault(); e.stopPropagation(); }
+    var overlay=get('lcMenuOverlay');
+    var trigger=get('lcMenuTrigger');
+    if(!overlay) return;
+    var open=overlay.classList.contains('open');
+    overlay.classList.toggle('open',!open);
+    overlay.setAttribute('aria-hidden', open ? 'true' : 'false');
+    if(trigger){
+      trigger.classList.toggle('active',!open);
+      trigger.setAttribute('aria-expanded', open ? 'false' : 'true');
+      trigger.setAttribute('aria-label', open ? 'Ouvrir le menu' : 'Fermer le menu');
+    }
+    document.body.style.overflow=open ? '' : 'hidden';
+  };
+  window.lcCloseMenuFinal = function(){
+    var overlay=get('lcMenuOverlay'), trigger=get('lcMenuTrigger');
+    if(overlay) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); }
+    if(trigger) { trigger.classList.remove('active'); trigger.setAttribute('aria-expanded','false'); trigger.setAttribute('aria-label','Ouvrir le menu'); }
+    document.body.style.overflow='';
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    var close=get('lcMenuClose'), overlay=get('lcMenuOverlay');
+    if(close) close.addEventListener('click',function(e){ e.preventDefault(); window.lcCloseMenuFinal(); });
+    if(overlay) overlay.addEventListener('click',function(e){ if(e.target===overlay) window.lcCloseMenuFinal(); });
+    document.querySelectorAll('#lcMenuOverlay [data-view]').forEach(function(btn){
+      btn.addEventListener('click',function(){ window.lcCloseMenuFinal(); });
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
