@@ -1,1923 +1,3847 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>La Clé Conciergerie | Metz • Thionville • Moselle</title>
+<link rel="icon" type="image/png" href="favicon.png">
 
-<meta name="description" content="La Clé Conciergerie accompagne les propriétaires à Metz, Thionville et en Moselle dans la gestion de leurs locations courte durée.">
+<meta name="google-site-verification"
+content="FlvPgFI0u5Y6HR84TOeLme8ahdw2bMd8QCpP3eRc6fE">
+
+<title>La Clé Conciergerie | Metz & Thionville</title>
+
+<meta
+name="description"
+content="La Clé Conciergerie accompagne les propriétaires dans la gestion de leurs locations courte durée à Metz, Thionville et en Moselle."
+>
+
+<meta property="og:site_name" content="La Clé Conciergerie">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "La Clé Conciergerie",
+  "alternateName": "La Clé",
+  "url": "https://lacleconciergerie.org/"
+}
+</script>
 
 <style>
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-:root {
-    --navy: #081321;
-    --navy-light: #101d2d;
-    --gold: #dca52b;
-    --gold-light: #f1c75b;
-    --text: #17202c;
-    --muted: #667080;
-    --white: #ffffff;
-    --light: #f8f8f6;
-    --border: #eeeeee;
-    --shadow: 0 15px 45px rgba(0,0,0,.09);
+html {
+scroll-behavior:smooth;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+/* ==============================
+   VILLES
+============================== */
+
+.service-area {
+padding:85px 25px;
+background:#111;
+color:#fff;
+position:relative;
+overflow:hidden;
 }
 
-body {
-    font-family: "Montserrat", sans-serif;
-    color: var(--text);
-    background: #fff;
-    overflow-x: hidden;
+.service-area::before {
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+background:rgba(184,148,77,.12);
+top:-250px;
+right:-150px;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+.service-area::after {
+content:"";
+position:absolute;
+width:350px;
+height:350px;
+border-radius:50%;
+background:rgba(184,148,77,.08);
+bottom:-220px;
+left:-120px;
 }
 
-button {
-    font-family: inherit;
+.area-inner {
+max-width:1150px;
+margin:auto;
+position:relative;
+z-index:2;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+.area-header {
+text-align:center;
+max-width:800px;
+margin:0 auto 45px;
 }
 
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-
-.topbar {
-    height: 38px;
-    background: var(--navy);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    font-size: 11px;
-    font-weight: 500;
+.area-label {
+display:inline-block;
+font-size:12px;
+font-weight:700;
+letter-spacing:3px;
+color:#d1b06b;
+margin-bottom:12px;
 }
 
-.topbar-container {
-    width: min(1120px, 92%);
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.area-header h2 {
+font-size:40px;
+line-height:1.2;
+margin:0 0 15px;
 }
 
-.topbar-left,
-.topbar-center,
-.topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+.area-header p {
+font-size:16px;
+line-height:1.8;
+opacity:.75;
+margin:0;
 }
 
-.topbar i {
-    color: var(--gold);
+.area-main {
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:25px;
+margin-bottom:25px;
 }
 
-.topbar-center {
-    color: var(--gold-light);
-    font-weight: 600;
+.area-featured {
+background:linear-gradient(
+135deg,
+#c5a35b,
+#967438
+);
+border-radius:25px;
+padding:35px;
+display:flex;
+align-items:center;
+gap:25px;
+min-height:210px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
 }
 
-.topbar-right {
-    gap: 25px;
+.area-featured-icon {
+width:70px;
+height:70px;
+min-width:70px;
+border-radius:20px;
+background:rgba(255,255,255,.18);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
 }
 
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.navbar {
-    height: 82px;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 1000;
+.area-featured h3 {
+font-size:28px;
+margin:0 0 8px;
 }
 
-.nav-container {
-    width: min(1120px, 92%);
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.area-featured p {
+margin:0;
+line-height:1.7;
+opacity:.95;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 11px;
+.area-secondary {
+background:#1b1b1b;
+border:1px solid rgba(255,255,255,.08);
+border-radius:25px;
+padding:30px;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
-.logo-symbol {
-    width: 48px;
-    height: 58px;
-    border: 2px solid var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    color: var(--gold);
+.area-secondary h3 {
+margin:0 0 10px;
+font-size:21px;
 }
 
-.logo-symbol i {
-    font-size: 22px;
+.area-secondary p {
+margin:0;
+line-height:1.7;
+font-size:14px;
+opacity:.7;
 }
 
-.logo-text {
-    line-height: 1;
+.city-list {
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px;
 }
 
-.logo-title {
-    font-family: Georgia, serif;
-    font-size: 24px;
-    letter-spacing: 1px;
-    color: #333;
+.city {
+padding:16px 12px;
+background:#1b1b1b;
+border:1px solid rgba(255,255,255,.08);
+border-radius:14px;
+text-align:center;
+font-size:14px;
+font-weight:500;
+transition:.25s;
 }
 
-.logo-title span {
-    color: #999;
+.city:hover {
+transform:translateY(-4px);
+border-color:#b8944d;
+background:#222;
 }
 
-.logo-subtitle {
-    margin-top: 7px;
-    font-size: 8px;
-    letter-spacing: 3px;
-    color: var(--gold);
-    font-weight: 600;
+.city i {
+color:#c5a35b;
+margin-right:6px;
 }
 
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 28px;
+.area-note {
+text-align:center;
+margin-top:25px;
+font-size:13px;
+opacity:.6;
 }
 
-.nav-menu a {
-    font-size: 12px;
-    font-weight: 600;
-    color: #222;
-    position: relative;
-    padding: 31px 0;
-    transition: .25s ease;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active {
-    color: var(--gold);
-}
-
-.nav-menu a.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    height: 2px;
-    background: var(--gold);
-}
-
-.quote-btn {
-    background: var(--gold);
-    color: #fff;
-    border: 0;
-    padding: 15px 24px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(220,165,43,.22);
-    transition: .25s ease;
-}
-
-.quote-btn:hover {
-    background: #c89420;
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-.menu-toggle {
-    display: none;
-    border: 0;
-    background: transparent;
-    font-size: 25px;
-    color: var(--navy);
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-    min-height: 350px;
-    position: relative;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(5,15,27,.97) 0%,
-            rgba(5,15,27,.88) 30%,
-            rgba(5,15,27,.42) 55%,
-            rgba(5,15,27,.08) 100%
-        ),
-        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85")
-        center/cover no-repeat;
-}
-
-.hero-container {
-    width: min(1120px, 92%);
-    margin: auto;
-    min-height: 350px;
-    display: flex;
-    align-items: center;
-}
-
-.hero-content {
-    max-width: 580px;
-    color: #fff;
-    padding: 45px 0 70px;
-}
-
-.hero-kicker {
-    color: var(--gold-light);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .4px;
-    margin-bottom: 12px;
-}
-
-.hero h1 {
-    font-size: 34px;
-    line-height: 1.22;
-    font-weight: 800;
-    letter-spacing: -.8px;
-    margin-bottom: 12px;
-}
-
-.hero h1 span {
-    color: var(--gold);
-}
-
-.hero-text {
-    font-size: 12px;
-    line-height: 1.8;
-    color: rgba(255,255,255,.9);
-    font-weight: 500;
-    max-width: 490px;
-}
-
-.hero-buttons {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-top: 19px;
-}
-
-.btn-primary {
-    background: var(--gold);
-    color: #fff;
-    border: 0;
-    padding: 15px 21px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: .25s;
-}
-
-.btn-primary:hover {
-    background: #c89420;
-    transform: translateY(-2px);
-}
-
-.btn-primary i {
-    margin-left: 8px;
-}
-
-.btn-outline {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    border: 1px solid rgba(255,255,255,.75);
-    color: #fff;
-    padding: 14px 19px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    background: transparent;
-    cursor: pointer;
-    transition: .25s;
-}
-
-.btn-outline:hover {
-    background: rgba(255,255,255,.1);
-}
-
-.btn-outline i {
-    color: var(--gold-light);
-}
-
-
-/* =========================================================
-   TRUST BAR
-========================================================= */
-
-.trust-wrapper {
-    position: relative;
-    margin-top: -1px;
-    z-index: 10;
-}
-
-.trust-bar {
-    width: min(970px, 90%);
-    margin: -1px auto 0;
-    background: #fff;
-    border-radius: 9px;
-    box-shadow: 0 12px 35px rgba(0,0,0,.09);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 20px 17px;
-}
-
-.trust-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 4px 20px;
-    border-right: 1px solid #eee;
-}
-
-.trust-item:last-child {
-    border-right: none;
-}
-
-.trust-icon {
-    min-width: 43px;
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    font-size: 24px;
-}
-
-.trust-item h3 {
-    font-size: 11px;
-    margin-bottom: 6px;
-    font-weight: 800;
-}
-
-.trust-item p {
-    color: var(--muted);
-    font-size: 9px;
-    line-height: 1.65;
-    font-weight: 500;
-}
-
-
-/* =========================================================
-   WHY US
-========================================================= */
-
-.why {
-    padding: 42px 0 60px;
-    background: #fff;
-}
-
-.section-container {
-    width: min(1120px, 92%);
-    margin: auto;
-}
-
-.section-kicker {
-    text-align: center;
-    color: var(--gold);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .7px;
-    margin-bottom: 8px;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--navy);
-}
-
-.section-title::after {
-    content: "";
-    width: 48px;
-    height: 2px;
-    background: var(--gold);
-    display: block;
-    margin: 10px auto 34px;
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-}
-
-.why-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 13px;
-}
-
-.why-icon {
-    min-width: 50px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #fbf7ed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    font-size: 22px;
-}
-
-.why-card h3 {
-    font-size: 11px;
-    margin-bottom: 7px;
-    font-weight: 800;
-}
-
-.why-card p {
-    color: #68717e;
-    font-size: 9px;
-    line-height: 1.7;
-    font-weight: 500;
-}
-
-
-/* =========================================================
+/* ==============================
    SERVICES
-========================================================= */
+============================== */
 
-.services {
-    padding: 80px 0;
-    background: #f8f8f6;
+.lc-services {
+padding:90px 25px;
+background:#f6f8fb;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+.lc-services-header {
+max-width:850px;
+margin:0 auto 55px;
+text-align:center;
 }
 
-.service-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 28px 22px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.05);
-    transition: .3s;
+.lc-services-label,
+.about-label {
+display:inline-block;
+font-size:13px;
+font-weight:700;
+letter-spacing:2px;
+margin-bottom:12px;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+.lc-services-header h2 {
+font-size:42px;
+line-height:1.15;
+margin:0 0 18px;
 }
 
-.service-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #fbf7ed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    font-size: 22px;
-    margin-bottom: 18px;
+.lc-services-header p {
+font-size:17px;
+line-height:1.7;
+max-width:700px;
+margin:auto;
+opacity:.75;
 }
 
-.service-card h3 {
-    font-size: 14px;
-    margin-bottom: 10px;
+.lc-services-grid {
+max-width:1150px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
 }
 
-.service-card p {
-    font-size: 11px;
-    line-height: 1.8;
-    color: var(--muted);
+.lc-service-card {
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+display:flex;
+min-height:300px;
+box-shadow:0 10px 35px rgba(0,0,0,.06);
+transition:.3s;
 }
 
-
-/* =========================================================
-   CTA
-========================================================= */
-
-.cta {
-    padding: 70px 0;
-    background: var(--navy);
-    color: #fff;
-    text-align: center;
+.lc-service-card:hover {
+transform:translateY(-5px);
 }
 
-.cta h2 {
-    font-size: 28px;
-    margin-bottom: 12px;
+.lc-service-image {
+width:45%;
+min-height:300px;
+overflow:hidden;
 }
 
-.cta p {
-    color: #c7ced8;
-    font-size: 12px;
-    margin-bottom: 25px;
+.lc-service-image img {
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
 }
 
+.lc-service-content {
+width:55%;
+padding:30px;
+display:flex;
+flex-direction:column;
+}
 
-/* =========================================================
+.lc-service-content h3 {
+font-size:21px;
+margin:0 0 15px;
+}
+
+.lc-service-content p {
+font-size:15px;
+line-height:1.7;
+opacity:.75;
+}
+
+.lc-service-rating {
+margin-top:auto;
+margin-bottom:18px;
+font-size:13px;
+}
+
+.lc-service-rating strong {
+display:block;
+margin-bottom:4px;
+}
+
+.lc-service-rating span {
+opacity:.7;
+}
+
+.lc-service-link {
+background:none;
+border:none;
+border-bottom:1px solid currentColor;
+padding:0 0 4px;
+font-family:inherit;
+font-size:15px;
+font-weight:700;
+display:inline-flex;
+width:max-content;
+cursor:pointer;
+gap:10px;
+}
+
+.lc-service-details {
+max-width:1150px;
+margin:auto;
+}
+
+.lc-service-popup {
+display:none;
+max-width:900px;
+margin:50px auto 0;
+padding:45px;
+background:#fff;
+border-radius:25px;
+box-shadow:0 15px 50px rgba(0,0,0,.1);
+position:relative;
+}
+
+.lc-service-popup.active {
+display:block;
+}
+
+.lc-close {
+position:absolute;
+top:18px;
+right:22px;
+border:none;
+background:none;
+font-size:32px;
+cursor:pointer;
+}
+
+.lc-service-popup h2 {
+font-size:34px;
+margin:10px 0 18px;
+}
+
+.lc-service-popup p {
+font-size:16px;
+line-height:1.8;
+opacity:.75;
+}
+
+.lc-service-popup ul {
+list-style:none;
+padding:0;
+}
+
+.lc-detail-number {
+font-size:14px;
+font-weight:800;
+letter-spacing:2px;
+opacity:.5;
+}
+
+/* ==============================
+   REVIEWS
+============================== */
+
+.reviews {
+padding:100px 25px;
+}
+
+.reviews-grid {
+max-width:1150px;
+margin:50px auto 0;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.review-card {
+background:#fff;
+border-radius:20px;
+padding:30px;
+box-shadow:0 10px 35px rgba(0,0,0,.06);
+}
+
+.review-card .stars {
+font-size:20px;
+letter-spacing:3px;
+margin-bottom:15px;
+}
+
+.review-card p {
+font-size:15px;
+line-height:1.8;
+opacity:.75;
+}
+
+.review-card h4 {
+margin-top:20px;
+}
+
+.review-loading {
+grid-column:1/-1;
+text-align:center;
+padding:30px;
+opacity:.6;
+}
+
+.review-form-wrapper {
+max-width:750px;
+margin:65px auto 0;
+padding:45px;
+background:#f6f8fb;
+border-radius:25px;
+}
+
+.review-form-title {
+text-align:center;
+margin-bottom:30px;
+}
+
+.review-form-title h3 {
+font-size:28px;
+margin:0 0 10px;
+}
+
+.review-field {
+margin-bottom:22px;
+}
+
+.review-field label {
+display:block;
+font-size:14px;
+font-weight:600;
+margin-bottom:8px;
+}
+
+.review-field input,
+.review-field textarea {
+width:100%;
+border:1px solid rgba(0,0,0,.12);
+background:#fff;
+border-radius:10px;
+padding:14px 15px;
+font-family:inherit;
+font-size:15px;
+}
+
+.review-field textarea {
+resize:vertical;
+min-height:130px;
+}
+
+.star-rating {
+display:flex;
+gap:5px;
+}
+
+.star-rating button {
+border:none;
+background:none;
+padding:0;
+font-size:32px;
+cursor:pointer;
+opacity:.25;
+}
+
+.star-rating button.selected {
+opacity:1;
+}
+
+.review-counter {
+text-align:right;
+font-size:12px;
+opacity:.55;
+}
+
+.review-submit {
+border:none;
+cursor:pointer;
+}
+
+.review-submit:disabled {
+opacity:.6;
+}
+
+.review-message {
+display:none;
+margin-top:18px;
+padding:14px;
+border-radius:10px;
+font-size:14px;
+text-align:center;
+}
+
+.review-message.success {
+display:block;
+background:rgba(30,130,76,.1);
+}
+
+.review-message.error {
+display:block;
+background:rgba(180,50,50,.1);
+}
+
+.review-security {
+text-align:center;
+font-size:12px;
+opacity:.6;
+}
+
+.review-honeypot {
+position:absolute!important;
+left:-9999px!important;
+width:1px!important;
+height:1px!important;
+overflow:hidden;
+}
+
+/* ==============================
+   FAQ
+============================== */
+
+.faq {
+padding:100px 25px;
+background:#f6f8fb;
+}
+
+.faq-container {
+max-width:850px;
+margin:50px auto 0;
+}
+
+.faq-item {
+background:#fff;
+border-radius:15px;
+margin-bottom:12px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+.faq-question {
+width:100%;
+border:none;
+background:none;
+padding:22px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+text-align:left;
+font-family:inherit;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+.faq-question span {
+font-size:24px;
+transition:.25s;
+}
+
+.faq-answer {
+max-height:0;
+overflow:hidden;
+transition:max-height .3s ease;
+}
+
+.faq-answer p {
+padding:0 25px 22px;
+margin:0;
+line-height:1.8;
+font-size:14px;
+opacity:.7;
+}
+
+.faq-item.active .faq-answer {
+max-height:300px;
+}
+
+.faq-item.active .faq-question span {
+transform:rotate(45deg);
+}
+
+/* ==============================
    FOOTER
-========================================================= */
+============================== */
 
-footer {
-    background: #050d18;
-    color: #fff;
-    padding: 40px 0 20px;
+.footer-links {
+margin-top:25px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
 }
 
-.footer-grid {
-    width: min(1120px, 92%);
-    margin: auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 35px;
+.footer-links button,
+.footer-links a {
+background:none;
+border:none;
+padding:0;
+font-family:inherit;
+color:inherit;
+text-decoration:none;
+cursor:pointer;
+opacity:.7;
 }
 
-.footer-brand p {
-    margin-top: 15px;
-    color: #9da7b5;
-    font-size: 11px;
-    line-height: 1.8;
-    max-width: 320px;
+.legal-modal {
+display:none;
+position:fixed;
+z-index:9999;
+inset:0;
+background:rgba(0,0,0,.65);
+padding:25px;
+align-items:center;
+justify-content:center;
 }
 
-.footer-column h3 {
-    color: var(--gold-light);
-    font-size: 12px;
-    margin-bottom: 15px;
+.legal-modal.active {
+display:flex;
 }
 
-.footer-column a {
-    display: block;
-    color: #adb6c2;
-    font-size: 10px;
-    margin-bottom: 10px;
-    transition: .2s;
+.legal-box {
+position:relative;
+background:#fff;
+max-width:650px;
+width:100%;
+max-height:85vh;
+overflow-y:auto;
+padding:45px;
+border-radius:20px;
+box-sizing:border-box;
 }
 
-.footer-column a:hover {
-    color: #fff;
+.legal-close {
+position:absolute;
+right:18px;
+top:12px;
+background:none;
+border:none;
+font-size:32px;
+cursor:pointer;
 }
 
-.footer-bottom {
-    width: min(1120px, 92%);
-    margin: 30px auto 0;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,.08);
-    display: flex;
-    justify-content: space-between;
-    color: #75808e;
-    font-size: 9px;
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:850px) {
+
+.area-main {
+grid-template-columns:1fr;
+}
+
+.city-list {
+grid-template-columns:repeat(2,1fr);
+}
+
+.area-featured {
+align-items:flex-start;
+}
+
+.lc-services {
+padding:60px 18px;
+}
+
+.lc-services-header h2 {
+font-size:31px;
+}
+
+.lc-services-grid {
+grid-template-columns:1fr;
+}
+
+.lc-service-card {
+flex-direction:column;
+}
+
+.lc-service-image,
+.lc-service-content {
+width:100%;
+}
+
+.lc-service-image {
+height:230px;
+min-height:230px;
+}
+
+.lc-service-popup {
+padding:35px 25px;
+}
+
+.reviews {
+padding:70px 18px;
+}
+
+.reviews-grid {
+grid-template-columns:1fr;
+}
+
+.review-form-wrapper {
+padding:30px 20px;
+}
+
+}
+
+@media(max-width:500px) {
+
+.area-header h2 {
+font-size:30px;
+}
+
+.area-featured {
+padding:25px;
+flex-direction:column;
+}
+
+.city-list {
+grid-template-columns:1fr 1fr;
+}
+
 }
 
 
 /* =========================================================
-   WHATSAPP
-========================================================= */
+   AJOUTS PRO — CALCULATEUR / BLOG / NAVIGATION / UX
+   ========================================================= */
 
-.whatsapp {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background: #25D366;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 27px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.2);
-    z-index: 2000;
-    transition: .25s;
+:root{
+  --lc-navy:#07101f;
+  --lc-navy-2:#0d1728;
+  --lc-gold:#d8b238;
+  --lc-gold-2:#b8944d;
+  --lc-bg:#f5f7fa;
+  --lc-text:#111827;
+  --lc-muted:#667085;
+  --lc-border:rgba(7,16,31,.10);
 }
 
-.whatsapp:hover {
-    transform: scale(1.08);
+body{
+  overflow-x:hidden;
+}
+
+header{
+  position:sticky !important;
+  top:0;
+  z-index:5000;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+header.scrolled{
+  box-shadow:0 10px 35px rgba(7,16,31,.10);
+}
+
+nav ul{
+  align-items:center;
+}
+header nav{display:none !important;}
+
+nav a{
+  transition:.25s ease;
+}
+
+nav a:hover{
+  color:var(--lc-gold) !important;
+}
+
+.lc-mobile-menu{
+  display:none;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(7,16,31,.12);
+  background:#fff;
+  border-radius:12px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+}
+
+.lc-mobile-menu span{
+  width:21px;
+  height:2px;
+  background:var(--lc-navy);
+  border-radius:5px;
+  transition:.25s;
+}
+
+.lc-mobile-menu.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.lc-mobile-menu.active span:nth-child(2){opacity:0}
+.lc-mobile-menu.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.lc-tools{
+  padding:100px 25px;
+  background:#fff;
+}
+
+.lc-tools-header{
+  max-width:820px;
+  margin:0 auto 45px;
+  text-align:center;
+}
+
+.lc-tools-header span,
+.lc-blog-label{
+  display:inline-block;
+  color:var(--lc-gold-2);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2.5px;
+  margin-bottom:12px;
+}
+
+.lc-tools-header h2{
+  font-size:42px;
+  line-height:1.15;
+  margin:0 0 15px;
+}
+
+.lc-tools-header p{
+  color:var(--lc-muted);
+  line-height:1.8;
+  margin:0 auto;
+  max-width:700px;
+}
+
+.lc-calculator{
+  max-width:1050px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  background:linear-gradient(135deg,#07101f,#101c30);
+  color:#fff;
+  border-radius:28px;
+  padding:34px;
+  box-shadow:0 22px 60px rgba(7,16,31,.18);
+}
+
+.lc-calc-form{
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:20px;
+  padding:28px;
+}
+
+.lc-calc-form h3,
+.lc-calc-result h3{
+  margin:0 0 20px;
+  font-size:23px;
+}
+
+.lc-calc-field{
+  margin-bottom:18px;
+}
+
+.lc-calc-field label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:8px;
+  opacity:.9;
+}
+
+.lc-calc-field input,
+.lc-calc-field select{
+  width:100%;
+  padding:14px 15px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.15);
+  background:#fff;
+  color:#111827;
+  font:inherit;
+  outline:none;
+}
+
+.lc-calc-field input:focus,
+.lc-calc-field select:focus{
+  box-shadow:0 0 0 3px rgba(216,178,56,.22);
+}
+
+.lc-calc-result{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:25px;
+}
+
+.lc-calc-result-card{
+  background:linear-gradient(135deg,#d8b238,#b8944d);
+  color:#07101f;
+  border-radius:22px;
+  padding:30px;
+}
+
+.lc-calc-result-card small{
+  display:block;
+  font-weight:700;
+  opacity:.75;
+  margin-bottom:8px;
+}
+
+.lc-calc-total{
+  font-size:48px;
+  line-height:1;
+  font-weight:800;
+  margin:8px 0 18px;
+}
+
+.lc-calc-line{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:11px 0;
+  border-top:1px solid rgba(7,16,31,.14);
+  font-size:14px;
+}
+
+.lc-calc-note{
+  margin:18px 0 0;
+  font-size:12px;
+  line-height:1.6;
+  opacity:.75;
+}
+
+.lc-blog{
+  padding:100px 25px;
+  background:var(--lc-bg);
+}
+
+.lc-blog-header{
+  max-width:820px;
+  margin:0 auto 45px;
+  text-align:center;
+}
+
+.lc-blog-header h2{
+  font-size:42px;
+  margin:0 0 15px;
+}
+
+.lc-blog-header p{
+  max-width:700px;
+  margin:auto;
+  color:var(--lc-muted);
+  line-height:1.8;
+}
+
+.lc-blog-grid{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.lc-blog-card{
+  background:#fff;
+  border:1px solid var(--lc-border);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 10px 35px rgba(7,16,31,.055);
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+}
+
+.lc-blog-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 45px rgba(7,16,31,.10);
+}
+
+.lc-blog-card-image{
+  height:190px;
+  overflow:hidden;
+}
+
+.lc-blog-card-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:.4s;
+}
+
+.lc-blog-card:hover .lc-blog-card-image img{
+  transform:scale(1.04);
+}
+
+.lc-blog-card-content{
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.lc-blog-card-content h3{
+  margin:0 0 12px;
+  font-size:20px;
+  line-height:1.35;
+}
+
+.lc-blog-card-content p{
+  color:var(--lc-muted);
+  line-height:1.7;
+  font-size:14px;
+  margin:0 0 20px;
+}
+
+.lc-blog-link{
+  margin-top:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:max-content;
+  color:var(--lc-navy);
+  font-weight:800;
+  text-decoration:none;
+  border-bottom:1px solid var(--lc-gold);
+  padding-bottom:4px;
+}
+
+.lc-article{
+  display:none;
+  max-width:1000px;
+  margin:40px auto 0;
+  background:#fff;
+  border-radius:24px;
+  padding:40px;
+  box-shadow:0 12px 45px rgba(7,16,31,.08);
+}
+
+.lc-article.active{
+  display:block;
+}
+
+.lc-article .article-close{
+  float:right;
+  border:0;
+  background:#eef1f5;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.lc-article h2{
+  font-size:32px;
+  line-height:1.2;
+  margin:5px 50px 20px 0;
+}
+
+.lc-article h3{
+  margin-top:28px;
+  font-size:21px;
+}
+
+.lc-article p,
+.lc-article li{
+  color:#596273;
+  line-height:1.8;
+}
+
+.lc-article ul{
+  padding-left:20px;
+}
+
+.lc-whatsapp{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:4900;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#25d366;
+  color:#fff !important;
+  text-decoration:none;
+  font-size:27px;
+  box-shadow:0 12px 30px rgba(0,0,0,.20);
+  transition:.25s;
+}
+
+.lc-whatsapp:hover{
+  transform:translateY(-4px) scale(1.04);
+}
+
+.lc-whatsapp-label{
+  position:fixed;
+  right:92px;
+  bottom:31px;
+  z-index:4899;
+  background:#07101f;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:700;
+  box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.lc-trust-strip{
+  max-width:1150px;
+  margin:-35px auto 65px;
+  position:relative;
+  z-index:3;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  padding:0 25px;
+}
+
+.lc-trust-item{
+  background:#fff;
+  border:1px solid var(--lc-border);
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 12px 35px rgba(7,16,31,.06);
+}
+
+.lc-trust-item i{
+  color:var(--lc-gold-2);
+  font-size:20px;
+  margin-bottom:8px;
+}
+
+.lc-trust-item strong{
+  display:block;
+  font-size:13px;
+}
+
+.lc-trust-item span{
+  display:block;
+  color:var(--lc-muted);
+  font-size:11px;
+  margin-top:4px;
+}
+
+.lc-owner-section{
+  padding:100px 25px;
+  background:#07101f;
+  color:#fff;
+}
+
+.lc-owner-grid{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.lc-owner-section h2{
+  font-size:42px;
+  line-height:1.15;
+  margin:0 0 18px;
+}
+
+.lc-owner-section p{
+  line-height:1.8;
+  opacity:.72;
+}
+
+.lc-owner-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.lc-owner-item{
+  padding:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.045);
+  border-radius:15px;
+}
+
+.lc-owner-item i{
+  color:#d8b238;
+  margin-right:8px;
+}
+
+.lc-owner-item strong{
+  font-size:14px;
+}
+
+.lc-floating-top{
+  position:fixed;
+  right:22px;
+  bottom:92px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid rgba(7,16,31,.12);
+  background:#fff;
+  color:#07101f;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:4800;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.lc-floating-top.visible{
+  display:flex;
+}
+
+@media(max-width:1000px){
+  nav ul{gap:12px !important}
+  .lc-blog-grid{grid-template-columns:1fr 1fr}
+  .lc-trust-strip{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:850px){
+  .lc-mobile-menu{display:none}
+  header nav{
+    display:none;
+    position:absolute;
+    left:15px;
+    right:15px;
+    top:calc(100% + 10px);
+    background:#fff;
+    border-radius:18px;
+    padding:15px;
+    box-shadow:0 20px 45px rgba(7,16,31,.16);
+  }
+  header nav.mobile-open{display:block}
+  header nav ul{
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:4px !important;
+  }
+  header nav li a{
+    display:block;
+    padding:12px 14px;
+    border-radius:10px;
+  }
+  .btn-header{display:none}
+  .lc-calculator{grid-template-columns:1fr;padding:20px}
+  .lc-owner-grid{grid-template-columns:1fr;gap:30px}
+  .lc-owner-section h2{font-size:32px}
+  .lc-blog-grid{grid-template-columns:1fr}
+  .lc-article{padding:28px 22px}
+  .lc-article h2{font-size:27px}
+}
+
+@media(max-width:500px){
+  .lc-trust-strip{grid-template-columns:1fr;margin-top:-20px}
+  .lc-whatsapp-label{display:none}
+  .lc-whatsapp{right:16px;bottom:16px}
+  .lc-floating-top{right:16px;bottom:85px}
+  .lc-owner-list{grid-template-columns:1fr}
+  .lc-tools,.lc-blog,.lc-owner-section{padding-left:18px;padding-right:18px}
 }
 
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 950px) {
-
-    .nav-menu {
-        gap: 16px;
-    }
-
-    .nav-menu a {
-        font-size: 10px;
-    }
-
-    .quote-btn {
-        padding: 12px 16px;
-        font-size: 10px;
-    }
-
-    .trust-bar {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .trust-item:nth-child(2) {
-        border-right: none;
-    }
-
-    .why-grid,
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* ==============================
+   MENU 3 BARRES — NAVIGATION PRO
+============================== */
+.lc-menu-trigger{
+  width:48px;
+  height:48px;
+  border:1px solid rgba(7,16,31,.12);
+  background:#fff;
+  border-radius:13px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  cursor:pointer;
+  margin-left:10px;
+  box-shadow:0 5px 18px rgba(7,16,31,.06);
 }
-
-
-@media (max-width: 760px) {
-
-    .topbar {
-        height: auto;
-        padding: 8px 0;
-    }
-
-    .topbar-container {
-        justify-content: center;
-    }
-
-    .topbar-left {
-        display: none;
-    }
-
-    .topbar-center {
-        display: none;
-    }
-
-    .topbar-right {
-        font-size: 9px;
-        gap: 15px;
-    }
-
-    .navbar {
-        height: 72px;
-    }
-
-    .logo-title {
-        font-size: 20px;
-    }
-
-    .logo-symbol {
-        width: 40px;
-        height: 48px;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-menu {
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: #fff;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        box-shadow: 0 12px 25px rgba(0,0,0,.1);
-        padding: 10px 20px 20px;
-    }
-
-    .nav-menu.open {
-        display: flex;
-    }
-
-    .nav-menu a {
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
-        font-size: 12px;
-    }
-
-    .nav-menu a.active::after {
-        display: none;
-    }
-
-    .nav-menu .quote-btn {
-        margin-top: 15px;
-        width: 100%;
-        padding: 14px;
-    }
-
-    .hero {
-        min-height: 550px;
-        background-position: center;
-    }
-
-    .hero-container {
-        min-height: 550px;
-        align-items: center;
-    }
-
-    .hero-content {
-        padding: 50px 0;
-    }
-
-    .hero h1 {
-        font-size: 31px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .trust-bar {
-        grid-template-columns: 1fr;
-        width: 88%;
-        margin-top: -20px;
-    }
-
-    .trust-item {
-        border-right: 0;
-        border-bottom: 1px solid #eee;
-        padding: 15px 10px;
-    }
-
-    .trust-item:last-child {
-        border-bottom: none;
-    }
-
-    .why-grid,
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .why {
-        padding-top: 55px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 8px;
-    }
+.lc-menu-trigger span{
+  width:22px;
+  height:2px;
+  background:#07101f;
+  border-radius:4px;
+  transition:.25s;
 }
+.lc-menu-trigger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.lc-menu-trigger.active span:nth-child(2){opacity:0}
+.lc-menu-trigger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
+.lc-menu-overlay{
+  position:fixed;
+  inset:0;
+  z-index:6000;
+  background:rgba(4,10,20,.62);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:none;
+  padding:95px 25px 30px;
+  overflow-y:auto;
+}
+.lc-menu-overlay.open{display:block}
 
-@media (max-width: 480px) {
+.lc-menu-panel{
+  max-width:1150px;
+  margin:auto;
+  background:#fff;
+  border-radius:28px;
+  padding:32px;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+.lc-menu-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:25px;
+}
+.lc-menu-top strong{
+  font-size:20px;
+}
+.lc-menu-top span{
+  color:#667085;
+  font-size:13px;
+}
+.lc-menu-close{
+  width:42px;
+  height:42px;
+  border:0;
+  border-radius:50%;
+  background:#eef1f5;
+  cursor:pointer;
+  font-size:20px;
+}
+.lc-menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.lc-menu-category{
+  background:#f6f8fb;
+  border:1px solid rgba(7,16,31,.08);
+  border-radius:20px;
+  padding:24px;
+}
+.lc-menu-category.featured{
+  background:#07101f;
+  color:#fff;
+}
+.lc-menu-category h3{
+  margin:0 0 7px;
+  font-size:19px;
+}
+.lc-menu-category p{
+  margin:0 0 17px;
+  color:#667085;
+  font-size:12px;
+  line-height:1.6;
+}
+.lc-menu-category.featured p{color:rgba(255,255,255,.62)}
+.lc-menu-links{
+  display:grid;
+  gap:8px;
+}
+.lc-menu-link{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:#fff;
+  color:#07101f;
+  padding:13px 14px;
+  border-radius:11px;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition:.2s;
+}
+.lc-menu-link:hover{
+  transform:translateX(3px);
+  background:#fff;
+  box-shadow:0 7px 20px rgba(7,16,31,.08);
+}
+.featured .lc-menu-link{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
+.featured .lc-menu-link:hover{background:rgba(216,178,56,.18)}
+.lc-menu-link i{
+  width:18px;
+  color:#b8944d;
+}
+.featured .lc-menu-link i{color:#d8b238}
 
-    .hero h1 {
-        font-size: 27px;
-    }
+.lc-home-only{display:block}
+.lc-secondary-view{display:none !important}
+body.lc-view-open .lc-home-only{display:none !important}
+body.lc-view-open .lc-secondary-view.lc-active-view{display:block !important}
+.lc-back-home{
+  max-width:1150px;
+  margin:35px auto -50px;
+  position:relative;
+  z-index:2;
+  padding:0 25px;
+}
+.lc-back-home button{
+  border:1px solid rgba(7,16,31,.12);
+  background:#fff;
+  color:#07101f;
+  border-radius:12px;
+  padding:11px 15px;
+  font-family:inherit;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 7px 22px rgba(7,16,31,.07);
+}
+.lc-back-home button i{margin-right:7px}
 
-    .hero-text {
-        font-size: 11px;
-    }
-
-    .section-title {
-        font-size: 20px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:850px){
+  .lc-menu-overlay{padding:82px 14px 20px}
+  .lc-menu-panel{padding:20px;border-radius:22px}
+  .lc-menu-grid{grid-template-columns:1fr}
+  .lc-menu-category{padding:20px}
+  .lc-menu-top strong{font-size:17px}
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
+<!-- HEADER -->
 
-<!-- ======================================================
-     BARRE SUPÉRIEURE
-====================================================== -->
+<header>
 
-<div class="topbar">
+<div class="container">
 
-    <div class="topbar-container">
+<a href="#accueil" class="logo" id="lcLogo">
+<img src="logo.png" alt="La Clé Conciergerie">
+</a>
 
-        <div class="topbar-left">
-            <i class="fa-solid fa-location-dot"></i>
-            <span>Metz • Thionville • Moselle</span>
-        </div>
+<nav>
+<ul>
+<li><a href="#accueil">Accueil</a></li>
+<li><a href="#secteurs">Villes</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#a-propos">À propos</a></li>
+<li><a href="#tarifs">Tarifs</a></li>
+<li><a href="#calculateur">Calculateur</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#avis">Avis</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-        <div class="topbar-center">
-            <i class="fa-solid fa-key"></i>
-            <span>La clé de votre sérénité</span>
-        </div>
+<a href="#contact" class="btn-header" id="lcHeaderDevis">
+Demander un devis
+</a>
 
-        <div class="topbar-right">
-
-            <span>
-                <i class="fa-solid fa-phone"></i>
-                06 59 15 80 35
-            </span>
-
-            <span>
-                <i class="fa-regular fa-envelope"></i>
-                Contactez-nous
-            </span>
-
-        </div>
-
-    </div>
+<button class="lc-menu-trigger" id="lcMenuTrigger" aria-label="Ouvrir le menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
 
 </div>
-
-
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
-
-<header class="navbar">
-
-    <div class="nav-container">
-
-        <a href="#accueil" class="logo">
-
-            <div class="logo-symbol">
-                <i class="fa-solid fa-key"></i>
-            </div>
-
-            <div class="logo-text">
-
-                <div class="logo-title">
-                    LA CLÉ
-                    <span>CONCIERGERIE</span>
-                </div>
-
-                <div class="logo-subtitle">
-                    GESTION LOCATIVE
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-
-
-        <nav class="nav-menu" id="navMenu">
-
-            <a href="#accueil" class="active">Accueil</a>
-
-            <a href="#services">Services</a>
-
-            <a href="#tarifs">Tarifs</a>
-
-            <a href="#calculateur">Calculateur</a>
-
-            <a href="#blog">Blog</a>
-
-            <a href="#avis">Avis</a>
-
-            <a href="#faq">FAQ</a>
-
-            <a href="#apropos">À propos</a>
-
-            <a href="#contact">Contact</a>
-
-            <button class="quote-btn" onclick="goToContact()">
-                Demander un devis
-            </button>
-
-        </nav>
-
-    </div>
 
 </header>
 
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
-<section class="hero" id="accueil">
-
-    <div class="hero-container">
-
-        <div class="hero-content">
-
-            <div class="hero-kicker">
-                CONCIERGERIE À METZ, THIONVILLE ET EN MOSELLE
-            </div>
-
-            <h1>
-                La gestion de votre<br>
-                location, en toute
-                <span>sérénité</span>
-            </h1>
-
-            <p class="hero-text">
-                Nous prenons soin de votre logement comme si c'était le nôtre.<br>
-                Vous profitez de revenus optimisés, nous gérons le reste.
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <button class="btn-primary" onclick="goToContact()">
-                    Demander un devis
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-                <button class="btn-outline" onclick="goToServices()">
-                    <i class="fa-solid fa-circle-play"></i>
-                    Découvrir nos services
-                </button>
-
-            </div>
-
-        </div>
-
+<!-- MENU 3 BARRES -->
+<div class="lc-menu-overlay" id="lcMenuOverlay" aria-hidden="true">
+  <div class="lc-menu-panel">
+    <div class="lc-menu-top">
+      <div>
+        <strong>La Clé Conciergerie</strong><br>
+        <span>Accédez rapidement à chaque partie du site</span>
+      </div>
+      <button class="lc-menu-close" id="lcMenuClose" aria-label="Fermer le menu">×</button>
     </div>
+
+    <div class="lc-menu-grid">
+      <div class="lc-menu-category">
+        <h3>La conciergerie</h3>
+        <p>Découvrez notre activité, nos services et notre secteur d'intervention.</p>
+        <div class="lc-menu-links">
+          <button class="lc-menu-link" data-view="accueil"><i class="fa-solid fa-house"></i>Accueil</button>
+          <button class="lc-menu-link" data-view="secteurs"><i class="fa-solid fa-location-dot"></i>Villes desservies</button>
+          <button class="lc-menu-link" data-view="services"><i class="fa-solid fa-hand-sparkles"></i>Nos services</button>
+          <button class="lc-menu-link" data-view="a-propos"><i class="fa-solid fa-building"></i>À propos</button>
+        </div>
+      </div>
+
+      <div class="lc-menu-category featured">
+        <h3>Propriétaires</h3>
+        <p>Tout ce qu'il faut pour confier votre logement et suivre votre investissement.</p>
+        <div class="lc-menu-links">
+          <button class="lc-menu-link" data-view="proprietaires"><i class="fa-solid fa-user-tie"></i>Espace propriétaire</button>
+          <button class="lc-menu-link" data-view="tarifs"><i class="fa-solid fa-percent"></i>Nos tarifs — 10 / 15 / 20 %</button>
+          <button class="lc-menu-link" data-view="calculateur"><i class="fa-solid fa-calculator"></i>Calculateur de revenus</button>
+          <button class="lc-menu-link" data-view="contact"><i class="fa-solid fa-file-signature"></i>Demander un devis</button>
+        </div>
+      </div>
+
+      <div class="lc-menu-category">
+        <h3>Conseils & confiance</h3>
+        <p>Retrouvez nos conseils, les avis clients et les réponses aux questions fréquentes.</p>
+        <div class="lc-menu-links">
+          <button class="lc-menu-link" data-view="blog"><i class="fa-solid fa-newspaper"></i>Blog & articles</button>
+          <button class="lc-menu-link" data-view="faq"><i class="fa-solid fa-circle-question"></i>FAQ</button>
+          <button class="lc-menu-link" data-view="avis"><i class="fa-solid fa-star"></i>Avis clients</button>
+          <button class="lc-menu-link" data-view="contact"><i class="fa-solid fa-phone"></i>Contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="lc-back-home" id="lcBackHome" style="display:none;">
+  <button type="button"><i class="fa-solid fa-arrow-left"></i> Retour à l'accueil</button>
+</div>
+
+<!-- HERO -->
+
+<section class="hero lc-home-only" id="accueil">
+
+<div class="hero-content">
+
+<h1>
+La Clé
+<span>Conciergerie</span>
+</h1>
+
+<p>
+Gestion haut de gamme de vos locations courte durée à Metz,
+Thionville et dans toute la Moselle.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#contact" class="btn-gold">
+Demander un devis
+</a>
+
+<a href="#services" class="btn-white">
+Découvrir nos services
+</a>
+
+</div>
+
+</div>
 
 </section>
 
+<!-- BANDEAU CONFIANCE -->
+<div class="lc-trust-strip lc-home-only">
+  <div class="lc-trust-item">
+    <i class="fa-solid fa-location-dot"></i>
+    <strong>Présence locale</strong>
+    <span>Metz & Thionville</span>
+  </div>
+  <div class="lc-trust-item">
+    <i class="fa-solid fa-headset"></i>
+    <strong>Disponible 7j/7</strong>
+    <span>Suivi réactif</span>
+  </div>
+  <div class="lc-trust-item">
+    <i class="fa-solid fa-chart-line"></i>
+    <strong>Gestion optimisée</strong>
+    <span>Objectif rentabilité</span>
+  </div>
+  <div class="lc-trust-item">
+    <i class="fa-solid fa-shield-halved"></i>
+    <strong>Gestion sereine</strong>
+    <span>Un seul interlocuteur</span>
+  </div>
+</div>
 
-<!-- ======================================================
-     BANDEAU CONFIANCE
-====================================================== -->
+<!-- ==============================
+     VILLES - PLACÉES HAUT
+============================== -->
 
-<div class="trust-wrapper">
+<section class="service-area lc-secondary-view" id="secteurs">
 
-    <div class="trust-bar">
+<div class="area-inner">
 
+<div class="area-header">
 
-        <div class="trust-item">
+<span class="area-label">
+NOTRE SECTEUR D'INTERVENTION
+</span>
 
-            <div class="trust-icon">
-                <i class="fa-solid fa-house-shield"></i>
-            </div>
+<h2>
+Votre logement, près de chez vous.
+</h2>
 
-            <div>
-                <h3>Gestion complète</h3>
-
-                <p>
-                    De la réservation au départ,<br>
-                    nous gérons chaque détail.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <i class="fa-regular fa-star"></i>
-            </div>
-
-            <div>
-                <h3>Expérience 5★</h3>
-
-                <p>
-                    Des voyageurs satisfaits<br>
-                    et des avis qui valorisent votre bien.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <i class="fa-solid fa-chart-line"></i>
-            </div>
-
-            <div>
-                <h3>Revenus optimisés</h3>
-
-                <p>
-                    Tarification intelligente et<br>
-                    stratégie pour maximiser vos revenus.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-
-            <div>
-                <h3>Proximité locale</h3>
-
-                <p>
-                    Une équipe réactive sur<br>
-                    Metz, Thionville et toute la Moselle.
-                </p>
-            </div>
-
-        </div>
-
-
-    </div>
+<p>
+La Clé Conciergerie intervient localement à Metz,
+Thionville et dans les communes voisines pour assurer
+une gestion réactive et de proximité de votre logement.
+</p>
 
 </div>
 
 
-<!-- ======================================================
-     POURQUOI NOUS
-====================================================== -->
+<div class="area-main">
 
-<section class="why" id="apropos">
+<div class="area-featured">
 
-    <div class="section-container">
+<div class="area-featured-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
 
-        <div class="section-kicker">
-            LA CONFIANCE DES PROPRIÉTAIRES
-        </div>
+<div>
 
-        <h2 class="section-title">
-            Pourquoi nous confier votre bien ?
-        </h2>
+<h3>
+Metz & Thionville
+</h3>
 
+<p>
+Nos deux principaux secteurs d'intervention pour la gestion
+de locations courte durée et l'accompagnement des propriétaires.
+</p>
 
-        <div class="why-grid">
+</div>
 
-
-            <div class="why-card">
-
-                <div class="why-icon">
-                    <i class="fa-solid fa-house"></i>
-                </div>
-
-                <div>
-
-                    <h3>Sérénité totale</h3>
-
-                    <p>
-                        On s'occupe de tout, vous n'avez plus à vous
-                        soucier du quotidien.
-                    </p>
-
-                </div>
-
-            </div>
+</div>
 
 
-            <div class="why-card">
+<div class="area-secondary">
 
-                <div class="why-icon">
-                    <i class="fa-regular fa-clock"></i>
-                </div>
+<h3>
+Une présence locale
+</h3>
 
-                <div>
+<p>
+Nous privilégions les secteurs que nous pouvons suivre
+avec sérieux, proximité et réactivité.
+</p>
 
-                    <h3>Gain de temps</h3>
+</div>
 
-                    <p>
-                        Fini les allers-retours et la gestion des
-                        imprévus, on prend le relais.
-                    </p>
-
-                </div>
-
-            </div>
+</div>
 
 
-            <div class="why-card">
+<div class="city-list">
 
-                <div class="why-icon">
-                    <i class="fa-solid fa-euro-sign"></i>
-                </div>
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Metz
+</div>
 
-                <div>
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Thionville
+</div>
 
-                    <h3>Meilleure rentabilité</h3>
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Yutz
+</div>
 
-                    <p>
-                        Nos outils et notre expertise vous permettent
-                        de gagner plus, facilement.
-                    </p>
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Terville
+</div>
 
-                </div>
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Hettange-Grande
+</div>
 
-            </div>
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Manom
+</div>
+
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Montigny-lès-Metz
+</div>
+
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Woippy
+</div>
+
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Saint-Julien-lès-Metz
+</div>
+
+<div class="city">
+<i class="fa-solid fa-location-dot"></i>
+Longeville-lès-Metz
+</div>
+
+</div>
 
 
-            <div class="why-card">
+<p class="area-note">
+Vous êtes situé dans une autre commune de Moselle ?
+Contactez-nous pour étudier votre projet.
+</p>
 
-                <div class="why-icon">
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-
-                <div>
-
-                    <h3>Bien entre de bonnes mains</h3>
-
-                    <p>
-                        Entretien, ménage, accueil...
-                        tout est fait avec soin.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     SERVICES
-====================================================== -->
+<!-- STATS -->
 
-<section class="services" id="services">
+<section class="stats">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-kicker">
-            NOS PRESTATIONS
-        </div>
+<div class="stat">
+<h2>150+</h2>
+<p>Voyageurs accueillis</p>
+</div>
 
-        <h2 class="section-title">
-            Une gestion complète de votre location
-        </h2>
+<div class="stat">
+<h2>98%</h2>
+<p>Clients satisfaits</p>
+</div>
 
+<div class="stat">
+<h2>7j/7</h2>
+<p>Assistance</p>
+</div>
 
-        <div class="services-grid">
+<div class="stat">
+<h2>30%</h2>
+<p>Revenus optimisés</p>
+</div>
 
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-comments"></i>
-                </div>
-
-                <h3>Communication voyageurs</h3>
-
-                <p>
-                    Nous gérons les messages, demandes et échanges
-                    avec vos voyageurs avant, pendant et après leur séjour.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-key"></i>
-                </div>
-
-                <h3>Arrivées & départs</h3>
-
-                <p>
-                    Gestion des entrées et sorties afin d'assurer
-                    une expérience simple et professionnelle.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-broom"></i>
-                </div>
-
-                <h3>Ménage & linge</h3>
-
-                <p>
-                    Préparation du logement, nettoyage et gestion
-                    du linge entre chaque séjour.
-                </p>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
-
-                <h3>Optimisation des revenus</h3>
-
-                <p>
-                    Ajustement stratégique des tarifs pour améliorer
-                    le taux d'occupation et vos revenus.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     TARIFS
-====================================================== -->
+<!-- SERVICES -->
 
-<section class="why" id="tarifs">
+<section class="lc-services lc-home-only lc-secondary-view" id="services">
 
-    <div class="section-container">
+<div class="lc-services-header">
 
-        <div class="section-kicker">
-            NOS TARIFS
-        </div>
+<span class="lc-services-label">
+LA CLÉ CONCIERGERIE
+</span>
 
-        <h2 class="section-title">
-            Des formules simples et transparentes
-        </h2>
+<h2>
+Une gestion complète de votre logement
+</h2>
 
-        <div class="services-grid">
+<p>
+Nous vous accompagnons dans la gestion opérationnelle
+de vos locations courte durée à Metz, Thionville et leurs alentours.
+</p>
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-house"></i>
-                </div>
-
-                <h3>Essentiel — 20%</h3>
-
-                <p>
-                    Gestion des réservations, communication,
-                    arrivées et départs, assistance.
-                </p>
-            </div>
+</div>
 
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-star"></i>
-                </div>
+<div class="lc-services-grid">
 
-                <h3>Premium — 25%</h3>
+<!-- 01 -->
 
-                <p>
-                    Gestion complète, ménage premium,
-                    gestion du linge et optimisation des revenus.
-                </p>
-            </div>
+<article class="lc-service-card">
+
+<div class="lc-service-image">
+
+<img
+src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80"
+alt="Communication avec les voyageurs"
+>
+
+</div>
+
+<div class="lc-service-content">
+
+<h3>
+Communication avec les voyageurs
+</h3>
+
+<p>
+Réponses rapides et précises : logement, secteur et résolution
+des problèmes rencontrés par vos voyageurs.
+</p>
+
+<div class="lc-service-rating">
+<strong>Communication</strong>
+<span>★ Service professionnel</span>
+</div>
+
+<button
+class="lc-service-link"
+onclick="toggleService('communication',this)"
+>
+En savoir plus <span>→</span>
+</button>
+
+</div>
+
+</article>
 
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
+<!-- 02 -->
 
-                <h3>Prestige — 30%</h3>
+<article class="lc-service-card">
 
-                <p>
-                    Gestion haut de gamme, maintenance,
-                    reporting et accompagnement VIP.
-                </p>
-            </div>
+<div class="lc-service-image">
 
-        </div>
+<img
+src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=1000&q=80"
+alt="Entrées et sorties des voyageurs"
+>
 
-    </div>
+</div>
+
+<div class="lc-service-content">
+
+<h3>
+Entrées et sorties
+</h3>
+
+<p>
+Nous prenons en charge l'accueil de vos voyageurs ainsi que
+l'organisation des arrivées et des départs.
+</p>
+
+<div class="lc-service-rating">
+<strong>Accueil</strong>
+<span>★ Service professionnel</span>
+</div>
+
+<button
+class="lc-service-link"
+onclick="toggleService('entrees-sorties',this)"
+>
+En savoir plus <span>→</span>
+</button>
+
+</div>
+
+</article>
+
+
+<!-- 03 -->
+
+<article class="lc-service-card">
+
+<div class="lc-service-image">
+
+<img
+src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1000&q=80"
+alt="Maintenance du logement"
+>
+
+</div>
+
+<div class="lc-service-content">
+
+<h3>
+Maintenance
+</h3>
+
+<p>
+Prise en charge des petits incidents et signalement rapide
+des problèmes techniques rencontrés dans votre logement.
+</p>
+
+<div class="lc-service-rating">
+<strong>Suivi du logement</strong>
+<span>★ Intervention réactive</span>
+</div>
+
+<button
+class="lc-service-link"
+onclick="toggleService('maintenance',this)"
+>
+En savoir plus <span>→</span>
+</button>
+
+</div>
+
+</article>
+
+
+<!-- 04 -->
+
+<article class="lc-service-card">
+
+<div class="lc-service-image">
+
+<img
+src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80"
+alt="Nettoyage professionnel du logement"
+>
+
+</div>
+
+<div class="lc-service-content">
+
+<h3>
+Nettoyage et gestion du linge
+</h3>
+
+<p>
+Entretien complet du logement et préparation après chaque séjour
+pour garantir un accueil propre et soigné.
+</p>
+
+<div class="lc-service-rating">
+<strong>Propreté</strong>
+<span>★ Nettoyage professionnel</span>
+</div>
+
+<button
+class="lc-service-link"
+onclick="toggleService('nettoyage',this)"
+>
+En savoir plus <span>→</span>
+</button>
+
+</div>
+
+</article>
+
+</div>
+
+
+<div class="lc-service-details">
+
+
+<div class="lc-service-popup" id="communication">
+
+<button class="lc-close"
+onclick="closeService('communication')">
+×
+</button>
+
+<span class="lc-detail-number">01</span>
+
+<h2>
+Communication avec les voyageurs
+</h2>
+
+<h3>
+Une communication fluide et réactive pour des séjours sans stress.
+</h3>
+
+<p>
+<strong>
+La Clé Conciergerie prend en charge la communication avec
+vos voyageurs afin de vous libérer des échanges du quotidien.
+</strong>
+</p>
+
+<p>
+Nous répondons aux demandes des voyageurs, transmettons les
+informations utiles concernant le logement et son environnement
+et assurons le suivi des demandes pendant leur séjour.
+</p>
+
+<h4>Les avantages clés</h4>
+
+<ul>
+<li>✓ Réponses rapides aux voyageurs</li>
+<li>✓ Communication professionnelle</li>
+<li>✓ Gestion des demandes et questions</li>
+<li>✓ Assistance pendant le séjour</li>
+</ul>
+
+</div>
+
+
+<div class="lc-service-popup" id="entrees-sorties">
+
+<button class="lc-close"
+onclick="closeService('entrees-sorties')">
+×
+</button>
+
+<span class="lc-detail-number">02</span>
+
+<h2>
+Entrées et sorties
+</h2>
+
+<h3>
+Un accueil organisé pour une arrivée et un départ en toute simplicité.
+</h3>
+
+<p>
+<strong>
+Nous organisons les arrivées et les départs de vos voyageurs
+selon les modalités définies avec vous.
+</strong>
+</p>
+
+<p>
+Nous pouvons notamment assurer la remise des clés ou la gestion
+des accès au logement lorsque cette prestation est prévue.
+</p>
+
+<h4>Les avantages clés</h4>
+
+<ul>
+<li>✓ Organisation des arrivées</li>
+<li>✓ Gestion des accès et des clés</li>
+<li>✓ Organisation des départs</li>
+<li>✓ Signalement des anomalies constatées</li>
+</ul>
+
+</div>
+
+
+<div class="lc-service-popup" id="maintenance">
+
+<button class="lc-close"
+onclick="closeService('maintenance')">
+×
+</button>
+
+<span class="lc-detail-number">03</span>
+
+<h2>
+Maintenance
+</h2>
+
+<h3>
+Un suivi rapide des problèmes rencontrés dans votre logement.
+</h3>
+
+<p>
+<strong>
+La Clé Conciergerie assure le suivi des incidents constatés
+dans les logements pendant les prestations ou les séjours.
+</strong>
+</p>
+
+<p>
+En cas de problème, nous vous informons rapidement et pouvons,
+selon vos instructions, organiser l'intervention d'un professionnel
+compétent lorsque cela est nécessaire.
+</p>
+
+<h4>Les avantages clés</h4>
+
+<ul>
+<li>✓ Signalement rapide des problèmes</li>
+<li>✓ Suivi des incidents</li>
+<li>✓ Coordination avec les professionnels</li>
+<li>✓ Suivi de l'intervention</li>
+</ul>
+
+</div>
+
+
+<div class="lc-service-popup" id="nettoyage">
+
+<button class="lc-close"
+onclick="closeService('nettoyage')">
+×
+</button>
+
+<span class="lc-detail-number">04</span>
+
+<h2>
+Nettoyage et gestion du linge
+</h2>
+
+<h3>
+Un logement propre, soigné et prêt à accueillir vos prochains voyageurs.
+</h3>
+
+<p>
+<strong>
+Après chaque départ, nous préparons votre logement afin
+qu'il soit propre et prêt pour la prochaine arrivée.
+</strong>
+</p>
+
+<p>
+La prestation comprend notamment le nettoyage des pièces,
+des sols, de la cuisine, de la salle de bains et des sanitaires.
+</p>
+
+<h4>Les avantages clés</h4>
+
+<ul>
+<li>✓ Nettoyage professionnel</li>
+<li>✓ Préparation après chaque séjour</li>
+<li>✓ Mise en place du linge</li>
+<li>✓ Contrôle visuel du logement</li>
+<li>✓ Signalement des anomalies</li>
+</ul>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     CALCULATEUR
-====================================================== -->
+<!-- À PROPOS -->
 
-<section class="services" id="calculateur">
+<section class="about-company lc-secondary-view" id="a-propos">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-kicker">
-            ESTIMATION
-        </div>
+<div class="about-company-content">
 
-        <h2 class="section-title">
-            Estimez le potentiel de votre logement
-        </h2>
+<div class="about-company-text">
 
-        <div style="
-            max-width:650px;
-            margin:auto;
-            background:white;
-            padding:35px;
-            border-radius:14px;
-            box-shadow:0 10px 30px rgba(0,0,0,.07);
-        ">
+<span class="about-label">
+LA CLÉ CONCIERGERIE
+</span>
 
-            <label style="font-size:12px;font-weight:700;">
-                Prix moyen par nuit (€)
-            </label>
+<h2>
+Une conciergerie à taille humaine,
+au service de votre logement
+</h2>
 
-            <input
-                id="price"
-                type="number"
-                value="80"
-                style="
-                    width:100%;
-                    margin:8px 0 20px;
-                    padding:13px;
-                    border:1px solid #ddd;
-                    border-radius:7px;
-                "
-            >
+<p>
+<strong>La Clé Conciergerie</strong> accompagne les propriétaires
+dans la gestion de leurs locations courte durée à Metz,
+Thionville et leurs alentours.
+</p>
 
+<p>
+Notre objectif est simple : vous permettre de profiter pleinement
+de votre investissement tout en vous libérant des contraintes
+liées à la gestion quotidienne de votre logement.
+</p>
 
-            <label style="font-size:12px;font-weight:700;">
-                Nombre de nuits louées / mois
-            </label>
+<p>
+Nous accordons une attention particulière à chaque logement
+et à chaque voyageur. Communication, arrivées et départs,
+suivi du logement, nettoyage et gestion des imprévus :
+nous vous accompagnons avec sérieux, réactivité et transparence.
+</p>
 
-            <input
-                id="nights"
-                type="number"
-                value="20"
-                style="
-                    width:100%;
-                    margin:8px 0 20px;
-                    padding:13px;
-                    border:1px solid #ddd;
-                    border-radius:7px;
-                "
-            >
+<div class="about-values">
 
+<div class="about-value">
+<i class="fa-solid fa-handshake"></i>
+<div>
+<h3>Confiance</h3>
+<p>Une relation transparente et durable avec chaque propriétaire.</p>
+</div>
+</div>
 
-            <button
-                class="btn-primary"
-                onclick="calculateRevenue()"
-            >
-                Calculer
-            </button>
+<div class="about-value">
+<i class="fa-solid fa-bolt"></i>
+<div>
+<h3>Réactivité</h3>
+<p>Une gestion attentive et une réponse rapide aux demandes.</p>
+</div>
+</div>
 
+<div class="about-value">
+<i class="fa-solid fa-star"></i>
+<div>
+<h3>Qualité</h3>
+<p>Un service soigné pour offrir une expérience agréable aux voyageurs.</p>
+</div>
+</div>
 
-            <div
-                id="calculatorResult"
-                style="
-                    margin-top:20px;
-                    font-weight:700;
-                    color:#dca52b;
-                    font-size:16px;
-                "
-            ></div>
+</div>
 
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
-<!-- ======================================================
-     BLOG
-====================================================== -->
+<div class="about-company-card">
 
-<section class="why" id="blog">
+<div class="about-card-icon">
+<i class="fa-solid fa-key"></i>
+</div>
 
-    <div class="section-container">
+<span>NOTRE ENGAGEMENT</span>
 
-        <div class="section-kicker">
-            NOS CONSEILS
-        </div>
+<h3>
+Vous profitez de votre logement.
+Nous nous occupons du reste.
+</h3>
 
-        <h2 class="section-title">
-            Le blog de La Clé Conciergerie
-        </h2>
+<p>
+Une gestion professionnelle, locale et adaptée
+aux besoins de chaque propriétaire.
+</p>
 
-        <div class="services-grid">
+<a href="#contact" class="btn-gold">
+Parlons de votre projet
+</a>
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-file-lines"></i>
-                </div>
+</div>
 
-                <h3>Réglementation Airbnb à Metz</h3>
+</div>
 
-                <p>
-                    Les principales règles à connaître avant de
-                    mettre votre logement en location courte durée.
-                </p>
-            </div>
-
-
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-chart-pie"></i>
-                </div>
-
-                <h3>Rentabilité à Thionville</h3>
-
-                <p>
-                    Comment améliorer la rentabilité d'un logement
-                    en location courte durée.
-                </p>
-            </div>
-
-
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-
-                <h3>Les erreurs à éviter</h3>
-
-                <p>
-                    Les principales erreurs commises par les
-                    propriétaires en location saisonnière.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     AVIS
-====================================================== -->
+<!-- POURQUOI NOUS -->
 
-<section class="services" id="avis">
+<section class="why-us">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-kicker">
-            AVIS PROPRIÉTAIRES
-        </div>
+<div class="section-title">
 
-        <h2 class="section-title">
-            La satisfaction au cœur de notre métier
-        </h2>
+<span>LA CLÉ CONCIERGERIE</span>
 
-        <div style="
-            max-width:650px;
-            margin:auto;
-            text-align:center;
-            background:white;
-            padding:35px;
-            border-radius:14px;
-            box-shadow:0 10px 30px rgba(0,0,0,.06);
-        ">
+<h2>
+Pourquoi nous faire confiance ?
+</h2>
 
-            <div style="
-                color:#dca52b;
-                font-size:22px;
-                margin-bottom:15px;
-            ">
-                ★★★★★
-            </div>
+</div>
 
-            <p style="
-                color:#667080;
-                font-size:12px;
-                line-height:1.8;
-            ">
-                Votre satisfaction et celle de vos voyageurs sont
-                notre priorité. Nous travaillons chaque jour pour
-                offrir une gestion sérieuse, réactive et transparente.
-            </p>
+<div class="advantages">
 
-        </div>
+<div class="advantage">
+<i class="fa-solid fa-chart-line"></i>
+<h3>Rentabilité optimisée</h3>
+<p>
+Nous ajustons les tarifs afin d'augmenter les revenus de votre logement.
+</p>
+</div>
 
-    </div>
+<div class="advantage">
+<i class="fa-solid fa-shield-halved"></i>
+<h3>Sérénité</h3>
+<p>
+Nous gérons l'intégralité de votre location pendant que vous profitez de votre temps.
+</p>
+</div>
 
-</section>
+<div class="advantage">
+<i class="fa-solid fa-star"></i>
+<h3>Service Premium</h3>
+<p>
+Chaque voyageur bénéficie d'un accueil haut de gamme et personnalisé.
+</p>
+</div>
 
+<div class="advantage">
+<i class="fa-solid fa-clock"></i>
+<h3>Disponible 7j/7</h3>
+<p>
+Notre équipe reste joignable chaque jour pour répondre rapidement.
+</p>
+</div>
 
-<!-- ======================================================
-     FAQ
-====================================================== -->
+</div>
 
-<section class="why" id="faq">
-
-    <div class="section-container">
-
-        <div class="section-kicker">
-            FAQ
-        </div>
-
-        <h2 class="section-title">
-            Les questions fréquentes
-        </h2>
-
-        <div style="max-width:750px;margin:auto;">
-
-            <details style="padding:18px 0;border-bottom:1px solid #eee;">
-                <summary style="font-weight:700;font-size:12px;cursor:pointer;">
-                    Que prenez-vous en charge ?
-                </summary>
-
-                <p style="font-size:11px;color:#667080;line-height:1.7;margin-top:12px;">
-                    Nous pouvons prendre en charge la communication voyageurs,
-                    les réservations, les arrivées et départs, le ménage,
-                    le linge, le suivi du logement et l'optimisation tarifaire.
-                </p>
-            </details>
-
-
-            <details style="padding:18px 0;border-bottom:1px solid #eee;">
-                <summary style="font-weight:700;font-size:12px;cursor:pointer;">
-                    Dans quelles villes intervenez-vous ?
-                </summary>
-
-                <p style="font-size:11px;color:#667080;line-height:1.7;margin-top:12px;">
-                    Nous intervenons principalement à Metz, Thionville,
-                    Yutz, Terville, Hettange-Grande, Manom, Basse-Ham
-                    et dans les secteurs alentours.
-                </p>
-            </details>
-
-
-            <details style="padding:18px 0;border-bottom:1px solid #eee;">
-                <summary style="font-weight:700;font-size:12px;cursor:pointer;">
-                    Comment obtenir un devis ?
-                </summary>
-
-                <p style="font-size:11px;color:#667080;line-height:1.7;margin-top:12px;">
-                    Contactez-nous directement afin que nous puissions
-                    étudier votre logement et vous proposer une offre adaptée.
-                </p>
-            </details>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     CTA
-====================================================== -->
+<!-- ESPACE PROPRIÉTAIRES -->
+<section class="lc-owner-section lc-secondary-view" id="proprietaires">
+  <div class="lc-owner-grid">
+    <div>
+      <span class="area-label">VOUS ÊTES PROPRIÉTAIRE ?</span>
+      <h2>Vous profitez de votre investissement. Nous gérons le quotidien.</h2>
+      <p>
+        De la réservation au départ du voyageur, en passant par la communication,
+        la préparation du logement et le suivi des incidents, La Clé Conciergerie
+        vous accompagne avec une gestion locale et structurée.
+      </p>
+      <a href="#contact" class="btn-gold">Parler de mon logement</a>
+    </div>
+    <div class="lc-owner-list">
+      <div class="lc-owner-item"><i class="fa-solid fa-calendar-check"></i><strong>Gestion des réservations</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-comments"></i><strong>Communication voyageurs</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-key"></i><strong>Arrivées & départs</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-broom"></i><strong>Ménage</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-bed"></i><strong>Gestion du linge</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-screwdriver-wrench"></i><strong>Suivi des incidents</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-chart-line"></i><strong>Optimisation tarifaire</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-star"></i><strong>Gestion des avis</strong></div>
+    </div>
+  </div>
+</section>
 
-<section class="cta" id="contact">
+<!-- TARIFS -->
 
-    <div class="section-container">
+<section id="tarifs" class="pricing lc-secondary-view">
 
-        <h2>
-            Confiez-nous votre logement
-        </h2>
+<div class="container">
 
-        <p>
-            Gagnez du temps, améliorez vos revenus et profitez
-            d'une gestion professionnelle.
+<div class="section-title">
+
+<span>NOS TARIFS</span>
+
+<h2>
+Des offres adaptées à chaque propriétaire
+</h2>
+
+</div>
+
+<div class="pricing-grid">
+
+<div class="price-card">
+
+<h3>Essentiel</h3>
+
+<div class="price">10%</div>
+
+<p>Gestion des réservations</p>
+<p>Accueil voyageurs</p>
+<p>Support 7j/7</p>
+
+<a href="#contact" class="btn-gold">
+Choisir cette formule
+</a>
+
+</div>
+
+
+<div class="price-card featured">
+
+<div class="badge">
+La plus demandée
+</div>
+
+<h3>Premium</h3>
+
+<div class="price">15%</div>
+
+<p>Gestion complète</p>
+<p>Ménage Premium</p>
+<p>Gestion du linge</p>
+<p>Optimisation des revenus</p>
+
+<a href="#contact" class="btn-gold">
+Demander un devis
+</a>
+
+</div>
+
+
+<div class="price-card">
+
+<h3>Prestige</h3>
+
+<div class="price">20%</div>
+
+<p>Gestion haut de gamme</p>
+<p>Maintenance</p>
+<p>Reporting personnalisé</p>
+<p>Accompagnement VIP</p>
+
+<a href="#contact" class="btn-gold">
+Nous contacter
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CALCULATEUR -->
+<section class="lc-tools lc-secondary-view" id="calculateur">
+  <div class="lc-tools-header">
+    <span>OUTIL PROPRIÉTAIRE</span>
+    <h2>Estimez le coût de notre gestion</h2>
+    <p>
+      Utilisez ce calculateur pour obtenir une première estimation selon vos revenus
+      mensuels et la formule choisie. Le résultat est indicatif et peut être ajusté
+      après étude de votre logement.
+    </p>
+  </div>
+
+  <div class="lc-calculator">
+    <div class="lc-calc-form">
+      <h3>Votre estimation</h3>
+
+      <div class="lc-calc-field">
+        <label for="lcCalcRevenue">Revenus mensuels estimés (€)</label>
+        <input id="lcCalcRevenue" type="number" min="0" step="50" value="1500" placeholder="Ex. 1500">
+      </div>
+
+      <div class="lc-calc-field">
+        <label for="lcCalcPlan">Formule de gestion</label>
+        <select id="lcCalcPlan">
+          <option value="0.10">Essentiel — 10 %</option>
+          <option value="0.15" selected>Premium — 15 %</option>
+          <option value="0.20">Prestige — 20 %</option>
+        </select>
+      </div>
+
+      <div class="lc-calc-field">
+        <label for="lcCalcNights">Nuits louées / mois</label>
+        <input id="lcCalcNights" type="number" min="0" max="31" value="20" placeholder="Ex. 20">
+      </div>
+
+      <button type="button" class="btn-gold" id="lcCalcButton">Calculer mon estimation</button>
+    </div>
+
+    <div class="lc-calc-result">
+      <h3>Votre estimation</h3>
+      <div class="lc-calc-result-card">
+        <small>Coût estimé de la gestion / mois</small>
+        <div class="lc-calc-total" id="lcCalcTotal">225 €</div>
+        <div class="lc-calc-line">
+          <span>Revenus estimés</span>
+          <strong id="lcCalcRevenueOut">1 500 €</strong>
+        </div>
+        <div class="lc-calc-line">
+          <span>Nuits louées</span>
+          <strong id="lcCalcNightsOut">20 nuits</strong>
+        </div>
+        <div class="lc-calc-line">
+          <span>Formule</span>
+          <strong id="lcCalcPlanOut">Premium — 15 %</strong>
+        </div>
+        <div class="lc-calc-line">
+          <span>Estimation nette après gestion*</span>
+          <strong id="lcCalcNet">1 275 €</strong>
+        </div>
+        <p class="lc-calc-note">
+          * Estimation avant autres frais éventuels (ménage, consommables, fiscalité,
+          plateforme, maintenance, etc.). Les conditions finales sont définies dans le devis.
         </p>
-
-        <button class="btn-primary" onclick="sendEmail()">
-            Demander mon devis
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
-
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="lc-blog lc-secondary-view" id="blog">
+  <div class="lc-blog-header">
+    <span class="lc-blog-label">CONSEILS & ACTUALITÉS</span>
+    <h2>Le blog de La Clé Conciergerie</h2>
+    <p>
+      Des contenus pratiques pour mieux comprendre la location courte durée,
+      la rentabilité et la gestion d'un logement à Metz, Thionville et en Moselle.
+    </p>
+  </div>
+
+  <div class="lc-blog-grid">
+    <article class="lc-blog-card">
+      <div class="lc-blog-card-image">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1000&q=80" alt="Réglementation Airbnb à Metz">
+      </div>
+      <div class="lc-blog-card-content">
+        <span class="lc-blog-label">ARTICLE 01</span>
+        <h3>Réglementation Airbnb à Metz : les points à connaître</h3>
+        <p>Un aperçu des principaux sujets à vérifier avant de mettre un logement en location courte durée.</p>
+        <button class="lc-blog-link" type="button" onclick="openArticle('article1')">Lire l'article →</button>
+      </div>
+    </article>
+
+    <article class="lc-blog-card">
+      <div class="lc-blog-card-image">
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80" alt="Rentabilité location courte durée à Thionville">
+      </div>
+      <div class="lc-blog-card-content">
+        <span class="lc-blog-label">ARTICLE 02</span>
+        <h3>Rentabilité à Thionville : comment l'améliorer ?</h3>
+        <p>Les principaux leviers à surveiller pour mieux piloter les revenus d'une location courte durée.</p>
+        <button class="lc-blog-link" type="button" onclick="openArticle('article2')">Lire l'article →</button>
+      </div>
+    </article>
+
+    <article class="lc-blog-card">
+      <div class="lc-blog-card-image">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80" alt="Erreurs en conciergerie">
+      </div>
+      <div class="lc-blog-card-content">
+        <span class="lc-blog-label">ARTICLE 03</span>
+        <h3>Les erreurs fréquentes en conciergerie</h3>
+        <p>Les points de vigilance qui peuvent nuire à l'expérience voyageur et à la rentabilité d'un logement.</p>
+        <button class="lc-blog-link" type="button" onclick="openArticle('article3')">Lire l'article →</button>
+      </div>
+    </article>
+  </div>
+
+  <div class="lc-article" id="article1">
+    <button class="article-close" type="button" onclick="closeArticle('article1')" aria-label="Fermer">×</button>
+    <span class="lc-blog-label">ARTICLE 01</span>
+    <h2>Réglementation Airbnb à Metz : ce qu'un propriétaire doit vérifier</h2>
+    <p>
+      Avant de proposer un logement en location courte durée, il est important de vérifier
+      les règles applicables à votre commune, le statut du logement et les éventuelles
+      démarches administratives nécessaires.
+    </p>
+    <h3>Les points essentiels</h3>
+    <ul>
+      <li>Vérifier les règles locales applicables à la location de courte durée.</li>
+      <li>Identifier les démarches administratives nécessaires selon le logement.</li>
+      <li>Contrôler les règles de copropriété lorsqu'elles existent.</li>
+      <li>Anticiper les obligations fiscales et déclaratives applicables.</li>
+    </ul>
+    <p>
+      Les règles pouvant évoluer, il est recommandé de vérifier les informations officielles
+      au moment de votre projet. La Clé Conciergerie peut vous accompagner dans la préparation
+      opérationnelle de votre logement.
+    </p>
+  </div>
+
+  <div class="lc-article" id="article2">
+    <button class="article-close" type="button" onclick="closeArticle('article2')" aria-label="Fermer">×</button>
+    <span class="lc-blog-label">ARTICLE 02</span>
+    <h2>Rentabilité à Thionville : les leviers à travailler</h2>
+    <p>
+      La rentabilité d'un logement ne dépend pas uniquement du nombre de nuits louées.
+      Le positionnement du bien, la qualité de l'annonce, les tarifs et l'expérience voyageur
+      jouent également un rôle important.
+    </p>
+    <h3>Les principaux leviers</h3>
+    <ul>
+      <li>Adapter les tarifs aux périodes et à la demande.</li>
+      <li>Soigner les photos, le descriptif et la présentation du logement.</li>
+      <li>Réduire les périodes de vacance grâce à une stratégie tarifaire cohérente.</li>
+      <li>Maintenir une excellente qualité de nettoyage et de communication.</li>
+      <li>Analyser régulièrement les performances du logement.</li>
+    </ul>
+  </div>
+
+  <div class="lc-article" id="article3">
+    <button class="article-close" type="button" onclick="closeArticle('article3')" aria-label="Fermer">×</button>
+    <span class="lc-blog-label">ARTICLE 03</span>
+    <h2>Les erreurs fréquentes en conciergerie</h2>
+    <p>
+      Une bonne gestion repose sur une organisation rigoureuse. Certaines erreurs peuvent
+      rapidement dégrader l'expérience du voyageur et augmenter les coûts pour le propriétaire.
+    </p>
+    <h3>À éviter</h3>
+    <ul>
+      <li>Répondre trop tard aux demandes des voyageurs.</li>
+      <li>Négliger le contrôle du logement entre deux séjours.</li>
+      <li>Ne pas anticiper le linge, les consommables et les accès.</li>
+      <li>Appliquer les mêmes tarifs toute l'année sans tenir compte de la demande.</li>
+      <li>Ne pas suivre les incidents et les retours voyageurs.</li>
+    </ul>
+    <p>
+      Une organisation claire et un suivi régulier permettent de limiter ces problèmes
+      et de conserver un niveau de service professionnel.
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+
+<section class="faq lc-secondary-view" id="faq">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>QUESTIONS FRÉQUENTES</span>
+
+<h2>
+Tout savoir avant de nous confier votre logement
+</h2>
+
+<p>
+Les principales questions que se posent les propriétaires.
+</p>
+
+</div>
+
+<div class="faq-container">
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Quel est le tarif de vos prestations ?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<p>
+Nos formules de gestion commencent à 10% des revenus générés
+par le logement. Le tarif final dépend des prestations choisies,
+du logement et de son fonctionnement.
+</p>
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Le ménage et le linge sont-ils pris en charge ?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<p>
+Oui. Selon la formule choisie, nous pouvons prendre en charge
+le nettoyage du logement après les séjours ainsi que la préparation
+et la mise en place du linge.
+</p>
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Comment gérez-vous les arrivées et les départs ?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<p>
+Nous organisons les arrivées et les départs selon les modalités
+convenues avec le propriétaire et les équipements disponibles
+dans le logement.
+</p>
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Que se passe-t-il en cas de problème dans le logement ?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<p>
+Nous vous informons rapidement lorsqu'un problème est constaté.
+Selon vos instructions, nous pouvons également coordonner
+l'intervention d'un professionnel.
+</p>
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Dans quelles villes intervenez-vous ?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<p>
+Nous intervenons principalement à Metz, Thionville, Yutz,
+Terville, Hettange-Grande, Manom, Montigny-lès-Metz, Woippy,
+Saint-Julien-lès-Metz et Longeville-lès-Metz.
+Nous pouvons également étudier les demandes dans d'autres
+communes de Moselle.
+</p>
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Comment démarrer avec La Clé Conciergerie ?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+<p>
+Nous commençons par échanger avec vous sur votre logement,
+vos objectifs et vos besoins. Nous définissons ensuite les
+prestations adaptées et les modalités de fonctionnement avant
+le début de la gestion.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
+<!-- AVIS -->
+
+<section class="reviews lc-secondary-view" id="avis">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>NOS CLIENTS</span>
+
+<h2>
+Ils nous font confiance
+</h2>
+
+<p>
+La satisfaction de nos propriétaires est notre priorité.
+</p>
+
+</div>
+
+
+<div id="firebaseReviewsList" class="reviews-grid">
+
+<div class="review-loading">
+Chargement des avis...
+</div>
+
+</div>
+
+
+<div class="review-form-wrapper">
+
+<div class="review-form-title">
+
+<h3>
+Partagez votre expérience
+</h3>
+
+<p>
+Vous avez fait appel à La Clé Conciergerie ?
+Laissez-nous votre avis.
+</p>
+
+</div>
+
+
+<form id="reviewForm" class="review-form" autocomplete="off">
+
+<div class="review-honeypot" aria-hidden="true">
+
+<label for="website">
+Ne pas remplir
+</label>
+
+<input
+type="text"
+id="website"
+name="website"
+tabindex="-1"
+autocomplete="off"
+>
+
+</div>
+
+
+<div class="review-field">
+
+<label for="reviewName">
+Votre prénom
+</label>
+
+<input
+type="text"
+id="reviewName"
+maxlength="50"
+minlength="2"
+placeholder="Ex. Thomas"
+required
+>
+
+</div>
+
+
+<div class="review-field">
+
+<label>
+Votre note
+</label>
+
+<div class="star-rating" id="starRating">
+
+<button type="button" data-rating="1">★</button>
+<button type="button" data-rating="2">★</button>
+<button type="button" data-rating="3">★</button>
+<button type="button" data-rating="4">★</button>
+<button type="button" data-rating="5">★</button>
+
+</div>
+
+<input type="hidden" id="reviewRating" value="">
+
+</div>
+
+
+<div class="review-field">
+
+<label for="reviewText">
+Votre avis
+</label>
+
+<textarea
+id="reviewText"
+maxlength="500"
+minlength="5"
+rows="5"
+placeholder="Écrivez votre expérience..."
+required
+></textarea>
+
+<div class="review-counter">
+<span id="reviewCounter">0</span>/500
+</div>
+
+</div>
+
+
+<button
+type="submit"
+class="btn-gold review-submit"
+id="reviewSubmit"
+>
+Envoyer mon avis
+</button>
+
+<div
+id="reviewMessage"
+class="review-message"
+role="status"
+aria-live="polite"
+></div>
+
+<p class="review-security">
+<i class="fa-solid fa-shield-halved"></i>
+Votre avis sera vérifié avant d'être publié.
+</p>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact lc-secondary-view">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>CONTACT</span>
+
+<h2>
+Demandez votre devis gratuit
+</h2>
+
+<p>
+Nous vous répondrons rapidement.
+</p>
+
+</div>
+
+
+<form
+action="https://formspree.io/f/mzdljvyl"
+method="POST"
+>
+
+<input
+type="text"
+name="nom"
+placeholder="Nom"
+required
+>
+
+<input
+type="email"
+name="email"
+placeholder="Adresse e-mail"
+required
+>
+
+<input
+type="tel"
+name="telephone"
+placeholder="Téléphone"
+>
+
+<textarea
+name="message"
+placeholder="Décrivez votre projet"
+required
+></textarea>
+
+<button type="submit" class="btn-gold">
+Envoyer ma demande
+</button>
+
+</form>
+
+
+<div class="contact-info">
+
+<p>📞 06 59 15 51 46</p>
+<p>📧 lacleconciergerie.contact@gmail.com</p>
+<p>📍 Metz • Thionville • Moselle</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOUTONS FLOTTANTS -->
+<a class="lc-whatsapp" href="https://wa.me/33659155146" target="_blank" rel="noopener noreferrer" aria-label="Discuter sur WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<div class="lc-whatsapp-label">Discuter avec nous</div>
+
+<button class="lc-floating-top" id="lcTopButton" aria-label="Retour en haut">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-grid">
+<div class="container">
 
+<img
+src="logo.png"
+class="footer-logo"
+alt="Logo La Clé Conciergerie"
+>
 
-        <div class="footer-brand">
+<h3>
+La Clé Conciergerie
+</h3>
 
-            <div class="logo">
+<p>
+Gestion haut de gamme de locations courte durée.
+</p>
 
-                <div class="logo-symbol">
-                    <i class="fa-solid fa-key"></i>
-                </div>
+<p>
+© 2026 La Clé Conciergerie - Tous droits réservés
+</p>
 
-                <div class="logo-text">
+<div class="footer-links">
 
-                    <div class="logo-title" style="color:#fff;">
-                        LA CLÉ
-                    </div>
+<button onclick="openLegal('mentions')">
+Mentions légales
+</button>
 
-                    <div class="logo-subtitle">
-                        GESTION LOCATIVE
-                    </div>
+<span>|</span>
 
-                </div>
+<button onclick="openLegal('confidentialite')">
+Politique de confidentialité
+</button>
 
-            </div>
+<span>|</span>
 
-            <p>
-                La Clé Conciergerie accompagne les propriétaires
-                dans la gestion de leurs locations courte durée
-                à Metz, Thionville et en Moselle.
-            </p>
+<a href="#contact">
+Contact
+</a>
 
-        </div>
+</div>
 
-
-        <div class="footer-column">
-
-            <h3>Navigation</h3>
-
-            <a href="#accueil">Accueil</a>
-            <a href="#services">Services</a>
-            <a href="#tarifs">Tarifs</a>
-            <a href="#calculateur">Calculateur</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>Informations</h3>
-
-            <a href="#blog">Blog</a>
-            <a href="#avis">Avis</a>
-            <a href="#faq">FAQ</a>
-            <a href="#apropos">À propos</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>Contact</h3>
-
-            <a href="tel:0659158035">
-                06 59 15 80 35
-            </a>
-
-            <a href="mailto:contact@lacleconciergerie.org">
-                Contactez-nous
-            </a>
-
-            <a href="#">
-                Metz • Thionville • Moselle
-            </a>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <span>
-            © 2026 La Clé Conciergerie — Tous droits réservés
-        </span>
-
-        <span>
-            La clé de votre sérénité
-        </span>
-
-    </div>
+</div>
 
 </footer>
 
 
-<!-- ======================================================
-     WHATSAPP
-====================================================== -->
+<!-- MENTIONS -->
 
-<a
-    class="whatsapp"
-    href="https://wa.me/33659158035"
-    target="_blank"
-    aria-label="Contacter La Clé Conciergerie sur WhatsApp"
+<div class="legal-modal" id="mentions">
+
+<div class="legal-box">
+
+<button
+class="legal-close"
+onclick="closeLegal('mentions')"
 >
-    <i class="fa-brands fa-whatsapp"></i>
-</a>
+×
+</button>
+
+<h2>
+Mentions légales
+</h2>
+
+<p>
+<strong>La Clé Conciergerie</strong>
+</p>
+
+<p>
+Responsable : Lefevre Mickel
+</p>
+
+<p>
+SIRET : 10676421000014
+</p>
+
+<p>
+86 Bis Rue du Général de Gaulle<br>
+57860 Montois-la-Montagne
+</p>
 
 
-<!-- ======================================================
-     JAVASCRIPT
-====================================================== -->
+</div>
+
+</div>
+
+
+<!-- CONFIDENTIALITÉ -->
+
+<div class="legal-modal" id="confidentialite">
+
+<div class="legal-box">
+
+<button
+class="legal-close"
+onclick="closeLegal('confidentialite')"
+>
+×
+</button>
+
+<h2>
+Politique de confidentialité
+</h2>
+
+<p>
+Les informations transmises via le formulaire de contact sont
+utilisées uniquement afin de répondre aux demandes des personnes
+qui souhaitent contacter La Clé Conciergerie.
+</p>
+
+<p>
+Les données ne sont pas utilisées à des fins commerciales
+étrangères à la demande et ne sont pas vendues à des tiers.
+</p>
+
+<p>
+Les avis envoyés via le formulaire d'avis sont enregistrés
+dans Firebase uniquement afin d'être vérifiés puis éventuellement
+publiés sur le site.
+</p>
+
+<p>
+Vous pouvez demander l'accès, la rectification ou la suppression
+de vos données en contactant La Clé Conciergerie à :
+</p>
+
+<p>
+<strong>
+lacleconciergerie.contact@gmail.com
+</strong>
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+initializeApp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push,
+set,
+onValue
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyC1GfrCkZrrvAnIo-yiJP1gyIxoWFfW9Cg",
+
+authDomain:
+"lacleconciergerie-a3e94.firebaseapp.com",
+
+databaseURL:
+"https://lacleconciergerie-a3e94-default-rtdb.europe-west1.firebasedatabase.app",
+
+projectId:
+"lacleconciergerie-a3e94",
+
+storageBucket:
+"lacleconciergerie-a3e94.firebasestorage.app",
+
+messagingSenderId:
+"190906565909",
+
+appId:
+"1:190906565909:web:25e073e959dba471c9951c",
+
+measurementId:
+"G-TXWJ6XNN0D"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+
+/* AVIS APPROUVÉS */
+
+const reviewsList =
+document.getElementById("firebaseReviewsList");
+
+const approvedRef =
+ref(db,"reviews/approved");
+
+
+onValue(
+approvedRef,
+snapshot => {
+
+reviewsList.innerHTML = "";
+
+const data = snapshot.val();
+
+if (!data) {
+
+reviewsList.innerHTML = `
+<div class="review-loading">
+Aucun avis publié pour le moment.
+</div>
+`;
+
+return;
+
+}
+
+
+const reviews =
+Object.entries(data)
+.map(([id,review]) => ({
+id,
+...review
+}))
+.sort(
+(a,b) =>
+Number(b.createdAt || 0) -
+Number(a.createdAt || 0)
+);
+
+
+reviews.forEach(review => {
+
+const card =
+document.createElement("div");
+
+card.className =
+"review-card";
+
+
+let rating =
+Number(review.rating);
+
+if (!Number.isFinite(rating)) {
+rating = 5;
+}
+
+rating =
+Math.max(1,Math.min(5,Math.round(rating)));
+
+
+const stars =
+"★".repeat(rating) +
+"☆".repeat(5-rating);
+
+
+const text =
+document.createElement("p");
+
+text.textContent =
+`"${review.text || ""}"`;
+
+
+const name =
+document.createElement("h4");
+
+name.textContent =
+review.name || "Client";
+
+
+const starsDiv =
+document.createElement("div");
+
+starsDiv.className =
+"stars";
+
+starsDiv.textContent =
+stars;
+
+
+card.appendChild(starsDiv);
+card.appendChild(text);
+card.appendChild(name);
+
+reviewsList.appendChild(card);
+
+});
+
+},
+error => {
+
+console.error(error);
+
+reviewsList.innerHTML = `
+<div class="review-loading">
+Impossible de charger les avis pour le moment.
+</div>
+`;
+
+});
+
+
+/* ÉTOILES */
+
+const starButtons =
+document.querySelectorAll(
+"#starRating button"
+);
+
+const ratingInput =
+document.getElementById("reviewRating");
+
+
+starButtons.forEach(button => {
+
+button.addEventListener(
+"click",
+() => {
+
+const rating =
+Number(button.dataset.rating);
+
+ratingInput.value =
+String(rating);
+
+
+starButtons.forEach(btn => {
+
+btn.classList.toggle(
+"selected",
+Number(btn.dataset.rating) <= rating
+);
+
+});
+
+});
+
+});
+
+
+/* COMPTEUR */
+
+const reviewText =
+document.getElementById("reviewText");
+
+const reviewCounter =
+document.getElementById("reviewCounter");
+
+
+reviewText.addEventListener(
+"input",
+() => {
+
+reviewCounter.textContent =
+reviewText.value.length;
+
+});
+
+
+/* FORMULAIRE */
+
+const reviewForm =
+document.getElementById("reviewForm");
+
+const reviewSubmit =
+document.getElementById("reviewSubmit");
+
+const reviewMessage =
+document.getElementById("reviewMessage");
+
+
+reviewForm.addEventListener(
+"submit",
+async event => {
+
+event.preventDefault();
+
+
+const honeypot =
+document.getElementById("website");
+
+if (honeypot.value.trim() !== "") {
+return;
+}
+
+
+const name =
+document.getElementById("reviewName")
+.value.trim();
+
+
+const rating =
+Number(ratingInput.value);
+
+
+const text =
+reviewText.value.trim();
+
+
+if (name.length < 2 || name.length > 50) {
+
+showReviewMessage(
+"Veuillez entrer un prénom valide.",
+"error"
+);
+
+return;
+
+}
+
+
+if (rating < 1 || rating > 5) {
+
+showReviewMessage(
+"Veuillez sélectionner une note.",
+"error"
+);
+
+return;
+
+}
+
+
+if (text.length < 5 || text.length > 500) {
+
+showReviewMessage(
+"Votre avis doit contenir entre 5 et 500 caractères.",
+"error"
+);
+
+return;
+
+}
+
+
+/* Anti-spam local */
+
+const lastReview =
+localStorage.getItem("lc_last_review");
+
+
+if (lastReview) {
+
+const elapsed =
+Date.now() - Number(lastReview);
+
+if (elapsed < 12 * 60 * 60 * 1000) {
+
+showReviewMessage(
+"Vous avez déjà envoyé un avis récemment. Merci de patienter.",
+"error"
+);
+
+return;
+
+}
+
+}
+
+
+reviewSubmit.disabled = true;
+reviewSubmit.textContent = "Envoi en cours...";
+
+
+try {
+
+const pendingRef =
+ref(db,"reviews/pending");
+
+const newReview =
+push(pendingRef);
+
+
+await set(
+newReview,
+{
+
+name:name,
+
+rating:rating,
+
+text:text,
+
+createdAt:Date.now(),
+
+status:"pending"
+
+}
+);
+
+
+localStorage.setItem(
+"lc_last_review",
+String(Date.now())
+);
+
+
+reviewForm.reset();
+
+ratingInput.value = "";
+
+reviewCounter.textContent = "0";
+
+
+starButtons.forEach(
+button =>
+button.classList.remove("selected")
+);
+
+
+showReviewMessage(
+"Merci pour votre avis ! Il sera vérifié avant d'être publié.",
+"success"
+);
+
+}
+catch(error) {
+
+console.error(
+"Erreur Firebase :",
+error
+);
+
+showReviewMessage(
+"Une erreur est survenue. Veuillez réessayer.",
+"error"
+);
+
+}
+
+
+reviewSubmit.disabled = false;
+reviewSubmit.textContent = "Envoyer mon avis";
+
+});
+
+
+function showReviewMessage(message,type) {
+
+reviewMessage.textContent =
+message;
+
+reviewMessage.className =
+"review-message " + type;
+
+}
+
+</script>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
 
 <script>
 
-/* ===============================
-   MENU MOBILE
-================================ */
+/* SERVICES */
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+function toggleService(id,button) {
 
-menuToggle.addEventListener("click", function () {
+document
+.querySelectorAll(".lc-service-popup")
+.forEach(item =>
+item.classList.remove("active")
+);
 
-    navMenu.classList.toggle("open");
+document
+.querySelectorAll(".lc-service-link")
+.forEach(btn =>
+btn.innerHTML =
+"En savoir plus <span>→</span>"
+);
 
-    const icon = menuToggle.querySelector("i");
 
-    if (navMenu.classList.contains("open")) {
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-xmark");
-    } else {
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
+const service =
+document.getElementById(id);
+
+service.classList.add("active");
+
+button.innerHTML =
+"Fermer <span>↑</span>";
+
+
+setTimeout(() => {
+
+service.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+},100);
+
+}
+
+
+function closeService(id) {
+
+document
+.getElementById(id)
+.classList.remove("active");
+
+document
+.querySelectorAll(".lc-service-link")
+.forEach(btn =>
+btn.innerHTML =
+"En savoir plus <span>→</span>"
+);
+
+}
+
+
+/* FAQ */
+
+document
+.querySelectorAll(".faq-question")
+.forEach(question => {
+
+question.addEventListener(
+"click",
+function() {
+
+const item =
+this.parentElement;
+
+
+document
+.querySelectorAll(".faq-item")
+.forEach(other => {
+
+if (other !== item) {
+other.classList.remove("active");
+}
+
+});
+
+
+item.classList.toggle("active");
+
+});
+
+});
+
+
+/* MENTIONS */
+
+function openLegal(id) {
+
+document
+.getElementById(id)
+.classList.add("active");
+
+}
+
+
+function closeLegal(id) {
+
+document
+.getElementById(id)
+.classList.remove("active");
+
+}
+
+
+document
+.querySelectorAll(".legal-modal")
+.forEach(modal => {
+
+modal.addEventListener(
+"click",
+event => {
+
+if (event.target === modal) {
+modal.classList.remove("active");
+}
+
+});
+
+});
+
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (event.key === "Escape") {
+
+document
+.querySelectorAll(".legal-modal")
+.forEach(modal =>
+modal.classList.remove("active")
+);
+
+}
+
+});
+
+</script>
+
+
+<script>
+/* =========================================================
+   OUTILS PRO — CALCULATEUR / BLOG / MENU MOBILE
+   ========================================================= */
+
+(function(){
+  const header = document.querySelector("header");
+  const menuTrigger = document.getElementById("lcMenuTrigger");
+  const menuOverlay = document.getElementById("lcMenuOverlay");
+  const menuClose = document.getElementById("lcMenuClose");
+  const topButton = document.getElementById("lcTopButton");
+  const backHome = document.getElementById("lcBackHome");
+
+  function closeMenu(){
+    if(menuOverlay){
+      menuOverlay.classList.remove("open");
+      menuOverlay.setAttribute("aria-hidden","true");
+    }
+    if(menuTrigger){
+      menuTrigger.classList.remove("active");
+      menuTrigger.setAttribute("aria-expanded","false");
+    }
+    document.body.style.overflow = "";
+  }
+
+  function openMenu(){
+    if(menuOverlay){
+      menuOverlay.classList.add("open");
+      menuOverlay.setAttribute("aria-hidden","false");
+    }
+    if(menuTrigger){
+      menuTrigger.classList.add("active");
+      menuTrigger.setAttribute("aria-expanded","true");
+    }
+    document.body.style.overflow = "hidden";
+  }
+
+  if(menuTrigger) menuTrigger.addEventListener("click", function(){
+    menuOverlay.classList.contains("open") ? closeMenu() : openMenu();
+  });
+  if(menuClose) menuClose.addEventListener("click", closeMenu);
+  if(menuOverlay) menuOverlay.addEventListener("click", function(e){
+    if(e.target === menuOverlay) closeMenu();
+  });
+
+  function showView(id){
+    if(id === "accueil"){
+      document.body.classList.remove("lc-view-open");
+      document.querySelectorAll(".lc-secondary-view").forEach(el => el.classList.remove("lc-active-view"));
+      if(backHome) backHome.style.display = "none";
+      closeMenu();
+      window.scrollTo({top:0, behavior:"smooth"});
+      return;
     }
 
-});
+    const target = document.getElementById(id);
+    if(!target) return;
 
+    document.body.classList.add("lc-view-open");
+    document.querySelectorAll(".lc-secondary-view").forEach(el => el.classList.remove("lc-active-view"));
+    target.classList.add("lc-active-view");
+    if(backHome) backHome.style.display = "block";
+    closeMenu();
 
-/* ===============================
-   FERMER MENU APRÈS CLIC
-================================ */
+    setTimeout(() => target.scrollIntoView({behavior:"smooth", block:"start"}), 60);
+  }
 
-document.querySelectorAll(".nav-menu a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navMenu.classList.remove("open");
-
-        const icon = menuToggle.querySelector("i");
-
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
-
+  document.querySelectorAll("[data-view]").forEach(btn => {
+    btn.addEventListener("click", function(){
+      showView(this.getAttribute("data-view"));
     });
+  });
 
-});
-
-
-/* ===============================
-   BOUTON SERVICES
-================================ */
-
-function goToServices() {
-
-    document
-        .getElementById("services")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
+  if(backHome) backHome.querySelector("button").addEventListener("click", () => showView("accueil"));
 
 
-/* ===============================
-   BOUTON DEVIS
-================================ */
-
-function goToContact() {
-
-    document
-        .getElementById("contact")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
-
-
-/* ===============================
-   EMAIL
-================================ */
-
-function sendEmail() {
-
-    window.location.href =
-        "mailto:contact@lacleconciergerie.org?subject=Demande%20de%20devis%20-%20La%20Clé%20Conciergerie";
-
-}
-
-
-/* ===============================
-   CALCULATEUR
-================================ */
-
-function calculateRevenue() {
-
-    const price =
-        parseFloat(document.getElementById("price").value) || 0;
-
-    const nights =
-        parseFloat(document.getElementById("nights").value) || 0;
-
-    const revenue = price * nights;
-
-    const management = revenue * 0.20;
-
-    const net = revenue - management;
-
-    document.getElementById("calculatorResult").innerHTML =
-        "Revenus estimés : " +
-        revenue.toLocaleString("fr-FR") +
-        " € / mois<br>" +
-        "<span style='font-size:11px;color:#667080;font-weight:500'>" +
-        "Après 20 % de gestion : environ " +
-        net.toLocaleString("fr-FR") +
-        " €" +
-        "</span>";
-
-}
-
-
-/* ===============================
-   ACTIVE NAVIGATION
-================================ */
-
-const sections =
-    document.querySelectorAll("section[id]");
-
-const navLinks =
-    document.querySelectorAll(".nav-menu a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-            section.offsetTop - 120;
-
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-
+  const logo = document.getElementById("lcLogo");
+  if(logo){
+    logo.addEventListener("click", function(e){
+      e.preventDefault();
+      showView("accueil");
     });
+  }
 
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (
-            link.getAttribute("href") === "#" + current
-        ) {
-            link.classList.add("active");
-        }
-
+  const headerDevis = document.getElementById("lcHeaderDevis");
+  if(headerDevis){
+    headerDevis.addEventListener("click", function(e){
+      e.preventDefault();
+      showView("contact");
     });
+  }
 
-});
+  window.addEventListener("scroll", function(){
+    if(header) header.classList.toggle("scrolled", window.scrollY > 10);
+    if(topButton) topButton.classList.toggle("visible", window.scrollY > 500);
+  }, {passive:true});
 
+  if(topButton){
+    topButton.addEventListener("click", function(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+
+  window.openArticle = function(id){
+    document.querySelectorAll(".lc-article").forEach(article => {
+      article.classList.remove("active");
+    });
+    const article = document.getElementById(id);
+    if(article){
+      article.classList.add("active");
+      setTimeout(() => article.scrollIntoView({behavior:"smooth", block:"center"}), 80);
+    }
+  };
+
+  window.closeArticle = function(id){
+    const article = document.getElementById(id);
+    if(article) article.classList.remove("active");
+  };
+
+  const revenue = document.getElementById("lcCalcRevenue");
+  const plan = document.getElementById("lcCalcPlan");
+  const nights = document.getElementById("lcCalcNights");
+  const button = document.getElementById("lcCalcButton");
+  const total = document.getElementById("lcCalcTotal");
+  const revenueOut = document.getElementById("lcCalcRevenueOut");
+  const planOut = document.getElementById("lcCalcPlanOut");
+  const netOut = document.getElementById("lcCalcNet");
+
+  function euro(value){
+    return new Intl.NumberFormat("fr-FR", {
+      style:"currency",
+      currency:"EUR",
+      maximumFractionDigits:0
+    }).format(Math.max(0, value || 0));
+  }
+
+  function calculate(){
+    const amount = Math.max(0, Number(revenue.value) || 0);
+    const rate = Number(plan.value) || .15;
+    const selectedNights = Math.max(0, Math.min(31, Number(nights.value) || 0));
+    const fee = amount * rate;
+    const net = amount - fee;
+
+    const planNames = {
+      ".1":"Essentiel — 10 %",
+      ".15":"Premium — 15 %",
+      ".2":"Prestige — 20 %"
+    };
+
+    total.textContent = euro(fee);
+    revenueOut.textContent = euro(amount);
+    planOut.textContent = planNames[String(rate)] || Math.round(rate*100) + " %";
+    netOut.textContent = euro(net);
+
+    const nightsLabel = document.getElementById("lcCalcNightsOut");
+    if(nightsLabel) nightsLabel.textContent = selectedNights + " nuit" + (selectedNights > 1 ? "s" : "");
+  }
+
+  if(button){
+    button.addEventListener("click", calculate);
+  }
+  [revenue, plan, nights].forEach(field => {
+    if(field) field.addEventListener("input", calculate);
+    if(field) field.addEventListener("change", calculate);
+  });
+  calculate();
+})();
 </script>
 
 </body>
