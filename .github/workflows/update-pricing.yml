@@ -1,0 +1,51 @@
+name: Update pricing details
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  update:
+    if: ${{ !contains(github.event.head_commit.message, '[pricing-update]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update pricing cards and FAQ
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('<div class="price">10%</div>', '<div class="price">Sur devis</div>')
+          old='Nos formules de gestion commencent à 10% des revenus générés'
+          if old in s:
+              start=s.index(old)
+              end=s.index('</p>', start)
+              s=s[:start]+'Nos formules sont proposées selon le niveau de gestion choisi. Contactez-nous pour obtenir une proposition adaptée à votre logement, à vos besoins et à votre fonctionnement.\n'+s[end:]
+          s=s.replace('<div class="price">15%</div>', '<div class="price">15%</div>\n<button class="pricing-detail-btn" type="button" data-plan="premium">Voir le détail <i class="fa-solid fa-arrow-right"></i></button>')
+          s=s.replace('<div class="price">20%</div>', '<div class="price">20%</div>\n<button class="pricing-detail-btn" type="button" data-plan="prestige">Voir le détail <i class="fa-solid fa-arrow-right"></i></button>')
+          addon=r'''
+<!-- DETAILS DES FORMULES 15 % / 20 % -->
+<style>
+.pricing-detail-btn{margin-top:18px;border:1px solid rgba(184,148,77,.45);background:#fff;color:#8f6e32;border-radius:10px;padding:11px 15px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.25s ease}.pricing-detail-btn:hover{background:#fff8e9;transform:translateY(-2px)}
+.pricing-detail-modal{position:fixed;inset:0;z-index:10000;background:rgba(4,10,20,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:22px}.pricing-detail-modal.active{display:flex}
+.pricing-detail-box{position:relative;width:min(760px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:26px;padding:42px;box-shadow:0 30px 90px rgba(0,0,0,.30)}
+.pricing-detail-close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:30px;cursor:pointer;color:#07101f}.pricing-detail-kicker{font-size:12px;font-weight:800;letter-spacing:2px;color:#a77e31;text-transform:uppercase}.pricing-detail-box h2{margin:8px 0;font-size:32px;color:#07101f}.pricing-detail-price{font-size:34px;font-weight:800;color:#b8944d;margin-bottom:20px}.pricing-detail-box p{line-height:1.75;color:#667085;margin:0 0 22px}.pricing-detail-list{list-style:none;padding:0;margin:0 0 25px;display:grid;gap:12px}.pricing-detail-list li{display:flex;gap:11px;align-items:flex-start;line-height:1.55;color:#202938}.pricing-detail-list li i{color:#b8944d;margin-top:4px}.pricing-detail-cta{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:linear-gradient(135deg,#d8b238,#b8944d);color:#07101f;font-weight:800;border-radius:11px;padding:13px 20px}@media(max-width:600px){.pricing-detail-box{padding:32px 22px}.pricing-detail-box h2{font-size:27px}.pricing-detail-price{font-size:29px}}
+</style>
+<div class="pricing-detail-modal" id="pricingDetailModal" aria-hidden="true"><div class="pricing-detail-box" role="dialog" aria-modal="true" aria-labelledby="pricingDetailTitle"><button class="pricing-detail-close" type="button" aria-label="Fermer">&times;</button><div class="pricing-detail-kicker">La Clé Conciergerie</div><h2 id="pricingDetailTitle"></h2><div class="pricing-detail-price" id="pricingDetailPrice"></div><p id="pricingDetailIntro"></p><ul class="pricing-detail-list" id="pricingDetailList"></ul><a class="pricing-detail-cta" href="#contact">Demander un devis</a></div></div>
+<script>
+(function(){const modal=document.getElementById('pricingDetailModal');if(!modal)return;const title=document.getElementById('pricingDetailTitle'),price=document.getElementById('pricingDetailPrice'),intro=document.getElementById('pricingDetailIntro'),list=document.getElementById('pricingDetailList');const data={premium:{title:'Formule Premium',price:'15 %',intro:'Une gestion complète pensée pour les propriétaires qui souhaitent déléguer l’essentiel de l’exploitation de leur location courte durée.',items:['Gestion des réservations et du calendrier','Communication avec les voyageurs avant, pendant et après le séjour','Organisation des arrivées et des départs','Ménage et préparation du logement après chaque séjour','Gestion et suivi du linge','Réassort des consommables essentiels','Assistance en cas de besoin et suivi des petits incidents','Optimisation de la présentation et de l’expérience voyageur','Suivi des avis et accompagnement pour maintenir une excellente qualité de service']},prestige:{title:'Formule Prestige',price:'20 %',intro:'Une prise en charge haut de gamme pour les propriétaires qui souhaitent une gestion particulièrement complète, réactive et suivie de leur logement.',items:['Tout le contenu de la formule Premium','Gestion opérationnelle renforcée du logement','Suivi des petits incidents et coordination des interventions nécessaires','Optimisation régulière des tarifs et du positionnement du logement','Suivi personnalisé de la performance et de l’activité','Reporting et échanges personnalisés avec le propriétaire','Contrôle renforcé de la qualité après les séjours','Accompagnement prioritaire et suivi attentif des voyageurs','Gestion de l’expérience globale pour préserver l’image et les performances du logement']}};function openPlan(key){const d=data[key];if(!d)return;title.textContent=d.title;price.textContent=d.price;intro.textContent=d.intro;list.innerHTML=d.items.map(x=>'<li><i class="fa-solid fa-check"></i><span>'+x+'</span></li>').join('');modal.classList.add('active');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}function closePlan(){modal.classList.remove('active');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}document.querySelectorAll('.pricing-detail-btn').forEach(btn=>btn.addEventListener('click',()=>openPlan(btn.dataset.plan)));modal.querySelector('.pricing-detail-close').addEventListener('click',closePlan);modal.addEventListener('click',e=>{if(e.target===modal)closePlan()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closePlan()})})();
+</script>
+'''
+          if 'id="pricingDetailModal"' not in s:
+              s=s.replace('</body>', addon+'\n</body>')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Mise à jour des tarifs et détails des formules [pricing-update]"
+          git push
