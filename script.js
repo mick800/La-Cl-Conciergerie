@@ -1,13 +1,12 @@
 // ===============================
 // LA CLÉ CONCIERGERIE — SCRIPT PREMIUM
-// Tarifs : Premium 18 % / Prestige 23 %
+// Tarifs définitifs : Premium 18 % / Prestige 23 %
 // ===============================
 
 (function(){
   "use strict";
 
   const ready = () => {
-    // Animations existantes
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -18,60 +17,89 @@
     }
 
     // ===============================
-    // TARIFS — SUPPRESSION DÉFINITIVE DE L'ANCIEN ESSENTIEL 10 %
+    // SUPPRESSION ESSENTIEL / ANCIENS TARIFS
     // ===============================
-    const priceCards = Array.from(document.querySelectorAll(".price-card"));
-
-    priceCards.forEach(card => {
+    document.querySelectorAll(".price-card").forEach(card => {
       const title = card.querySelector("h3");
-      if (title && title.textContent.trim().toLowerCase() === "essentiel") {
-        card.remove();
-      }
+      if (title && title.textContent.trim().toLowerCase() === "essentiel") card.remove();
     });
 
-    // Les deux formules restantes
-    const remainingCards = Array.from(document.querySelectorAll(".price-card"));
-    remainingCards.forEach(card => {
+    // ===============================
+    // REMPLACEMENT DES ANCIENS TARIFS PARTOUT SUR LE SITE
+    // 15 % -> 18 % / 20 % -> 23 %
+    // 10 % est supprimé lorsqu'il s'agit d'un tarif.
+    // ===============================
+    const tariffText = (text) => {
+      if(!text) return text;
+      return text
+        .replace(/15\s*%/g, "18 %")
+        .replace(/20\s*%/g, "23 %")
+        .replace(/10\s*%/g, "");
+    };
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    let current;
+    while(current = walker.nextNode()) textNodes.push(current);
+    textNodes.forEach(node => {
+      if(!node.parentElement) return;
+      if(["SCRIPT","STYLE","NOSCRIPT"].includes(node.parentElement.tagName)) return;
+      node.nodeValue = tariffText(node.nodeValue);
+    });
+
+    // ===============================
+    // CARTES TARIFS
+    // ===============================
+    document.querySelectorAll(".price-card").forEach(card => {
       const title = card.querySelector("h3");
       const price = card.querySelector(".price");
-      if (!title || !price) return;
-
+      if(!title || !price) return;
       const name = title.textContent.trim().toLowerCase();
-      if (name === "premium") price.textContent = "18%";
-      if (name === "prestige") price.textContent = "23%";
+      if(name === "premium") price.textContent = "18 %";
+      if(name === "prestige") price.textContent = "23 %";
     });
 
     // ===============================
-    // MENU 3 BARRES
+    // MENU TROIS BARRES
     // ===============================
     document.querySelectorAll(".lc-menu-link").forEach(link => {
-      if (link.textContent.includes("Nos tarifs")) {
+      if(link.textContent.toLowerCase().includes("tarif")) {
         link.innerHTML = '<i class="fa-solid fa-percent"></i> Nos tarifs — 18 / 23 %';
       }
     });
 
     // ===============================
-    // CALCULATEUR — VALEURS DÉCIMALES CORRECTES
-    // 18 % = 0.18 et 23 % = 0.23
+    // CALCULATEUR
     // ===============================
     const planSelect = document.getElementById("lcCalcPlan");
-    if (planSelect) {
+    if(planSelect){
       planSelect.innerHTML = `
         <option value="0.18" selected>Premium — 18 %</option>
         <option value="0.23">Prestige — 23 %</option>
       `;
     }
 
+    // Nettoyage de toute option Essentiel / ancien tarif dans les selects.
+    document.querySelectorAll("select option").forEach(option => {
+      const text = option.textContent.trim().toLowerCase();
+      if(text.includes("essentiel") || /(^|\D)10\s*%/.test(option.textContent)) option.remove();
+      else {
+        option.textContent = tariffText(option.textContent);
+        if(option.value === "15" || option.value === "0.15") option.value = "0.18";
+        if(option.value === "20" || option.value === "0.20") option.value = "0.23";
+      }
+    });
+
     // ===============================
-    // FAQ — NOUVEAUX TARIFS
+    // FAQ
     // ===============================
     document.querySelectorAll(".faq-answer p, .faq-question").forEach(el => {
       el.textContent = el.textContent
-        .replace(/Nos formules de gestion commencent à 10% des revenus générés par le logement\. Le tarif final dépend des prestations choisies, du logement et de son fonctionnement\.?/i,
-          "Nos formules de gestion sont proposées à 18 % pour la formule Premium et 23 % pour la formule Prestige. Le tarif final dépend des prestations choisies, du logement et de son fonctionnement.")
-        .replace(/10\s*%/g, "18 %")
+        .replace(/Nos formules de gestion commencent à\s*des? revenus.*$/i,
+          "Nos formules de gestion sont proposées à 18 % pour la formule Premium et 23 % pour la formule Prestige.")
         .replace(/15\s*%/g, "18 %")
-        .replace(/20\s*%/g, "23 %");
+        .replace(/20\s*%/g, "23 %")
+        .replace(/10\s*%/g, "");
     });
 
     // ===============================
@@ -172,7 +200,6 @@
     modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
     document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
 
-    // Ajouter les boutons uniquement aux deux cartes restantes
     document.querySelectorAll(".price-card").forEach(card => {
       const title = card.querySelector("h3");
       if(!title) return;
@@ -188,7 +215,6 @@
       else card.appendChild(button);
     });
 
-    // Corrige les boutons « Demander un devis » dans les cartes pour utiliser le système de vues du site.
     document.querySelectorAll('.price-card a[href="#contact"]').forEach(link => {
       link.addEventListener("click", function(e){
         e.preventDefault();
@@ -204,7 +230,6 @@
       });
     });
 
-    // Le bouton devis du détail suit le même fonctionnement.
     const detailCta = modal.querySelector(".pricing-detail-cta");
     detailCta.addEventListener("click", function(e){
       e.preventDefault();
@@ -220,7 +245,7 @@
       }
     });
 
-    console.log("La Clé Conciergerie — tarifs corrigés : 18 % / 23 %");
+    console.log("La Clé Conciergerie — tarifs définitifs : 18 % / 23 %");
   };
 
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready);
