@@ -25,31 +25,67 @@ document.querySelectorAll(".btn-gold,.btn-white,.btn-header").forEach(btn=>{
     btn.addEventListener("mouseleave",()=>btn.style.transform="translateY(0)");
 });
 
-// Tarifs : aucune offre à 10 %. Seules Premium 15 % et Prestige 20 % sont proposées.
+// ===============================
+// TARIFS : 18 % PREMIUM / 23 % PRESTIGE
+// Plus aucune formule à 10 %.
+// ===============================
 document.addEventListener("DOMContentLoaded",()=>{
-    // Corrige explicitement le libellé du menu trois barres.
-    document.querySelectorAll("a,button,li,span,div").forEach(el=>{
-        if(el.children.length===0){
-            const text=el.textContent.trim();
-            if(text.includes("Nos tarifs") && /10\s*[%]?(?:\s*pourcent)?/i.test(text)){
-                el.textContent=text.replace(/10\s*[%]?(?:\s*pourcent)?\s*[\-–—\/]?\s*/i,"").replace(/\s{2,}/g," ").trim();
-            }
-        }
-    });
+    const replaceText=(oldText,newText)=>{
+        const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+        const nodes=[];let n;while(n=walker.nextNode())nodes.push(n);
+        nodes.forEach(t=>{
+            if(!t.parentElement||["SCRIPT","STYLE"].includes(t.parentElement.tagName))return;
+            t.nodeValue=t.nodeValue.split(oldText).join(newText);
+        });
+    };
 
+    // Ancien menu : « Nos tarifs — 10 / 15 / 20 % »
+    replaceText("Nos tarifs — 10 / 15 / 20 %","Nos tarifs — 18 / 23 %");
+    replaceText("Nos tarifs – 10 / 15 / 20 %","Nos tarifs – 18 / 23 %");
+    replaceText("Nos tarifs - 10 / 15 / 20 %","Nos tarifs - 18 / 23 %");
+    replaceText("10 / 15 / 20 %","18 / 23 %");
+    replaceText("10 / 15 / 20%","18 / 23 %");
+
+    // Supprime toute trace textuelle de l'ancien 10 % hors code.
     const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-    const nodes=[];let n;
-    while(n=walker.nextNode())nodes.push(n);
+    const nodes=[];let node;while(node=walker.nextNode())nodes.push(node);
     nodes.forEach(t=>{
         if(!t.parentElement||["SCRIPT","STYLE"].includes(t.parentElement.tagName))return;
         if(t.parentElement.closest(".pricing-detail-modal"))return;
         t.nodeValue=t.nodeValue.replace(/10\s*%/g,"").replace(/10\s*pourcent/gi,"");
     });
-    document.querySelectorAll("option").forEach(o=>{if(/10\s*%|10\s*pourcent/i.test(o.textContent))o.remove();});
+
+    // Met à jour les prix visibles et tous les libellés 15/20 des offres.
+    const priceCards=document.querySelectorAll(".price-card,.pricing-card,.tarif-card,.offer-card,[class*='price-card'],[class*='pricing-card']");
+    priceCards.forEach(card=>{
+        const walker=document.createTreeWalker(card,NodeFilter.SHOW_TEXT);const list=[];let x;
+        while(x=walker.nextNode())list.push(x);
+        list.forEach(t=>{t.nodeValue=t.nodeValue.replace(/15\s*%/g,"18 %").replace(/20\s*%/g,"23 %");});
+    });
+
+    // Met à jour le calculateur : Premium = 18 %, Prestige = 23 %.
+    document.querySelectorAll("select option").forEach(o=>{
+        const txt=o.textContent;
+        if(/15\s*%/.test(txt)){o.textContent=txt.replace(/15\s*%/g,"18 %");o.value="18";}
+        if(/20\s*%/.test(txt)){o.textContent=txt.replace(/20\s*%/g,"23 %");o.value="23";}
+        if(/10\s*%|10\s*pourcent/i.test(o.textContent))o.remove();
+    });
+
+    // Corrige également les champs/selects de calcul qui auraient gardé 15 ou 20 en valeur.
+    document.querySelectorAll("input,select").forEach(el=>{
+        if(el.value==="15")el.value="18";
+        if(el.value==="20")el.value="23";
+    });
+
+    // FAQ : remplace les anciennes références de tarifs.
+    replaceText("15 %", "18 %");
+    replaceText("20 %", "23 %");
+    replaceText("15%", "18 %");
+    replaceText("20%", "23 %");
 
     const plans=[
-      {percent:"15 %",key:"premium",title:"Formule Premium",intro:"Une gestion complète de votre location courte durée pour vous libérer de la gestion quotidienne tout en conservant une expérience de qualité pour vos voyageurs.",items:["Gestion des réservations et du calendrier","Communication avec les voyageurs avant, pendant et après le séjour","Organisation des arrivées et des départs","Ménage et préparation du logement après chaque séjour","Gestion et suivi du linge","Réassort des consommables essentiels","Assistance et suivi des petits incidents","Optimisation de la présentation et de l’expérience voyageur","Suivi des avis et de la qualité de service"]},
-      {percent:"20 %",key:"prestige",title:"Formule Prestige",intro:"Une prise en charge haut de gamme et renforcée pour les propriétaires qui souhaitent déléguer la gestion opérationnelle de leur logement avec un suivi personnalisé.",items:["Tout le contenu de la formule Premium","Gestion opérationnelle renforcée du logement","Suivi des petits incidents et coordination des interventions nécessaires","Optimisation régulière des tarifs et du positionnement","Suivi personnalisé de la performance et de l’activité","Reporting et échanges personnalisés avec le propriétaire","Contrôle renforcé de la qualité après les séjours","Accompagnement prioritaire et suivi attentif des voyageurs","Suivi global de l’expérience pour préserver les performances du logement"]}
+      {percent:"18 %",key:"premium",title:"Formule Premium",intro:"Une gestion complète de votre location courte durée pour vous libérer de la gestion quotidienne tout en conservant une expérience de qualité pour vos voyageurs.",items:["Gestion des réservations et du calendrier","Communication avec les voyageurs avant, pendant et après le séjour","Organisation des arrivées et des départs","Ménage et préparation du logement après chaque séjour","Gestion et suivi du linge","Réassort des consommables essentiels","Assistance et suivi des petits incidents","Optimisation de la présentation et de l’expérience voyageur","Suivi des avis et de la qualité de service"]},
+      {percent:"23 %",key:"prestige",title:"Formule Prestige",intro:"Une prise en charge haut de gamme et renforcée pour les propriétaires qui souhaitent déléguer la gestion opérationnelle de leur logement avec un suivi personnalisé.",items:["Tout le contenu de la formule Premium","Gestion opérationnelle renforcée du logement","Suivi des petits incidents et coordination des interventions nécessaires","Optimisation régulière des tarifs et du positionnement","Suivi personnalisé de la performance et de l’activité","Reporting et échanges personnalisés avec le propriétaire","Contrôle renforcé de la qualité après les séjours","Accompagnement prioritaire et suivi attentif des voyageurs","Suivi global de l’expérience pour préserver les performances du logement"]}
     ];
 
     function ensureModal(){
@@ -76,4 +112,4 @@ document.addEventListener("DOMContentLoaded",()=>{
     }));
 });
 
-console.log("La Clé Conciergerie chargée !");
+console.log("La Clé Conciergerie chargée — tarifs 18 % / 23 %");
