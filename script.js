@@ -1,6 +1,6 @@
 // ===============================
 // LA CLÉ CONCIERGERIE — SCRIPT
-// FORMULE UNIQUE : PRESTIGE 18 %
+// FORMULE UNIQUE : PRESTIGE 19 %
 // ===============================
 
 (function(){
@@ -46,16 +46,16 @@
     });
 
     // ===============================
-    // TARIF UNIQUE : 18 %
+    // TARIF UNIQUE : 19 %
     // ===============================
     const tariffText = (text) => {
 
       if(!text) return text;
 
       return text
-        .replace(/23\s*%/g, "18 %")
-        .replace(/20\s*%/g, "18 %")
-        .replace(/15\s*%/g, "18 %")
+        .replace(/23\s*%/g, "19 %")
+        .replace(/20\s*%/g, "19 %")
+        .replace(/15\s*%/g, "19 %")
         .replace(/10\s*%/g, "");
     };
 
@@ -106,7 +106,7 @@
       ) {
 
         title.textContent = "Prestige";
-        price.textContent = "18 %";
+        price.textContent = "19 %";
 
       }
 
@@ -125,7 +125,7 @@
       ) {
 
         link.innerHTML =
-          '<i class="fa-solid fa-percent"></i> Notre formule Prestige — 18 %';
+          '<i class="fa-solid fa-percent"></i> Notre formule Prestige — 19 %';
 
       }
 
@@ -133,19 +133,19 @@
 
     // ===============================
     // CALCULATEUR
-    // UNE SEULE FORMULE : PRESTIGE 18 %
+    // UNE SEULE FORMULE : PRESTIGE 19 %
     // ===============================
     const planSelect = document.getElementById("lcCalcPlan");
 
     if(planSelect){
 
       planSelect.innerHTML = `
-        <option value="0.18" selected>
-          Prestige — 18 %
+        <option value="0.19" selected>
+          Prestige — 19 %
         </option>
       `;
 
-      planSelect.value = "0.18";
+      planSelect.value = "0.19";
     }
 
     // Nettoyage de tous les anciens selects
@@ -176,15 +176,15 @@
       .forEach(el => {
 
         el.textContent = el.textContent
-          .replace(/23\s*%/g, "18 %")
-          .replace(/20\s*%/g, "18 %")
-          .replace(/15\s*%/g, "18 %")
+          .replace(/23\s*%/g, "19 %")
+          .replace(/20\s*%/g, "19 %")
+          .replace(/15\s*%/g, "19 %")
           .replace(/10\s*%/g, "");
 
         // Ancienne présentation des formules
         el.textContent = el.textContent.replace(
           /Nos formules de gestion.*$/i,
-          "Notre formule Prestige est proposée à 18 %."
+          "Notre formule Prestige est proposée à 19 %."
         );
 
       });
@@ -196,7 +196,7 @@
 
       title: "Formule Prestige",
 
-      percent: "18 %",
+      percent: "19 %",
 
       intro:
         "Une gestion complète de votre location courte durée pour vous libérer de la gestion quotidienne et offrir une expérience de qualité à vos voyageurs.",
@@ -443,7 +443,7 @@
           class="pricing-detail-price"
           id="pricingDetailPrice"
         >
-          18 %
+          19 %
         </div>
 
         <p id="pricingDetailIntro"></p>
@@ -572,7 +572,7 @@
           card.querySelector(".price");
 
         if(price){
-          price.textContent = "18 %";
+          price.textContent = "19 %";
         }
 
         if(
@@ -779,16 +779,16 @@
 
           el.textContent =
             el.textContent
-              .replace(/23\s*%/g,"18 %")
-              .replace(/20\s*%/g,"18 %")
-              .replace(/15\s*%/g,"18 %");
+              .replace(/23\s*%/g,"19 %")
+              .replace(/20\s*%/g,"19 %")
+              .replace(/15\s*%/g,"19 %");
 
         }
 
       });
 
     console.log(
-      "La Clé Conciergerie — Formule unique Prestige : 18 %"
+      "La Clé Conciergerie — Formule unique Prestige : 19 %"
     );
 
   };
