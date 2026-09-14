@@ -1,4 +1,4 @@
-name: Update static pricing and FAQ
+name: Update static pricing, FAQ and cookie consent
 
 on:
   push:
@@ -16,10 +16,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Update static index content
+      - name: Update static index content and cookie consent
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
 
           path = Path("index.html")
           text = path.read_text(encoding="utf-8")
@@ -36,8 +37,191 @@ jobs:
           for old, new in replacements.items():
               text = text.replace(old, new)
 
+          # Le tag Google Ads ne doit plus être chargé avant le consentement.
+          text = re.sub(
+              r'\n<!-- Google tag \(gtag\.js\) -->.*?</script>\n\n(?=<script type="application/ld\+json">)',
+              '\n<!-- Google Ads : chargé uniquement après consentement cookies -->\n\n',
+              text,
+              flags=re.S,
+          )
+
+          start_marker = "<!-- LA CLÉ CONCIERGERIE — GESTION DES COOKIES — DEBUT -->"
+          end_marker = "<!-- LA CLÉ CONCIERGERIE — GESTION DES COOKIES — FIN -->"
+
+          cookie_block = r'''<!-- LA CLÉ CONCIERGERIE — GESTION DES COOKIES — DEBUT -->
+          <style>
+          #lc-cookie-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:100000;max-width:1180px;margin:auto;background:#111;color:#fff;border:1px solid rgba(197,163,91,.35);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:22px}
+          #lc-cookie-banner .lc-cookie-inner{display:flex;gap:22px;align-items:center;justify-content:space-between}
+          #lc-cookie-banner h2{font-size:18px;margin:0 0 7px;color:#fff}
+          #lc-cookie-banner p{font-size:13px;line-height:1.65;margin:0;opacity:.82;max-width:760px}
+          #lc-cookie-banner a,#lc-cookie-modal a{color:#d1b06b;text-decoration:underline}
+          .lc-cookie-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;min-width:360px}
+          .lc-cookie-btn{border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;padding:11px 16px;border-radius:10px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+          .lc-cookie-btn:hover{transform:translateY(-1px)}
+          .lc-cookie-btn-primary{background:#c5a35b;border-color:#c5a35b;color:#111}
+          .lc-cookie-btn-secondary{background:#222}
+          #lc-cookie-settings{display:none;position:fixed;inset:0;z-index:100001;background:rgba(0,0,0,.72);padding:20px;align-items:center;justify-content:center}
+          #lc-cookie-settings.active{display:flex}
+          .lc-cookie-modal{width:min(620px,100%);max-height:88vh;overflow:auto;background:#fff;color:#111;border-radius:20px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.35)}
+          .lc-cookie-modal h2{margin:0 0 10px;font-size:25px}
+          .lc-cookie-modal>p{font-size:14px;line-height:1.7;opacity:.75}
+          .lc-cookie-option{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:17px 0;border-top:1px solid rgba(0,0,0,.1)}
+          .lc-cookie-option strong{display:block;margin-bottom:4px}
+          .lc-cookie-option small{display:block;line-height:1.5;opacity:.65}
+          .lc-cookie-switch{position:relative;width:48px;height:26px;flex:none}
+          .lc-cookie-switch input{opacity:0;width:0;height:0}
+          .lc-cookie-slider{position:absolute;inset:0;background:#bbb;border-radius:30px;cursor:pointer;transition:.2s}
+          .lc-cookie-slider:before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+          .lc-cookie-switch input:checked+.lc-cookie-slider{background:#b8944d}
+          .lc-cookie-switch input:checked+.lc-cookie-slider:before{transform:translateX(22px)}
+          .lc-cookie-switch input:disabled+.lc-cookie-slider{opacity:.55;cursor:not-allowed}
+          .lc-cookie-modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;flex-wrap:wrap}
+          #lc-cookie-manage{position:fixed;left:16px;bottom:16px;z-index:99998;display:none;border:1px solid rgba(197,163,91,.6);background:#111;color:#fff;border-radius:999px;padding:10px 14px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.2)}
+          #lc-cookie-manage.visible{display:block}
+          @media(max-width:760px){#lc-cookie-banner{left:10px;right:10px;bottom:10px;padding:18px}.lc-cookie-inner{flex-direction:column;align-items:stretch!important}.lc-cookie-actions{min-width:0;justify-content:stretch}.lc-cookie-btn{flex:1}.lc-cookie-modal{padding:24px}.lc-cookie-modal-actions .lc-cookie-btn{width:100%}}
+          </style>
+
+          <div id="lc-cookie-banner" role="dialog" aria-labelledby="lc-cookie-title" aria-describedby="lc-cookie-description" aria-modal="false">
+            <div class="lc-cookie-inner">
+              <div>
+                <h2 id="lc-cookie-title">🍪 Votre confidentialité compte</h2>
+                <p id="lc-cookie-description">Nous utilisons des traceurs nécessaires au fonctionnement du site et, avec votre accord, Google Ads pour mesurer les conversions et améliorer nos campagnes. Vous pouvez accepter, refuser ou personnaliser votre choix. <a href="#" id="lc-cookie-more">En savoir plus</a>.</p>
+              </div>
+              <div class="lc-cookie-actions">
+                <button type="button" class="lc-cookie-btn lc-cookie-btn-secondary" id="lc-cookie-refuse">Tout refuser</button>
+                <button type="button" class="lc-cookie-btn" id="lc-cookie-customize">Personnaliser</button>
+                <button type="button" class="lc-cookie-btn lc-cookie-btn-primary" id="lc-cookie-accept">Tout accepter</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="lc-cookie-manage" aria-label="Gérer mes cookies">🍪 Gérer mes cookies</button>
+
+          <div id="lc-cookie-settings" aria-hidden="true">
+            <div class="lc-cookie-modal" role="dialog" aria-modal="true" aria-labelledby="lc-cookie-settings-title">
+              <h2 id="lc-cookie-settings-title">Gestion des cookies</h2>
+              <p>Choisissez les catégories de traceurs que vous souhaitez autoriser. Les cookies nécessaires au fonctionnement du site restent actifs. Votre choix peut être modifié à tout moment grâce au bouton « Gérer mes cookies ».</p>
+
+              <div class="lc-cookie-option">
+                <div><strong>Cookies nécessaires</strong><small>Indispensables au fonctionnement du site et à la mémorisation de votre choix. Toujours actifs.</small></div>
+                <label class="lc-cookie-switch" aria-label="Cookies nécessaires toujours actifs"><input type="checkbox" checked disabled><span class="lc-cookie-slider"></span></label>
+              </div>
+
+              <div class="lc-cookie-option">
+                <div><strong>Google Ads / mesure des conversions</strong><small>Permet de mesurer les conversions provenant de nos campagnes Google Ads et d'améliorer leur efficacité.</small></div>
+                <label class="lc-cookie-switch" aria-label="Autoriser Google Ads"><input type="checkbox" id="lc-cookie-ads"><span class="lc-cookie-slider"></span></label>
+              </div>
+
+              <p style="font-size:12px;margin-top:18px;opacity:.65">Les choix sont conservés pendant 6 mois. Vous pouvez les modifier ou retirer votre consentement à tout moment.</p>
+              <div class="lc-cookie-modal-actions">
+                <button type="button" class="lc-cookie-btn lc-cookie-btn-secondary" id="lc-cookie-modal-refuse">Tout refuser</button>
+                <button type="button" class="lc-cookie-btn lc-cookie-btn-primary" id="lc-cookie-save">Enregistrer mes choix</button>
+              </div>
+            </div>
+          </div>
+
+          <script>
+          (function(){
+            'use strict';
+            var KEY='lc_cookie_consent_v1';
+            var MAX_AGE=180*24*60*60*1000;
+            var banner=document.getElementById('lc-cookie-banner');
+            var settings=document.getElementById('lc-cookie-settings');
+            var manage=document.getElementById('lc-cookie-manage');
+            var adsToggle=document.getElementById('lc-cookie-ads');
+            var consent=null;
+            try{consent=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){consent=null}
+
+            window.dataLayer=window.dataLayer||[];
+            window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+            window.gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+
+            function loadGoogleAds(){
+              if(window.__lcGoogleAdsLoaded)return;
+              window.__lcGoogleAdsLoaded=true;
+              var s=document.createElement('script');
+              s.async=true;
+              s.src='https://www.googletagmanager.com/gtag/js?id=AW-18397690474';
+              document.head.appendChild(s);
+              window.gtag('js',new Date());
+              window.gtag('config','AW-18397690474');
+            }
+
+            function updateGoogleConsent(allowed){
+              window.gtag('consent','update',{
+                ad_storage:allowed?'granted':'denied',
+                analytics_storage:allowed?'granted':'denied',
+                ad_user_data:allowed?'granted':'denied',
+                ad_personalization:allowed?'granted':'denied'
+              });
+              if(allowed) loadGoogleAds();
+            }
+
+            function clearGoogleCookies(){
+              var names=['_ga','_gid','_gat','_gcl_au','_gcl_aw','_gac','IDE','ANID','NID'];
+              var cookies=document.cookie.split(';');
+              cookies.forEach(function(item){
+                var name=item.split('=')[0].trim();
+                var match=names.some(function(prefix){return name===prefix||name.indexOf(prefix+'_')===0});
+                if(match){
+                  document.cookie=name+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+                  document.cookie=name+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain='+location.hostname;
+                }
+              });
+            }
+
+            function save(ads){
+              var value={ads:!!ads,savedAt:Date.now()};
+              try{localStorage.setItem(KEY,JSON.stringify(value))}catch(e){}
+              consent=value;
+              updateGoogleConsent(!!ads);
+              if(!ads) clearGoogleCookies();
+              banner.style.display='none';
+              manage.classList.add('visible');
+              closeSettings();
+            }
+
+            function openSettings(){
+              adsToggle.checked=!!(consent&&consent.ads);
+              settings.classList.add('active');
+              settings.setAttribute('aria-hidden','false');
+            }
+            function closeSettings(){
+              settings.classList.remove('active');
+              settings.setAttribute('aria-hidden','true');
+            }
+            function isValid(c){return c&&typeof c.savedAt==='number'&&(Date.now()-c.savedAt)<MAX_AGE}
+
+            document.getElementById('lc-cookie-accept').addEventListener('click',function(){save(true)});
+            document.getElementById('lc-cookie-refuse').addEventListener('click',function(){save(false)});
+            document.getElementById('lc-cookie-customize').addEventListener('click',openSettings);
+            document.getElementById('lc-cookie-modal-refuse').addEventListener('click',function(){save(false)});
+            document.getElementById('lc-cookie-save').addEventListener('click',function(){save(adsToggle.checked)});
+            manage.addEventListener('click',openSettings);
+            document.getElementById('lc-cookie-more').addEventListener('click',function(e){e.preventDefault();openSettings()});
+            settings.addEventListener('click',function(e){if(e.target===settings)closeSettings()});
+            document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSettings()});
+
+            if(isValid(consent)){
+              banner.style.display='none';
+              manage.classList.add('visible');
+              updateGoogleConsent(!!consent.ads);
+            }else{
+              banner.style.display='block';
+              manage.classList.remove('visible');
+              if(consent){try{localStorage.removeItem(KEY)}catch(e){}}
+            }
+          })();
+          </script>
+          <!-- LA CLÉ CONCIERGERIE — GESTION DES COOKIES — FIN -->'''
+
+          if start_marker in text and end_marker in text:
+              text = re.sub(re.escape(start_marker)+r'.*?'+re.escape(end_marker), cookie_block, text, flags=re.S)
+          else:
+              text = text.replace('</body>', cookie_block + '\n</body>', 1)
+
           path.write_text(text, encoding="utf-8")
-          print("Static index updated")
+          print("Static index, Google consent loading and cookie manager updated")
           PY
 
       - name: Commit changes
@@ -46,5 +230,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           git diff --cached --quiet && echo "No changes needed" && exit 0
-          git commit -m "Set static pricing to 19 percent and clarify cleaning fees"
+          git commit -m "Add cookie consent and Google Ads gating"
           git push
