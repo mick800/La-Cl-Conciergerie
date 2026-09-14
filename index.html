@@ -2199,7 +2199,7 @@ Espace propriétaire
 
 <button class="lc-menu-link" data-view="tarifs" type="button">
 <i class="fa-solid fa-percent"></i>
-Notre formule Prestige — 18 %
+Notre formule Prestige — 19 %
 </button>
 
 <button class="lc-menu-link" data-view="calculateur" type="button">
@@ -3164,7 +3164,7 @@ Une formule unique pour votre logement
 </h2>
 
 <p>
-Une gestion complète avec notre formule Prestige à 18 %,
+Une gestion complète avec notre formule Prestige à 19 %,
 à Metz, Thionville et partout en France.
 </p>
 
@@ -3180,7 +3180,7 @@ Formule unique
 
 <h3>Prestige</h3>
 
-<div class="price">18 %</div>
+<div class="price">19 %</div>
 
 <p>Gestion des réservations</p>
 <p>Communication avec les voyageurs</p>
@@ -3211,7 +3211,7 @@ Demander un devis
     <h2>Estimez le coût de notre gestion</h2>
     <p>
       Utilisez ce calculateur pour obtenir une première estimation selon vos revenus
-      mensuels avec notre formule Prestige à 18 %. Le résultat est indicatif et peut être ajusté
+      mensuels avec notre formule Prestige à 19 %. Le résultat est indicatif et peut être ajusté
       après étude de votre logement.
     </p>
   </div>
@@ -3228,7 +3228,7 @@ Demander un devis
       <div class="lc-calc-field">
         <label for="lcCalcPlan">Formule de gestion</label>
         <select id="lcCalcPlan">
-          <option value="0.18" selected>Gestion complète — 18 %</option>
+          <option value="0.19" selected>Gestion complète — 19 %</option>
         </select>
       </div>
 
@@ -3255,7 +3255,7 @@ Demander un devis
         </div>
         <div class="lc-calc-line">
           <span>Formule</span>
-          <strong id="lcCalcPlanOut">Gestion complète — 18 %</strong>
+          <strong id="lcCalcPlanOut">Gestion complète — 19 %</strong>
         </div>
         <div class="lc-calc-line">
           <span>Estimation nette après gestion*</span>
@@ -3416,7 +3416,7 @@ Quel est le tarif de vos prestations ?
 
 <div class="faq-answer">
 <p>
-Notre formule Prestige est proposée à 18 % des revenus générés par le logement. Les modalités finales sont précisées dans le devis après étude de votre logement.
+Notre formule Prestige est proposée à 19 % des revenus générés par le logement. Les modalités finales sont précisées dans le devis après étude de votre logement.
 </p>
 </div>
 
@@ -4603,13 +4603,13 @@ modal.classList.remove("active")
   function calculate(){
     if(!revenue || !plan || !nights) return;
     const amount = Math.max(0, Number(revenue.value) || 0);
-    const rate = 0.18;
+    const rate = 0.19;
     const selectedNights = Math.max(0, Math.min(31, Number(nights.value) || 0));
     const fee = amount * rate;
     const net = amount - fee;
 
     const planNames = {
-      "0.18":"Prestige — 18 %"
+      "0.19":"Prestige — 19 %"
     };
 
     total.textContent = euro(fee);
