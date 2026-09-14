@@ -855,3 +855,18 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+
+// Final FAQ wording correction — 19 percent commission.
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer p');
+    if (!question || !answer) return;
+    if (question.textContent.includes('ménage et le linge')) {
+      answer.textContent = 'Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.';
+    }
+    if (question.textContent.includes('Quel est le tarif')) {
+      answer.textContent = 'Notre formule Prestige est proposée à 19 % des revenus générés par le logement. Les modalités finales sont précisées dans le devis après étude de votre logement.';
+    }
+  });
+});
