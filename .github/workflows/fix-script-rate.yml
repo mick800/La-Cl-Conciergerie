@@ -1,0 +1,47 @@
+name: Fix legacy commission script
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace legacy 18 percent script
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('script.js')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('FORMULE UNIQUE : PRESTIGE 18 %', 'FORMULE UNIQUE : PRESTIGE 19 %')
+          s = s.replace('TARIF UNIQUE : 18 %', 'TARIF UNIQUE : 19 %')
+          s = s.replace('PRESTIGE 18 %', 'PRESTIGE 19 %')
+          s = s.replace('"18 %"', '"19 %"')
+          s = s.replace('"0.18"', '"0.19"')
+          s = s.replace('value="0.18"', 'value="0.19"')
+          s = s.replace('Prestige — 18 %', 'Prestige — 19 %')
+          s = s.replace('Notre formule Prestige — 18 %', 'Notre formule Prestige — 19 %')
+          s = s.replace('18 %', '19 %')
+          s = s.replace('0.18', '0.19')
+          s = s.replace('Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi que la préparation et la mise en place du linge.', 'Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.')
+          p.write_text(s, encoding='utf-8')
+          if '18 %' in s or '18%' in s or '0.18' in s:
+              raise SystemExit('Legacy 18 percent remains in script.js')
+          PY
+
+      - name: Commit script fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add script.js
+          git diff --cached --quiet || git commit -m "Fix legacy script commission to 19 percent"
+          git push
