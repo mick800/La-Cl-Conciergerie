@@ -1,1 +1,1 @@
-Add compliant cookie consent and Google Ads consent gating
+Apply cookie preferences wording
