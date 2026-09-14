@@ -22,31 +22,32 @@ jobs:
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
 
-          # Replace all textual and calculator references.
           s = s.replace('18 %', '19 %')
           s = s.replace('18%', '19%')
           s = s.replace('18\u00a0%', '19 %')
           s = s.replace('0.18', '0.19')
 
-          # FAQ: keep the answer simple and state separately how cleaning/linen fees work.
-          faq_old = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
-                     'que la préparation et la mise en place du linge.')
+          # FAQ: clearly state that cleaning/linen fees are separate and paid by travelers at booking.
           faq_new = ('Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont '
-                     'facturés séparément et ne sont donc pas soumis aux 19 %. Dans le cadre des locations courte durée, les frais de '
-                     'ménage sont directement facturés aux voyageurs.')
-          s = s.replace(faq_old, faq_new)
-
-          # Also replace the FAQ wording if the previous automated version is already present.
-          previous_faq = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
-                          'que la préparation et la mise en place du linge. Les frais de ménage et de linge de maison ne sont pas inclus '
-                          'dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. '
-                          'Dans le cadre des locations courte durée, les frais de ménage sont directement facturés aux voyageurs.')
-          s = s.replace(previous_faq, faq_new)
+                     'facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont '
+                     'directement facturés aux voyageurs.')
+          faq_old_1 = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
+                       'que la préparation et la mise en place du linge.')
+          faq_old_2 = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
+                       'que la préparation et la mise en place du linge. Les frais de ménage et de linge de maison ne sont pas inclus '
+                       'dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. '
+                       'Dans le cadre des locations courte durée, les frais de ménage sont directement facturés aux voyageurs.')
+          faq_old_3 = ('Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont '
+                       'facturés séparément et ne sont donc pas soumis aux 19 %. Dans le cadre des locations courte durée, les frais de '
+                       'ménage sont directement facturés aux voyageurs.')
+          s = s.replace(faq_old_2, faq_new)
+          s = s.replace(faq_old_3, faq_new)
+          s = s.replace(faq_old_1, faq_new)
 
           # Add a visible pricing note once, directly in the page.
           note = ('<p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.72;">'
                   'Les frais de ménage et de linge de maison ne font pas partie de la base de calcul. '
-                  'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %.'</p>')
+                  'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %.</p>')
           if 'commission-note' not in s:
               marker = '</section>'
               pos = s.find('NOS TARIFS')
@@ -72,5 +73,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Simplify cleaning and linen FAQ wording"
+          git commit -m "Clarify cleaning fees paid by travelers at booking"
           git push
