@@ -4665,7 +4665,7 @@ modal.classList.remove("active")
   <div class="lc-cookie-inner">
     <div>
       <h2 id="lc-cookie-title">🍪 Votre confidentialité compte</h2>
-      <p id="lc-cookie-description">Nous utilisons des traceurs nécessaires au fonctionnement du site et, avec votre accord, Google Ads pour mesurer les conversions et améliorer nos campagnes. Vous pouvez accepter, refuser ou personnaliser votre choix. <a href="#" id="lc-cookie-more">En savoir plus</a>.</p>
+      <p id="lc-cookie-description">Les cookies ont pour but de faciliter la navigation, de détecter d'éventuels problèmes et de diffuser des offres commerciales personnalisées. Vous pouvez personnaliser votre consentement pour chaque cookie. <br><br>Pour modifier vos préférences par la suite, cliquez sur le lien 'Préférences de cookies' situé dans le pied de page.</p>
     </div>
     <div class="lc-cookie-actions">
       <button type="button" class="lc-cookie-btn lc-cookie-btn-secondary" id="lc-cookie-refuse">Tout refuser</button>
@@ -4761,6 +4761,19 @@ modal.classList.remove("active")
     closeSettings();
   }
 
+  function addFooterCookiePreferences(){
+    var footer=document.querySelector('footer');
+    if(!footer || document.getElementById('lc-cookie-footer')) return;
+    var wrap=footer.querySelector('.footer-links');
+    if(!wrap){wrap=document.createElement('div');wrap.className='footer-links';footer.appendChild(wrap)}
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.id='lc-cookie-footer';
+    btn.textContent='Préférences de cookies';
+    wrap.appendChild(btn);
+    btn.addEventListener('click',openSettings);
+  }
+
   function openSettings(){
     adsToggle.checked=!!(consent&&consent.ads);
     settings.classList.add('active');
@@ -4778,11 +4791,13 @@ modal.classList.remove("active")
   document.getElementById('lc-cookie-modal-refuse').addEventListener('click',function(){save(false)});
   document.getElementById('lc-cookie-save').addEventListener('click',function(){save(adsToggle.checked)});
   manage.addEventListener('click',openSettings);
-  document.getElementById('lc-cookie-more').addEventListener('click',function(e){e.preventDefault();openSettings()});
+  
   settings.addEventListener('click',function(e){if(e.target===settings)closeSettings()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSettings()});
 
-  if(isValid(consent)){
+  addFooterCookiePreferences();
+
+            if(isValid(consent)){
     banner.style.display='none';
     manage.classList.add('visible');
     updateGoogleConsent(!!consent.ads);
