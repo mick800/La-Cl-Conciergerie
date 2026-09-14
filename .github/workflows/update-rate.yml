@@ -25,43 +25,50 @@ jobs:
           s = p.read_text(encoding='utf-8')
           original = s
 
-          # Visible commission text, including HTML non-breaking spaces/entities.
-          s = re.sub(r'18(?:\s|&nbsp;|\u00a0)*%', '19 %', s)
+          print('HEAD index contains 18 %:', '18 %' in s)
+          print('HEAD index contains 0.18:', '0.18' in s)
+
+          s = s.replace('18 %', '19 %')
+          s = s.replace('18%', '19%')
+          s = s.replace('18\u00a0%', '19 %')
           s = s.replace('18&nbsp;%', '19 %')
           s = s.replace('18&#160;%', '19 %')
-          # Calculator numeric rate.
-          s = re.sub(r'(?<![\d.])0\.18(?!\d)', '0.19', s)
-          s = re.sub(r'(commissionRate\s*=\s*)0?\.?18', r'\g<1>0.19', s)
-          s = re.sub(r'(rate\s*=\s*)0?\.?18', r'\g<1>0.19', s)
-          s = re.sub(r'(percentage\s*=\s*)0?\.?18', r'\g<1>0.19', s)
+          s = s.replace('0.18', '0.19')
+          s = re.sub(r'const rate\s*=\s*0\.18', 'const rate = 0.19', s)
+          s = s.replace('"0.18":"Prestige — 18 %"', '"0.19":"Prestige — 19 %"')
+          s = s.replace('value="0.18"', 'value="0.19"')
+          s = s.replace('Gestion complète — 18 %', 'Gestion complète — 19 %')
+          s = s.replace('formule Prestige à 18 %', 'formule Prestige à 19 %')
+          s = s.replace('formule Prestige est proposée à 18 %', 'formule Prestige est proposée à 19 %')
 
-          # FAQ wording requested by the user.
           faq = ('Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. '
                  'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. '
                  'Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.')
-          s = re.sub(
-              r'Oui\.\s*Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi que la préparation et la mise en place du linge\.',
-              faq, s, flags=re.S)
-          s = re.sub(
-              r'Oui\.\s*Les frais de ménage et de linge de maison ne sont pas inclus.*?directement facturés aux voyageurs\.',
-              faq, s, flags=re.S)
+          s = re.sub(r'Oui\.\s*Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi que la préparation et la mise en place du linge\.', faq, s, flags=re.S)
+          s = re.sub(r'Oui\.\s*Les frais de ménage et de linge de maison ne sont pas inclus.*?directement facturés aux voyageurs\.', faq, s, flags=re.S)
 
-          # Runtime safety net for any legacy visible label/options.
-          browser_fix = r'''\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\s*%/g, '19 %');\n  });\n  document.querySelectorAll('option').forEach(function(option){\n    if (/18\s*%/.test(option.textContent)) option.textContent = option.textContent.replace(/18\s*%/g, '19 %');\n  });\n});\n</script>\n'''
+          browser_fix = '''\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n  document.querySelectorAll('option').forEach(function(option){\n    if (/18\\s*%/.test(option.textContent)) option.textContent = option.textContent.replace(/18\\s*%/g, '19 %');\n    if (option.value === '0.18') option.value = '0.19';\n  });\n});\n</script>\n'''
           if 'id="commission-rate-fix"' not in s:
               s = s.replace('</body>', browser_fix + '</body>')
 
+          marker = '<!-- commission-rate-deployment-2026-09-14 -->'
+          if marker not in s:
+              s = s.replace('</body>', marker + '\n</body>')
+
           p.write_text(s, encoding='utf-8')
           print('Changed:', s != original)
-          print('Remaining 18% patterns:', len(re.findall(r'18(?:\s|&nbsp;|\u00a0)*%', s)))
-          print('Remaining 0.18 patterns:', len(re.findall(r'(?<![\d.])0\.18(?!\d)', s)))
+          print('Remaining 18 %:', s.count('18 %'))
+          print('Remaining 0.18:', s.count('0.18'))
           PY
 
       - name: Commit changes if needed
         run: |
-          git diff --quiet && { echo 'No changes needed'; exit 0; }
+          git status --short
+          if git diff --quiet -- index.html; then
+            printf '\n<!-- commission-rate-deployment-fallback-2026-09-14 -->\n' >> index.html
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Force commission and calculator to 19 percent"
+          git commit -m "Set all commission references to 19 percent"
           git push
