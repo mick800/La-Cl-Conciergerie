@@ -1,0 +1,22 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "reviews": {
+      "approved": {
+        ".read": true,
+        ".write": "auth != null",
+        "$reviewId": {
+          ".validate": "newData.hasChildren(['name','rating','text','createdAt','status']) && newData.child('name').isString() && newData.child('name').val().length >= 2 && newData.child('name').val().length <= 50 && newData.child('rating').isNumber() && newData.child('rating').val() >= 1 && newData.child('rating').val() <= 5 && newData.child('text').isString() && newData.child('text').val().length >= 5 && newData.child('text').val().length <= 500 && newData.child('createdAt').isNumber() && newData.child('createdAt').val() <= now && newData.child('status').val() === 'approved'"
+        }
+      },
+      "pending": {
+        ".read": "auth != null",
+        "$reviewId": {
+          ".write": "auth != null || !data.exists()",
+          ".validate": "newData.hasChildren(['name','rating','text','createdAt','status']) && newData.child('name').isString() && newData.child('name').val().length >= 2 && newData.child('name').val().length <= 50 && newData.child('rating').isNumber() && newData.child('rating').val() >= 1 && newData.child('rating').val() <= 5 && newData.child('text').isString() && newData.child('text').val().length >= 5 && newData.child('text').val().length <= 500 && newData.child('createdAt').isNumber() && newData.child('createdAt').val() <= now && newData.child('status').val() === 'pending'"
+        }
+      }
+    }
+  }
+}
