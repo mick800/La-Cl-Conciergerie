@@ -1,0 +1,74 @@
+name: Update pricing modal and cleaning fee wording
+
+on:
+  push:
+    paths:
+      - "pricing-modal-trigger.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-site-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update pricing modal and FAQ
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("script.js")
+          text = path.read_text(encoding="utf-8")
+
+          note_text = "Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission de 19 %. Ils sont facturés séparément. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs."
+
+          # Add the note to the pricing plan data once.
+          old_plan = '      items: [\n\n        "Gestion des réservations et du calendrier",'
+          if old_plan in text and '      note:\n        "Les frais de ménage' not in text:
+              text = text.replace(
+                  old_plan,
+                  '      note:\n        "' + note_text.replace('"', '\\"') + '",\n\n' + old_plan,
+                  1,
+              )
+
+          # Add a dedicated note below the list in the pricing modal.
+          old_modal = '''        <ul\n          class="pricing-detail-list"\n          id="pricingDetailList"\n        ></ul>\n\n        <a'''
+          new_modal = '''        <ul\n          class="pricing-detail-list"\n          id="pricingDetailList"\n        ></ul>\n\n        <div class="pricing-detail-note" id="pricingDetailNote"></div>\n\n        <a'''
+          if old_modal in text and 'id="pricingDetailNote"' not in text:
+              text = text.replace(old_modal, new_modal, 1)
+
+          # Fill the note whenever the modal is opened.
+          old_open = '''      document.getElementById(\n        "pricingDetailList"\n      ).innerHTML = plan.items\n        .map(item => `\n          <li>\n            <i class="fa-solid fa-check"></i>\n            <span>${item}</span>\n          </li>\n        `)\n        .join("");\n\n      modal.classList.add("active");'''
+          new_open = '''      document.getElementById(\n        "pricingDetailList"\n      ).innerHTML = plan.items\n        .map(item => `\n          <li>\n            <i class="fa-solid fa-check"></i>\n            <span>${item}</span>\n          </li>\n        `)\n        .join("");\n\n      document.getElementById("pricingDetailNote").textContent = plan.note;\n\n      modal.classList.add("active");'''
+          if old_open in text and 'pricingDetailNote").textContent' not in text:
+              text = text.replace(old_open, new_open, 1)
+
+          # Style the note so it is clearly visible in the detail window.
+          old_css = '''      .pricing-detail-list li i{\n        color:#b8944d;\n        margin-top:4px;\n      }\n\n      .pricing-detail-cta{'''
+          new_css = '''      .pricing-detail-list li i{\n        color:#b8944d;\n        margin-top:4px;\n      }\n\n      .pricing-detail-note{\n        margin:8px 0 25px;\n        padding:16px 18px;\n        border-left:4px solid #b8944d;\n        border-radius:10px;\n        background:#faf7ef;\n        color:#4b5563;\n        font-size:14px;\n        line-height:1.65;\n      }\n\n      .pricing-detail-cta{'''
+          if old_css in text and '.pricing-detail-note{' not in text:
+              text = text.replace(old_css, new_css, 1)
+
+          # Make the FAQ answer exact and explicit.
+          faq_text = "Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs."
+          marker = '    // ===============================\n    // FORMULE UNIQUE\n'
+          faq_block = '''    // ===============================\n    // FAQ — MÉNAGE ET LINGE\n    // ===============================\n    document.querySelectorAll(".faq-answer p").forEach(el => {\n      const item = el.closest(".faq-item");\n      const question = item ? item.querySelector(".faq-question") : null;\n      const q = question ? question.textContent.toLowerCase() : "";\n\n      if(q.includes("ménage") && q.includes("linge")) {\n        el.textContent = "''' + faq_text.replace('"', '\\"') + '''";\n      }\n    });\n\n'''
+          if marker in text and 'FAQ — MÉNAGE ET LINGE' not in text:
+              text = text.replace(marker, faq_block + marker, 1)
+
+          path.write_text(text, encoding="utf-8")
+          print("Updated script.js")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add script.js
+          git diff --cached --quiet && echo "No changes needed" && exit 0
+          git commit -m "Clarify cleaning and linen fees in pricing details"
+          git push
