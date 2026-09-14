@@ -3201,6 +3201,7 @@ Demander un devis
 
 </div>
 
+<p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.72;">Les frais de ménage et de linge de maison ne font pas partie de la base de calcul. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %.</p>
 </section>
 
 
@@ -4632,5 +4633,5 @@ modal.classList.remove("active")
 })();
 </script>
 
-</body>
+\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n});\n</script>\n</body>
 </html>
