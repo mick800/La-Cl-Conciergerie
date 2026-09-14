@@ -15,63 +15,53 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set commission to 19 percent and clarify cleaning fees
+      - name: Force commission to 19 percent everywhere
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
+
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
+          original = s
 
-          s = s.replace('18 %', '19 %')
-          s = s.replace('18%', '19%')
-          s = s.replace('18\u00a0%', '19 %')
-          s = s.replace('0.18', '0.19')
+          # Visible commission text, including HTML non-breaking spaces/entities.
+          s = re.sub(r'18(?:\s|&nbsp;|\u00a0)*%', '19 %', s)
+          s = s.replace('18&nbsp;%', '19 %')
+          s = s.replace('18&#160;%', '19 %')
+          # Calculator numeric rate.
+          s = re.sub(r'(?<![\d.])0\.18(?!\d)', '0.19', s)
+          s = re.sub(r'(commissionRate\s*=\s*)0?\.?18', r'\g<1>0.19', s)
+          s = re.sub(r'(rate\s*=\s*)0?\.?18', r'\g<1>0.19', s)
+          s = re.sub(r'(percentage\s*=\s*)0?\.?18', r'\g<1>0.19', s)
 
-          # FAQ: clearly state that cleaning/linen fees are separate and paid by travelers at booking.
-          faq_new = ('Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont '
-                     'facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont '
-                     'directement facturés aux voyageurs.')
-          faq_old_1 = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
-                       'que la préparation et la mise en place du linge.')
-          faq_old_2 = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
-                       'que la préparation et la mise en place du linge. Les frais de ménage et de linge de maison ne sont pas inclus '
-                       'dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. '
-                       'Dans le cadre des locations courte durée, les frais de ménage sont directement facturés aux voyageurs.')
-          faq_old_3 = ('Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont '
-                       'facturés séparément et ne sont donc pas soumis aux 19 %. Dans le cadre des locations courte durée, les frais de '
-                       'ménage sont directement facturés aux voyageurs.')
-          s = s.replace(faq_old_2, faq_new)
-          s = s.replace(faq_old_3, faq_new)
-          s = s.replace(faq_old_1, faq_new)
+          # FAQ wording requested by the user.
+          faq = ('Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. '
+                 'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. '
+                 'Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.')
+          s = re.sub(
+              r'Oui\.\s*Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi que la préparation et la mise en place du linge\.',
+              faq, s, flags=re.S)
+          s = re.sub(
+              r'Oui\.\s*Les frais de ménage et de linge de maison ne sont pas inclus.*?directement facturés aux voyageurs\.',
+              faq, s, flags=re.S)
 
-          # Add a visible pricing note once, directly in the page.
-          note = ('<p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.72;">'
-                  'Les frais de ménage et de linge de maison ne font pas partie de la base de calcul. '
-                  'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %.</p>')
-          if 'commission-note' not in s:
-              marker = '</section>'
-              pos = s.find('NOS TARIFS')
-              if pos != -1:
-                  end = s.find(marker, pos)
-                  if end != -1:
-                      s = s[:end] + note + '\n' + s[end:]
-
-          # Safety net: make the browser display 19 % everywhere visible.
-          browser_fix = r'''\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n});\n</script>\n'''
+          # Runtime safety net for any legacy visible label/options.
+          browser_fix = r'''\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\s*%/g, '19 %');\n  });\n  document.querySelectorAll('option').forEach(function(option){\n    if (/18\s*%/.test(option.textContent)) option.textContent = option.textContent.replace(/18\s*%/g, '19 %');\n  });\n});\n</script>\n'''
           if 'id="commission-rate-fix"' not in s:
               s = s.replace('</body>', browser_fix + '</body>')
 
           p.write_text(s, encoding='utf-8')
+          print('Changed:', s != original)
+          print('Remaining 18% patterns:', len(re.findall(r'18(?:\s|&nbsp;|\u00a0)*%', s)))
+          print('Remaining 0.18 patterns:', len(re.findall(r'(?<![\d.])0\.18(?!\d)', s)))
           PY
 
       - name: Commit changes if needed
         run: |
-          if git diff --quiet; then
-            echo "No changes needed"
-            exit 0
-          fi
+          git diff --quiet && { echo 'No changes needed'; exit 0; }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Clarify cleaning fees paid by travelers at booking"
+          git commit -m "Force commission and calculator to 19 percent"
           git push
