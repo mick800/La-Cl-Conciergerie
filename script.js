@@ -190,6 +190,19 @@
       });
 
     // ===============================
+    // FAQ — MÉNAGE ET LINGE
+    // ===============================
+    document.querySelectorAll(".faq-answer p").forEach(el => {
+      const item = el.closest(".faq-item");
+      const question = item ? item.querySelector(".faq-question") : null;
+      const q = question ? question.textContent.toLowerCase() : "";
+
+      if(q.includes("ménage") && q.includes("linge")) {
+        el.textContent = "Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.";
+      }
+    });
+
+    // ===============================
     // FORMULE UNIQUE
     // ===============================
     const plan = {
@@ -200,6 +213,9 @@
 
       intro:
         "Une gestion complète de votre location courte durée pour vous libérer de la gestion quotidienne et offrir une expérience de qualité à vos voyageurs.",
+
+      note:
+        "Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission de 19 %. Ils sont facturés séparément. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.",
 
       items: [
 
@@ -354,6 +370,17 @@
         margin-top:4px;
       }
 
+      .pricing-detail-note{
+        margin:8px 0 25px;
+        padding:16px 18px;
+        border-left:4px solid #b8944d;
+        border-radius:10px;
+        background:#faf7ef;
+        color:#4b5563;
+        font-size:14px;
+        line-height:1.65;
+      }
+
       .pricing-detail-cta{
         display:inline-flex;
         align-items:center;
@@ -453,6 +480,8 @@
           id="pricingDetailList"
         ></ul>
 
+        <div class="pricing-detail-note" id="pricingDetailNote"></div>
+
         <a
           class="pricing-detail-cta"
           href="#contact"
@@ -507,6 +536,8 @@
           </li>
         `)
         .join("");
+
+      document.getElementById("pricingDetailNote").textContent = plan.note;
 
       modal.classList.add("active");
 
