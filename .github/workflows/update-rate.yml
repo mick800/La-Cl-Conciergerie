@@ -2,7 +2,8 @@ name: Update commission rate
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -15,59 +16,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Force commission and FAQ to 19 percent
+      - name: Apply 19 percent changes
         run: |
-          python - <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
-          import re
-
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          original = s
-
-          # Commission rate: replace every legacy 18% representation.
           s = s.replace('18 %', '19 %')
           s = s.replace('18%', '19%')
-          s = s.replace('18\u00a0%', '19 %')
-          s = s.replace('18&nbsp;%', '19 %')
-          s = s.replace('18&#160;%', '19 %')
           s = s.replace('0.18', '0.19')
-          s = re.sub(r'const rate\s*=\s*0\.18', 'const rate = 0.19', s)
-
-          # FAQ: exact wording requested.
-          faq = '''Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.'''
-          old_faq = '''Oui. Selon la formule choisie, nous pouvons prendre en charge
-le nettoyage du logement après les séjours ainsi que la préparation
-et la mise en place du linge.'''
-          s = s.replace(old_faq, faq)
-          s = re.sub(r'Oui\.\s*Selon la formule choisie,.*?mise en place du linge\.', faq, s, flags=re.S)
-
-          # Keep calculator logic and labels consistent.
+          s = s.replace('value="0.18"', 'value="0.19"')
           s = s.replace('Gestion complète — 18 %', 'Gestion complète — 19 %')
           s = s.replace('formule Prestige à 18 %', 'formule Prestige à 19 %')
           s = s.replace('formule Prestige est proposée à 18 %', 'formule Prestige est proposée à 19 %')
-
-          # Force a fresh HTML deployment marker on every run.
-          marker = '<!-- commission-rate-deployment-2026-09-14-final -->'
-          s = re.sub(r'<!-- commission-rate-deployment-[^>]+ -->', '', s)
-          s = s.replace('</body>', marker + '\n</body>')
-
+          old = '''Oui. Selon la formule choisie, nous pouvons prendre en charge
+le nettoyage du logement après les séjours ainsi que la préparation
+et la mise en place du linge.'''
+          new = '''Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.'''
+          s = s.replace(old, new)
+          if '18 %' in s or '18%' in s or '0.18' in s:
+              raise SystemExit('Legacy 18 percent reference remains')
+          if new not in s:
+              raise SystemExit('FAQ wording was not updated')
+          marker = '<!-- commission-rate-final-2026-09-14 -->'
+          if marker not in s:
+              s = s.replace('</body>', marker + '\n</body>')
           p.write_text(s, encoding='utf-8')
-          print('Changed:', s != original)
-          print('Remaining 18 %:', s.count('18 %'))
-          print('Remaining 18%:', s.count('18%'))
-          print('Remaining 0.18:', s.count('0.18'))
-          print('Exact FAQ present:', faq in s)
           PY
 
-      - name: Commit changes if needed
+      - name: Commit updated index
         run: |
-          git status --short
-          if git diff --quiet -- index.html; then
-            printf '\n<!-- commission-rate-deployment-fallback-final-2026-09-14 -->\n' >> index.html
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Force 19 percent commission and FAQ wording"
+          git diff --cached --quiet || git commit -m "Set commission to 19 percent and update FAQ"
           git push
