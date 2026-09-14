@@ -4633,5 +4633,6 @@ modal.classList.remove("active")
 })();
 </script>
 
-\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n});\n</script>\n</body>
+\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n});\n</script>\n<!-- commission-rate-deployment-2026-09-14 -->
+</body>
 </html>
