@@ -15,19 +15,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set commission to 19 percent and add pricing note
+      - name: Set commission to 19 percent and clarify cleaning fees
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
 
           # Replace all textual and calculator references.
           s = s.replace('18 %', '19 %')
           s = s.replace('18%', '19%')
-          s = s.replace('18\\u00a0%', '19 %')
+          s = s.replace('18\u00a0%', '19 %')
           s = s.replace('0.18', '0.19')
+
+          # Make the FAQ answer explicit about the commission base and who pays cleaning fees.
+          faq_old = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
+                     'que la préparation et la mise en place du linge.')
+          faq_new = ('Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi '
+                     'que la préparation et la mise en place du linge. Les frais de ménage et de linge de maison ne sont pas inclus '
+                     'dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. '
+                     'Dans le cadre des locations courte durée, les frais de ménage sont directement facturés aux voyageurs.')
+          s = s.replace(faq_old, faq_new)
+
+          # If the exact FAQ wording is already present, do not duplicate it.
+          if 'Dans le cadre des locations courte durée, les frais de ménage sont directement facturés aux voyageurs.' not in s:
+              marker = 'Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission.'
+              pos = s.find(marker)
+              if pos != -1:
+                  end = s.find('.', pos + len(marker))
+                  if end != -1:
+                      insert = ' Dans le cadre des locations courte durée, les frais de ménage sont directement facturés aux voyageurs.'
+                      s = s[:end+1] + insert + s[end+1:]
 
           # Add a visible pricing note once, directly in the page.
           note = ('<p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.72;">'
@@ -35,15 +53,13 @@ jobs:
                   'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %.''</p>')
           if 'commission-note' not in s:
               marker = '</section>'
-              # Prefer the first closing section after the pricing heading.
               pos = s.find('NOS TARIFS')
               if pos != -1:
                   end = s.find(marker, pos)
                   if end != -1:
                       s = s[:end] + note + '\n' + s[end:]
 
-          # Safety net: make the browser display 19 % everywhere visible and ensure
-          # any legacy 18 % text cannot remain visible after deployment.
+          # Safety net: make the browser display 19 % everywhere visible.
           browser_fix = r'''\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n});\n</script>\n'''
           if 'id="commission-rate-fix"' not in s:
               s = s.replace('</body>', browser_fix + '</body>')
@@ -60,5 +76,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Set commission to 19 percent and add pricing note"
+          git commit -m "Clarify cleaning fees and traveler payment"
           git push
