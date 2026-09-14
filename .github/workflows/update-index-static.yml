@@ -1,0 +1,50 @@
+name: Update static pricing and FAQ
+
+on:
+  push:
+    paths:
+      - "static-pricing-trigger.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update static index content
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = {
+              "18 %": "19 %",
+              "18%": "19%",
+              "0.18": "0.19",
+              "225 €": "285 €",
+              "1 275 €": "1 215 €",
+              "Oui. Selon la formule choisie, nous pouvons prendre en charge le nettoyage du logement après les séjours ainsi que la préparation et la mise en place du linge.": "Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.",
+          }
+
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+
+          path.write_text(text, encoding="utf-8")
+          print("Static index updated")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && echo "No changes needed" && exit 0
+          git commit -m "Set static pricing to 19 percent and clarify cleaning fees"
+          git push
