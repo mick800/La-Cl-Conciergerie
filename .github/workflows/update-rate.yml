@@ -15,26 +15,50 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace every commission reference
+      - name: Set commission to 19 percent and add pricing note
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
+
+          # Replace all textual and calculator references.
           s = s.replace('18 %', '19 %')
           s = s.replace('18%', '19%')
+          s = s.replace('18\\u00a0%', '19 %')
           s = s.replace('0.18', '0.19')
+
+          # Add a visible pricing note once, directly in the page.
+          note = ('<p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.72;">'
+                  'Les frais de ménage et de linge de maison ne font pas partie de la base de calcul. '
+                  'Ils sont facturés séparément et ne sont donc pas soumis aux 19 %.''</p>')
+          if 'commission-note' not in s:
+              marker = '</section>'
+              # Prefer the first closing section after the pricing heading.
+              pos = s.find('NOS TARIFS')
+              if pos != -1:
+                  end = s.find(marker, pos)
+                  if end != -1:
+                      s = s[:end] + note + '\n' + s[end:]
+
+          # Safety net: make the browser display 19 % everywhere visible and ensure
+          # any legacy 18 % text cannot remain visible after deployment.
+          browser_fix = r'''\n<script id="commission-rate-fix">\ndocument.addEventListener('DOMContentLoaded', function(){\n  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);\n  const nodes = [];\n  while (walker.nextNode()) nodes.push(walker.currentNode);\n  nodes.forEach(function(node){\n    if (/18\\s*%/.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(/18\\s*%/g, '19 %');\n  });\n});\n</script>\n'''
+          if 'id="commission-rate-fix"' not in s:
+              s = s.replace('</body>', browser_fix + '</body>')
+
           p.write_text(s, encoding='utf-8')
           PY
 
       - name: Commit changes if needed
         run: |
           if git diff --quiet; then
-            echo "No commission references to change"
+            echo "No changes needed"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Set commission rate to 19%"
+          git commit -m "Set commission to 19 percent and add pricing note"
           git push
