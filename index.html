@@ -4869,8 +4869,11 @@ modal.classList.remove("active")
   );
   var submitButton = form.querySelector('[type="submit"]');
 
+  // Capture le formulaire avant les autres scripts du site pour empêcher
+  // toute navigation vers Formspree et afficher le résultat sur cette page.
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
+    event.stopImmediatePropagation();
 
     if (submitButton) {
       submitButton.disabled = true;
