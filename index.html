@@ -4869,6 +4869,7 @@ modal.classList.remove("active")
   });
 
 
+
 <script>
 /* Google Ads : conversion après confirmation Formspree */
 (function () {
@@ -4879,6 +4880,7 @@ modal.classList.remove("active")
   if (!successMessage || !('MutationObserver' in window)) return;
 
   var alreadySent = false;
+  var wasVisible = !!successMessage.hasAttribute('data-fs-active');
 
   function isVisible(el) {
     if (!el || el.hidden || !el.hasAttribute('data-fs-active')) {
@@ -4892,27 +4894,26 @@ modal.classList.remove("active")
            style.opacity !== '0';
   }
 
-  /* État initial : le message doit être caché */
-  var wasVisible = isVisible(successMessage);
-
   function checkSuccess() {
     var visible = isVisible(successMessage);
 
-    /* Déclenche uniquement au passage de caché à visible */
-    if (
-      visible &&
-      !wasVisible &&
-      !alreadySent &&
-      window.__lcGoogleAdsLoaded &&
-      typeof window.gtag === 'function'
-    ) {
-      alreadySent = true;
+    if (visible && !wasVisible && !alreadySent) {
+      if (
+        window.__lcGoogleAdsLoaded &&
+        typeof window.gtag === 'function'
+      ) {
+        alreadySent = true;
 
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
-        value: 1.0,
-        currency: 'EUR'
-      });
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
+          value: 1.0,
+          currency: 'EUR'
+        });
+
+        console.log('Conversion Google Ads déclenchée');
+      } else {
+        console.log('Conversion non déclenchée : Google Ads non chargé');
+      }
     }
 
     wasVisible = visible;
