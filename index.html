@@ -4856,18 +4856,6 @@ modal.classList.remove("active")
 
 
 
-<!-- Formspree : envoi du formulaire avec confirmation sur le site -->
-<script>
-  window.formspree = window.formspree || function () {
-    (window.formspree.q = window.formspree.q || []).push(arguments);
-  };
-
-  window.formspree('initForm', {
-    formElement: '#contact-form',
-    formId: 'mzdljvyl'
-  });
-</script>
-
 <!-- Google Ads : conversion après confirmation Formspree -->
 <script>
 (function () {
@@ -4878,43 +4866,38 @@ modal.classList.remove("active")
   if (!successMessage || !('MutationObserver' in window)) return;
 
   var alreadySent = false;
-  var wasVisible = !!successMessage.hasAttribute('data-fs-active');
 
   function isVisible(el) {
-    if (!el || el.hidden || !el.hasAttribute('data-fs-active')) {
-      return false;
-    }
+    if (!el) return false;
 
     var style = window.getComputedStyle(el);
 
-    return style.display !== 'none' &&
-           style.visibility !== 'hidden' &&
-           style.opacity !== '0';
+    return !el.hidden &&
+      style.display !== 'none' &&
+      style.visibility !== 'hidden' &&
+      style.opacity !== '0' &&
+      el.getClientRects().length > 0;
   }
 
   function checkSuccess() {
-    var visible = isVisible(successMessage);
+    if (alreadySent || !isVisible(successMessage)) return;
 
-    if (visible && !wasVisible && !alreadySent) {
-      if (
-        window.__lcGoogleAdsLoaded &&
-        typeof window.gtag === 'function'
-      ) {
-        alreadySent = true;
+    if (
+      window.__lcGoogleAdsLoaded &&
+      typeof window.gtag === 'function'
+    ) {
+      alreadySent = true;
 
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
-          value: 1.0,
-          currency: 'EUR'
-        });
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
+        value: 1.0,
+        currency: 'EUR'
+      });
 
-        console.log('Conversion Google Ads déclenchée');
-      } else {
-        console.log('Conversion non déclenchée : Google Ads non chargé');
-      }
+      console.log('Conversion Google Ads déclenchée');
+    } else {
+      console.log('Conversion non déclenchée : Google Ads non chargé');
     }
-
-    wasVisible = visible;
   }
 
   var observer = new MutationObserver(checkSuccess);
@@ -4925,10 +4908,7 @@ modal.classList.remove("active")
     characterData: true,
     subtree: true
   });
+
+  checkSuccess();
 })();
 </script>
-
-<!-- Chargement du script AJAX Formspree -->
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-</body>
-</html>
