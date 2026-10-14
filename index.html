@@ -4809,5 +4809,68 @@ modal.classList.remove("active")
 })();
 </script>
 <!-- LA CLÉ CONCIERGERIE — GESTION DES COOKIES — FIN -->
+  
+<!-- Bulle d'appel La Clé Conciergerie -->
+<a href="tel:+33659155146"
+   class="call-floating"
+   aria-label="Appeler La Clé Conciergerie">
+  <span class="call-floating-icon">☎</span>
+  <span class="call-floating-text">Appelez-nous</span>
+</a>
+
+<style>
+.call-floating {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 50px;
+  background: #153d32;
+  color: #d7b56d;
+  border: 1px solid #d7b56d;
+  box-shadow: 0 5px 20px rgba(0,0,0,.22);
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  transition: transform .2s, background .2s;
+}
+
+.call-floating:hover {
+  transform: translateY(-3px);
+  background: #205442;
+  color: #f0d69b;
+}
+
+.call-floating-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.call-floating-text {
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .call-floating {
+    right: 16px;
+    bottom: 16px;
+    padding: 15px;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+
+  .call-floating-text {
+    display: none;
+  }
+}
+</style>
+
 </body>
 </html>
