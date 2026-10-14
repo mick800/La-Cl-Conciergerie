@@ -4866,34 +4866,58 @@ modal.classList.remove("active")
     formElement: '#contact-form',
     formId: 'mzdljvyl'
   });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
 
 <script>
-/* Google Ads conversion: fire only after Formspree confirms a successful submission.
-   The cookie-consent manager loads Google Ads only after the visitor allows ads. */
+/* Google Ads : conversion après confirmation Formspree */
 (function () {
-  var successMessage = document.querySelector('#contact [data-fs-success]');
+  var successMessage = document.querySelector(
+    '#contact [data-fs-success]'
+  );
+
   if (!successMessage || !('MutationObserver' in window)) return;
 
+  var alreadySent = false;
+
   function isVisible(el) {
-    if (!el || el.hidden) return false;
+    if (!el || el.hidden || !el.hasAttribute('data-fs-active')) {
+      return false;
+    }
+
     var style = window.getComputedStyle(el);
-    return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+
+    return style.display !== 'none' &&
+           style.visibility !== 'hidden' &&
+           style.opacity !== '0';
   }
 
+  /* État initial : le message doit être caché */
   var wasVisible = isVisible(successMessage);
-  var observer = new MutationObserver(function () {
+
+  function checkSuccess() {
     var visible = isVisible(successMessage);
-    if (visible && !wasVisible && window.__lcGoogleAdsLoaded && typeof window.gtag === 'function') {
+
+    /* Déclenche uniquement au passage de caché à visible */
+    if (
+      visible &&
+      !wasVisible &&
+      !alreadySent &&
+      window.__lcGoogleAdsLoaded &&
+      typeof window.gtag === 'function'
+    ) {
+      alreadySent = true;
+
       window.gtag('event', 'conversion', {
         send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
         value: 1.0,
         currency: 'EUR'
       });
     }
+
     wasVisible = visible;
-  });
+  }
+
+  var observer = new MutationObserver(checkSuccess);
 
   observer.observe(successMessage, {
     attributes: true,
@@ -4903,6 +4927,7 @@ modal.classList.remove("active")
   });
 })();
 </script>
+
 
 </body>
 </html>
