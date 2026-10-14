@@ -4855,60 +4855,82 @@ modal.classList.remove("active")
 </style>
 
 
-
-<!-- Google Ads : conversion après confirmation Formspree -->
+<!-- Envoi AJAX Formspree et suivi Google Ads -->
 <script>
 (function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
   var successMessage = document.querySelector(
     '#contact [data-fs-success]'
   );
+  var errorMessage = document.querySelector(
+    '#contact [data-fs-error]'
+  );
+  var submitButton = form.querySelector('[type="submit"]');
 
-  if (!successMessage || !('MutationObserver' in window)) return;
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-  var alreadySent = false;
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Envoi en cours...';
+    }
 
-  function isVisible(el) {
-    if (!el) return false;
+    if (successMessage) successMessage.hidden = true;
+    if (errorMessage) errorMessage.hidden = true;
 
-    var style = window.getComputedStyle(el);
-
-    return !el.hidden &&
-      style.display !== 'none' &&
-      style.visibility !== 'hidden' &&
-      style.opacity !== '0' &&
-      el.getClientRects().length > 0;
-  }
-
-  function checkSuccess() {
-    if (alreadySent || !isVisible(successMessage)) return;
-
-    if (
-      window.__lcGoogleAdsLoaded &&
-      typeof window.gtag === 'function'
-    ) {
-      alreadySent = true;
-
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
-        value: 1.0,
-        currency: 'EUR'
+    try {
+      var response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
       });
 
-      console.log('Conversion Google Ads déclenchée');
-    } else {
-      console.log('Conversion non déclenchée : Google Ads non chargé');
+      if (!response.ok) {
+        throw new Error('Échec de l’envoi Formspree');
+      }
+
+      form.reset();
+
+      if (successMessage) {
+        successMessage.hidden = false;
+        successMessage.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+
+      if (
+        window.__lcGoogleAdsLoaded &&
+        typeof window.gtag === 'function'
+      ) {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
+          value: 1.0,
+          currency: 'EUR'
+        });
+
+        console.log('Événement de conversion Google Ads envoyé');
+      } else {
+        console.warn('Google Ads non chargé : conversion non envoyée');
+      }
+    } catch (error) {
+      if (errorMessage) {
+        errorMessage.hidden = false;
+      } else {
+        alert('L’envoi a échoué. Merci de réessayer.');
+      }
+
+      console.error('Erreur du formulaire :', error);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Envoyer ma demande';
+      }
     }
-  }
-
-  var observer = new MutationObserver(checkSuccess);
-
-  observer.observe(successMessage, {
-    attributes: true,
-    childList: true,
-    characterData: true,
-    subtree: true
   });
-
-  checkSuccess();
 })();
 </script>
+</body>
+</html>
