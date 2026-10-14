@@ -2044,24 +2044,6 @@ padding-right:18px;
 </style>
 
 
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18397690474');
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18397690474"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18397690474');
-</script>
-
 </head>
 
 <body>
@@ -4886,6 +4868,41 @@ modal.classList.remove("active")
   });
 </script>
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+<script>
+/* Google Ads conversion: fire only after Formspree confirms a successful submission.
+   The cookie-consent manager loads Google Ads only after the visitor allows ads. */
+(function () {
+  var successMessage = document.querySelector('#contact [data-fs-success]');
+  if (!successMessage || !('MutationObserver' in window)) return;
+
+  function isVisible(el) {
+    if (!el || el.hidden) return false;
+    var style = window.getComputedStyle(el);
+    return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+  }
+
+  var wasVisible = isVisible(successMessage);
+  var observer = new MutationObserver(function () {
+    var visible = isVisible(successMessage);
+    if (visible && !wasVisible && window.__lcGoogleAdsLoaded && typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-18397690474/ullACJWE4ZwdEOr02cRE',
+        value: 1.0,
+        currency: 'EUR'
+      });
+    }
+    wasVisible = visible;
+  });
+
+  observer.observe(successMessage, {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+})();
+</script>
 
 </body>
 </html>
