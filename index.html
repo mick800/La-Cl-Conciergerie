@@ -4855,23 +4855,21 @@ modal.classList.remove("active")
 </style>
 
 
-<!-- Envoi AJAX du formulaire Formspree : confirmation sur le site -->
+```html
+<!-- Envoi AJAX du formulaire Formspree -->
 <script>
-  window.formspree =
-    window.formspree ||
-    function () {
-      (window.formspree.q = window.formspree.q || []).push(arguments);
-    };
+  window.formspree = window.formspree || function () {
+    (window.formspree.q = window.formspree.q || []).push(arguments);
+  };
 
   window.formspree('initForm', {
     formElement: '#contact-form',
     formId: 'mzdljvyl'
   });
+</script>
 
-
-
+<!-- Google Ads : conversion après confirmation Formspree -->
 <script>
-/* Google Ads : conversion après confirmation Formspree */
 (function () {
   var successMessage = document.querySelector(
     '#contact [data-fs-success]'
@@ -4930,19 +4928,7 @@ modal.classList.remove("active")
 })();
 </script>
 
-
-<!-- Envoi AJAX du formulaire Formspree -->
-<script>
-  window.formspree = window.formspree || function () {
-    (window.formspree.q = window.formspree.q || []).push(arguments);
-  };
-
-  window.formspree('initForm', {
-    formElement: '#contact-form',
-    formId: 'mzdljvyl'
-  });
-</script>
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-
+```
 </body>
 </html>
