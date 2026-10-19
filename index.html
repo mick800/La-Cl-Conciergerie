@@ -1820,6 +1820,70 @@ background:rgba(73,116,180,.08);
 }
 
 /* =========================================================
+   OFFRE SIGNATURE AVANT 2027
+========================================================= */
+
+.lc-offre-2027{
+  margin-top:28px;
+  padding:20px 22px;
+  border:1px solid rgba(216,178,56,.55);
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(216,178,56,.13),rgba(255,255,255,.035));
+  box-shadow:0 12px 32px rgba(0,0,0,.16);
+}
+.lc-offre-2027-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#e4c56b;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.lc-offre-2027 h2{
+  margin:0 0 9px;
+  color:#fff;
+  font-size:clamp(21px,2.2vw,27px);
+  line-height:1.2;
+  letter-spacing:-.4px;
+}
+.lc-offre-2027 h2 strong{
+  color:#e4c56b;
+}
+.lc-offre-2027 p{
+  margin:0;
+  color:rgba(255,255,255,.76);
+  font-size:13px;
+  line-height:1.75;
+}
+.lc-offre-2027-note{
+  display:block;
+  margin-top:10px;
+  color:rgba(255,255,255,.52);
+  font-size:10px;
+  line-height:1.6;
+}
+.lc-offre-2027-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:14px;
+  color:#e4c56b;
+  font-size:12px;
+  font-weight:800;
+  text-decoration:none;
+}
+.lc-offre-2027-link:hover{
+  color:#fff;
+}
+@media(max-width:560px){
+  .lc-offre-2027{padding:18px;margin-top:24px}
+  .lc-offre-2027 h2{font-size:23px}
+}
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 
@@ -2286,6 +2350,14 @@ class="lc-hero-secondary"
 Découvrir nos services
 </a>
 
+</div>
+
+<div class="lc-offre-2027" aria-label="Offre de commission valable jusqu'au 31 décembre 2026">
+  <div class="lc-offre-2027-label"><i class="fa-solid fa-clock"></i> Offre spéciale jusqu’au 31 décembre 2026</div>
+  <h2>Signez avant 2027 et conservez <strong>19&nbsp;%</strong></h2>
+  <p>À compter du 1er janvier 2027, la commission appliquée aux nouveaux contrats passera à <strong>20&nbsp;% minimum</strong>. En signant votre contrat avant le 31 décembre 2026, vous conservez votre taux préférentiel de 19&nbsp;% en 2027, selon les conditions prévues à votre contrat.</p>
+  <span class="lc-offre-2027-note">Commission calculée sur le montant des nuitées, hors frais de ménage et de linge. Offre réservée aux contrats signés avant la date limite.</span>
+  <a class="lc-offre-2027-link" href="#contact">Profiter de l’offre <i class="fa-solid fa-arrow-right"></i></a>
 </div>
 
 <div class="lc-hero-points">
