@@ -621,7 +621,7 @@
           "pricing-detail-btn";
 
         button.innerHTML =
-          'Voir le détail <i class="fa-solid fa-arrow-right"></i>';
+          'Plus de détail <i class="fa-solid fa-arrow-right"></i>';
 
         button.addEventListener(
           "click",
