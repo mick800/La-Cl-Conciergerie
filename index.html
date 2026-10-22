@@ -2066,7 +2066,7 @@ padding-right:18px;
 <li><a href="#services">Services</a></li>
 <li><a href="#a-propos">À propos</a></li>
 <li><a href="#tarifs">Formule Prestige</a></li>
-<li><a href="#calculateur">Calculateur de commission</a></li>
+<li><a href="#calculateur">Tarifs et devis</a></li>
 <li><a href="#blog">Blog</a></li>
 <li><a href="#faq">FAQ</a></li>
 <li><a href="#avis">Avis</a></li>
@@ -2612,7 +2612,7 @@ au service de votre logement
 
 <p>
 <strong>La Clé Conciergerie</strong> accompagne les propriétaires
-dans la gestion de leurs locations courte durée à Metz,
+dans l’accompagnement pratique des locations courte durée à Metz,
 Thionville et partout en France.
 </p>
 
@@ -2638,7 +2638,7 @@ Nos prestations peuvent inclure l’assistance pratique aux voyageurs après con
 <i class="fa-solid fa-bolt"></i>
 <div>
 <h3>Réactivité</h3>
-<p>Une gestion attentive et une réponse rapide aux demandes.</p>
+<p>Un suivi attentif des demandes et des besoins signalés.</p>
 </div>
 </div>
 
@@ -2731,7 +2731,7 @@ Des informations pratiques et des recommandations adaptées au logement.
 <i class="fa-solid fa-clock"></i>
 <h3>Disponible 7j/7</h3>
 <p>
-Notre équipe reste joignable chaque jour pour répondre rapidement.
+Nous faisons notre possible pour répondre dans les meilleurs délais.
 </p>
 </div>
 
@@ -2757,10 +2757,10 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
     </div>
     <div class="lc-owner-list">
       
-      <div class="lc-owner-item"><i class="fa-solid fa-comments"></i><strong>Communication voyageurs</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-comments"></i><strong>Informations pratiques aux voyageurs après réservation</strong></div>
       
-      <div class="lc-owner-item"><i class="fa-solid fa-broom"></i><strong>Ménage</strong></div>
-      <div class="lc-owner-item"><i class="fa-solid fa-bed"></i><strong>Gestion du linge</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-broom"></i><strong>Coordination de prestataires de ménage indépendants</strong></div>
+      <div class="lc-owner-item"><i class="fa-solid fa-bed"></i><strong>Coordination pratique du linge</strong></div>
       <div class="lc-owner-item"><i class="fa-solid fa-screwdriver-wrench"></i><strong>Suivi des incidents</strong></div>
       
       
@@ -2780,8 +2780,8 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
     <div class="price-card featured">
       <div class="badge">Formule unique</div>
       <h3>Prestige</h3>
-      <div class="price">19 %</div>
-      <p>Un accompagnement complet sur les aspects pratiques de votre location :</p>
+      <div class="price">Sur devis</div>
+      <p>Prestations de conciergerie pratique et de conseil, définies sur devis :</p>
       <ul class="lc-prestige-summary" style="list-style:none;padding:0;margin:18px 0;line-height:1.8;">
         <li>✓ Analyse de votre annonce : titre, description, photos et présentation</li>
         <li>✓ Conseils pour améliorer la visibilité et l’attractivité de votre logement</li>
@@ -2797,7 +2797,7 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
       <a href="#contact" class="btn-gold">Demander un devis</a>
     </div>
   </div>
-  <p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.8;">Le périmètre exact des prestations et le mode de calcul du tarif devront être confirmés avant contractualisation.</p>
+  <p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.8;">Le périmètre et le tarif des prestations seront détaillés au devis. Le cadre juridique doit être confirmé avant toute contractualisation.</p>
 </div>
 </section>
 <section id="estimation-logement" class="lc-secondary-view" style="padding:64px 20px;">
@@ -2814,18 +2814,8 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
 </section>
 
 <section class="lc-tools lc-secondary-view" id="calculateur">
-<div class="lc-tools-header"><span>ESTIMATION</span><h2>Calculez votre commission</h2><p>Indiquez le montant estimé des nuitées, hors frais de ménage et de linge, pour obtenir une estimation indicative de la commission de 19 %.</p></div>
-<div class="lc-calc-card" style="max-width:760px;margin:0 auto;padding:28px;border:1px solid rgba(197,163,91,.35);border-radius:18px;background:#fff;">
-<label for="lcCalcRevenue" style="display:block;margin-bottom:8px;font-weight:600;">Montant des nuitées par mois (€)</label><input id="lcCalcRevenue" type="number" min="0" step="50" value="2500" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin-bottom:18px;">
-<label for="lcCalcNights" style="display:block;margin-bottom:8px;font-weight:600;">Nombre de nuits réservées</label><input id="lcCalcNights" type="number" min="0" max="31" step="1" value="10" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin-bottom:18px;">
-<input id="lcCalcPlan" type="hidden" value="0.19"><button id="lcCalcButton" type="button" class="btn-gold" style="cursor:pointer;">Calculer</button>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:24px;">
-<div><small>Montant des nuitées</small><h3 id="lcCalcRevenueOut">2 500 €</h3></div>
-<div><small>Commission Prestige (19 %)</small><h3 id="lcCalcTotal">475 €</h3></div>
-<div><small>Après commission, avant autres frais</small><h3 id="lcCalcNet">2 025 €</h3></div>
-<div><small>Formule</small><h3 id="lcCalcPlanOut">Prestige — 19 %</h3></div>
-</div><p style="margin-top:18px;font-size:12px;line-height:1.6;opacity:.75;">Estimation indicative : hors frais de plateforme, ménage, linge, charges, fiscalité et autres dépenses. Le calcul ne constitue pas une estimation du revenu net du propriétaire.</p><p><span id="lcCalcNightsOut">10 nuits</span></p>
-</div></section>
+<div class="lc-tools-header"><span>ESTIMATION</span><h2>Parlons de votre logement</h2><p>Le tarif dépend des prestations de conciergerie pratique et de conseil dont vous avez besoin. Demandez un devis personnalisé, sans engagement.</p></div>
+<div class="lc-calc-card" style="max-width:760px;margin:0 auto;padding:28px;border:1px solid rgba(197,163,91,.35);border-radius:18px;background:#fff;text-align:center;"><p style="margin-bottom:18px;line-height:1.8;">Vous gardez le contrôle de votre annonce, des tarifs, du calendrier et de toutes les décisions de réservation. La Clé Conciergerie peut vous accompagner sur l’analyse de l’annonce, les informations pratiques aux voyageurs après réservation et la coordination de prestataires indépendants.</p><a href="#contact" class="btn-gold">Demander un devis</a></div>
 <!-- BLOG -->
 <section class="lc-blog lc-secondary-view" id="blog">
   <div class="lc-blog-header">
@@ -2998,13 +2988,13 @@ Nous pouvons coordonner le recours à un prestataire indépendant pour le ménag
 <div class="faq-item">
 
 <button type="button" class="faq-question">
-Comment gérez-vous les arrivées et les départs ?
+Comment sont organisés les arrivées et les départs ?
 <span>+</span>
 </button>
 
 <div class="faq-answer">
 <p>
-Les modalités d’arrivée, de départ et de remise des clés sont définies avec le propriétaire, selon la méthode mise en place pour le logement.
+Le propriétaire organise les arrivées, les départs et la remise des clés. Nous ne réalisons pas nous-mêmes l’accueil physique des voyageurs ni la gestion des clés ; nous pouvons, selon le devis, aider à identifier un prestataire indépendant.
 </p>
 </div>
 
@@ -3895,7 +3885,7 @@ reviewMessage.className =
 
 <!-- JAVASCRIPT -->
 
-<script src="script.js?v=20261022prestige"></script>
+<script src="script.js?v=20261022scope"></script>
 
 <script>
 
