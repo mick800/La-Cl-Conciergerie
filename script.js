@@ -1714,3 +1714,46 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+
+
+/* Animations d'apparition et interactions — ajout vérifié */
+(function () {
+  function initLcAnimations() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('lc-animations');
+    var selectors = [
+      '.section-title', '.lc-services-header', '.lc-service-card', '.service-card',
+      '.advantage', '.price-card', '.review-card', '.about-company-content',
+      '.about-company-card', '.about-value', '.area-featured', '.area-secondary',
+      '.faq-item', '.review-form-wrapper', '#calculateur', '#estimation-logement',
+      '.contact form'
+    ];
+    var elements = document.querySelectorAll(selectors.join(','));
+    elements.forEach(function (el, index) {
+      if (el.closest('.hero')) return;
+      el.classList.add('lc-reveal');
+      el.style.transitionDelay = (Math.min(index % 5, 4) * 70) + 'ms';
+    });
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+    elements.forEach(function (el) {
+      if (el.classList.contains('lc-reveal')) observer.observe(el);
+    });
+    document.querySelectorAll('.lc-service-card, .service-card, .advantage, .price-card, .review-card, .area-featured, .area-secondary').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { el.style.transform = 'translateY(-5px)'; });
+      el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initLcAnimations);
+  else initLcAnimations();
+})();
