@@ -84,3 +84,14 @@ h1,h2,h3,h4,p,span,a,li,button{max-width:100%;overflow-wrap:anywhere}main,sectio
     transition-duration: .01ms !important;
   }
 }
+
+
+/* Animations visibles garanties — version autonome */
+html.lc-motion-ready .lc-motion-item { opacity: 0; transform: translateY(22px); transition: opacity 650ms ease var(--lc-motion-delay, 0ms), transform 650ms cubic-bezier(.2,.7,.2,1) var(--lc-motion-delay, 0ms); }
+html.lc-motion-ready .lc-motion-item.lc-motion-shown { opacity: 1; transform: translateY(0); }
+html.lc-motion-hero .hero-content h1 { animation: lc-motion-enter 800ms ease both; }
+html.lc-motion-hero .hero-content p { animation: lc-motion-enter 800ms ease 120ms both; }
+html.lc-motion-hero .hero-buttons { animation: lc-motion-enter 800ms ease 220ms both; }
+.lc-service-card, .service-card, .advantage, .price-card, .review-card, .area-featured, .area-secondary { transition: transform 280ms ease, box-shadow 280ms ease; }
+@keyframes lc-motion-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { html.lc-motion-ready .lc-motion-item, html.lc-motion-hero .hero-content h1, html.lc-motion-hero .hero-content p, html.lc-motion-hero .hero-buttons { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; } }
