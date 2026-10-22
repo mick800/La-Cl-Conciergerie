@@ -1635,7 +1635,7 @@ document.addEventListener('DOMContentLoaded', function(){
       answer.textContent = 'Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.';
     }
     if (question.textContent.includes('Quel est le tarif')) {
-      answer.textContent = 'Notre formule Prestige est proposée à 19 % des revenus générés par le logement. Les modalités finales sont précisées dans le devis après étude de votre logement.';
+      answer.textContent = 'Le tarif est établi sur devis selon les prestations de conciergerie pratique et de conseil proposées. Le propriétaire conserve toutes les décisions de location ; le périmètre des prestations est précisé avant contractualisation.';
     }
   });
 });
@@ -1650,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', function(){
       answer.textContent = 'Oui. Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission. Ils sont facturés séparément et ne sont donc pas soumis aux 19 %. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.';
     }
     if (question.textContent.includes('Quel est le tarif')) {
-      answer.textContent = 'Notre formule Prestige est proposée à 19 % des revenus générés par le logement. Les modalités finales sont précisées dans le devis après étude de votre logement.';
+      answer.textContent = 'Le tarif est établi sur devis selon les prestations de conciergerie pratique et de conseil proposées. Le propriétaire conserve toutes les décisions de location ; le périmètre des prestations est précisé avant contractualisation.';
     }
   });
 });
