@@ -212,34 +212,34 @@
       percent: "19 %",
 
       intro:
-        "Une gestion complète de votre location courte durée pour vous libérer de la gestion quotidienne et offrir une expérience de qualité à vos voyageurs.",
+        "Des prestations pratiques de conciergerie et de conseil pour vous accompagner, tout en vous laissant le contrôle de votre location. Vous restez responsable de votre annonce, de votre compte Airbnb ou Booking et de toutes les décisions relatives aux réservations.",
 
       note:
-        "Les frais de ménage et de linge de maison ne sont pas inclus dans le calcul de notre commission de 19 %. Ils sont facturés séparément. Lors de la réservation, les frais de ménage sont directement facturés aux voyageurs.",
+        "Le ménage et le linge sont réalisés par des prestataires indépendants et facturés séparément selon les modalités convenues. Le propriétaire valide les interventions et les dépenses non urgentes. Le tarif de 19 % et son mode de calcul doivent être précisés au devis et au contrat après vérification de leur conformité à la réglementation applicable.",
 
       items: [
 
-        "Gestion des réservations et du calendrier",
+        "Analyse de votre annonce existante : titre, description, photos et présentation générale",
 
-        "Communication avec les voyageurs avant, pendant et après le séjour",
+        "Recommandations d’amélioration que vous restez libre d’appliquer vous-même à votre annonce",
 
-        "Organisation des arrivées et des départs",
+        "Étude indicative de logements comparables et informations sur les prix observés, à titre de conseil uniquement",
 
-        "Ménage et préparation du logement après chaque séjour",
+        "Vous gardez la main sur vos tarifs, votre calendrier, votre annonce et votre compte Airbnb ou Booking",
 
-        "Gestion et suivi du linge",
+        "Assistance pratique aux voyageurs pour les questions concernant le logement, après confirmation de la réservation par vos soins",
 
-        "Réassort des consommables essentiels",
+        "Transmission des demandes des voyageurs qui nécessitent votre décision, notamment pour les réservations, changements ou annulations",
 
-        "Assistance et suivi des petits incidents",
+        "Coordination pratique avec des prestataires indépendants pour le ménage et le linge, selon vos consignes",
 
-        "Optimisation régulière des tarifs et du positionnement",
+        "Transmission des informations utiles aux prestataires dans le cadre des interventions que vous avez validées",
 
-        "Gestion et suivi des avis voyageurs",
+        "Signalement des problèmes matériels et contact de professionnels locaux selon vos instructions",
 
-        "Accompagnement personnalisé du propriétaire",
+        "Demande de votre accord avant toute dépense ou intervention non urgente",
 
-        "Suivi global de l'expérience voyageur"
+        "Transmission des retours des voyageurs et suggestions pour améliorer leur expérience dans le logement"
 
       ]
 
