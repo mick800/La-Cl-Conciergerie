@@ -2768,8 +2768,20 @@ Notre équipe reste joignable chaque jour pour répondre rapidement.
 </section>
 
 <!-- TARIFS -->
-<section id="tarifs" class="pricing lc-secondary-view"><div class="container"><div class="section-title"><span>NOS PRESTATIONS</span><h2>Une conciergerie adaptée à vos besoins</h2><p>Les prestations sont définies sur devis. Le propriétaire conserve la maîtrise des annonces, des tarifs, du calendrier et des décisions relatives aux réservations.</p></div><div class="pricing-grid"><div class="price-card featured"><div class="badge">Prestations sur mesure</div><h3>Conciergerie</h3><div class="price">Sur devis</div><p>Assistance pratique aux voyageurs après confirmation de la réservation</p><p>Coordination du ménage et du linge</p><p>Suivi matériel du logement</p><p>Contact de prestataires locaux selon les consignes du propriétaire</p><a href="#contact" class="btn-gold">Demander un devis</a></div></div></div></section>
-<section class="lc-tools lc-secondary-view" id="calculateur"><div class="lc-tools-header"><span>PRESTATIONS PERSONNALISÉES</span><h2>Parlons de votre logement</h2><p>Chaque logement et chaque besoin sont différents. Contactez La Clé Conciergerie pour définir les prestations adaptées et recevoir un devis.</p><p>Le propriétaire conserve la maîtrise des annonces, des tarifs, du calendrier et des décisions de réservation.</p><a href="#contact" class="btn-gold">Demander un devis</a></div></section>
+<section id="tarifs" class="pricing lc-secondary-view"><div class="container"><div class="section-title"><span>NOTRE FORMULE</span><h2>Formule unique Prestige</h2><p>Une formule de conciergerie pour vous accompagner dans les aspects pratiques des séjours. Le propriétaire conserve la maîtrise de l’annonce, des tarifs, du calendrier et des décisions d’acceptation ou de refus des réservations.</p></div><div class="pricing-grid"><div class="price-card featured"><div class="badge">Formule unique</div><h3>Prestige</h3><div class="price">19 %</div><p>Assistance pratique aux voyageurs après confirmation de la réservation</p><p>Coordination du ménage et du linge avec des prestataires indépendants</p><p>Suivi matériel du logement et signalement des incidents</p><p>Contact de prestataires locaux selon les consignes du propriétaire</p><p>Les frais de ménage et de linge sont exclus de la base de calcul.</p><a href="#contact" class="btn-gold">Demander un devis</a></div></div><p class="commission-note" style="margin-top:18px;font-size:13px;line-height:1.7;opacity:.8;">La formule et le périmètre exact des prestations sont précisés au contrat. Cette présentation ne comprend pas l’accueil physique, la remise des clés, ni la prise en charge des décisions de location.</p></div></section>
+<section class="lc-tools lc-secondary-view" id="calculateur">
+<div class="lc-tools-header"><span>ESTIMATION</span><h2>Calculez votre commission</h2><p>Indiquez le montant estimé des nuitées, hors frais de ménage et de linge, pour obtenir une estimation indicative de la commission de 19 %.</p></div>
+<div class="lc-calc-card" style="max-width:760px;margin:0 auto;padding:28px;border:1px solid rgba(197,163,91,.35);border-radius:18px;background:#fff;">
+<label for="lcCalcRevenue" style="display:block;margin-bottom:8px;font-weight:600;">Montant des nuitées par mois (€)</label><input id="lcCalcRevenue" type="number" min="0" step="50" value="2500" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin-bottom:18px;">
+<label for="lcCalcNights" style="display:block;margin-bottom:8px;font-weight:600;">Nombre de nuits réservées</label><input id="lcCalcNights" type="number" min="0" max="31" step="1" value="10" style="width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin-bottom:18px;">
+<input id="lcCalcPlan" type="hidden" value="0.19"><button id="lcCalcButton" type="button" class="btn-gold" style="cursor:pointer;">Calculer</button>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:24px;">
+<div><small>Montant des nuitées</small><h3 id="lcCalcRevenueOut">2 500 €</h3></div>
+<div><small>Commission Prestige (19 %)</small><h3 id="lcCalcTotal">475 €</h3></div>
+<div><small>Après commission, avant autres frais</small><h3 id="lcCalcNet">2 025 €</h3></div>
+<div><small>Formule</small><h3 id="lcCalcPlanOut">Prestige — 19 %</h3></div>
+</div><p style="margin-top:18px;font-size:12px;line-height:1.6;opacity:.75;">Estimation indicative : hors frais de plateforme, ménage, linge, charges, fiscalité et autres dépenses. Le calcul ne constitue pas une estimation du revenu net du propriétaire.</p><p><span id="lcCalcNightsOut">10 nuits</span></p>
+</div></section>
 <!-- BLOG -->
 <section class="lc-blog lc-secondary-view" id="blog">
   <div class="lc-blog-header">
@@ -4099,13 +4111,13 @@ modal.classList.remove("active")
   function calculate(){
     if(!revenue || !plan || !nights) return;
     const amount = Math.max(0, Number(revenue.value) || 0);
-    const rate = 0;
+    const rate = 0.19;
     const selectedNights = Math.max(0, Math.min(31, Number(nights.value) || 0));
     const fee = amount * rate;
     const net = amount - fee;
 
     const planNames = {
-      "0":"Prestations sur devis"
+      "0.19":"Prestige — 19 %"
     };
 
     total.textContent = euro(fee);
