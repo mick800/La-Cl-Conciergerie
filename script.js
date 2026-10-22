@@ -1575,3 +1575,37 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+
+
+// Animations discrètes : apparition progressive au défilement.
+// Le contenu reste visible si le navigateur ne prend pas en charge l'API.
+document.addEventListener('DOMContentLoaded', function () {
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const targets = document.querySelectorAll(
+    '.section-title, .lc-services-header, .area-header, ' +
+    '.lc-service-card, .service-card, .advantage, .price-card, ' +
+    '.review-card, .about-company-content, .about-company-card, ' +
+    '.about-value, .area-featured, .area-secondary, .faq-item, ' +
+    '.review-form-wrapper, #calculateur, #estimation-logement, .contact form'
+  );
+  if (!targets.length) return;
+
+  document.documentElement.classList.add('lc-animations');
+  targets.forEach(function (element, index) {
+    element.classList.add('lc-reveal');
+    if (index < 8) element.style.transitionDelay = (index % 4) * 70 + 'ms';
+  });
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+
+  targets.forEach(function (element) { observer.observe(element); });
+});
