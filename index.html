@@ -2704,7 +2704,7 @@ Pourquoi nous faire confiance ?
 
 <div class="advantage">
 <i class="fa-solid fa-chart-line"></i>
-<h3>Rentabilité optimisée</h3>
+<h3>Suivi rigoureux</h3>
 <p>
 Le propriétaire conserve la maîtrise des tarifs et des décisions de location.
 </p>
@@ -4099,13 +4099,13 @@ modal.classList.remove("active")
   function calculate(){
     if(!revenue || !plan || !nights) return;
     const amount = Math.max(0, Number(revenue.value) || 0);
-    const rate = 0.19;
+    const rate = 0;
     const selectedNights = Math.max(0, Math.min(31, Number(nights.value) || 0));
     const fee = amount * rate;
     const net = amount - fee;
 
     const planNames = {
-      "0.19":"Prestige — 19 %"
+      "0":"Prestations sur devis"
     };
 
     total.textContent = euro(fee);
