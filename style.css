@@ -95,3 +95,123 @@ html.lc-motion-hero .hero-buttons { animation: lc-motion-enter 800ms ease 220ms 
 .lc-service-card, .service-card, .advantage, .price-card, .review-card, .area-featured, .area-secondary { transition: transform 280ms ease, box-shadow 280ms ease; }
 @keyframes lc-motion-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { html.lc-motion-ready .lc-motion-item, html.lc-motion-hero .hero-content h1, html.lc-motion-hero .hero-content p, html.lc-motion-hero .hero-buttons { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; } }
+
+
+/* ==============================
+   ANIMATIONS RENFORCÉES — LA CLÉ
+   Ajout visuel uniquement : aucun contenu ni fonctionnalité supprimé.
+============================== */
+@media (prefers-reduced-motion: no-preference) {
+  /* Apparition plus visible des blocs au défilement */
+  html.lc-motion-ready .lc-motion-item {
+    transform: translateY(38px) scale(.985);
+    transition:
+      opacity 850ms cubic-bezier(.2,.7,.2,1) var(--lc-motion-delay, 0ms),
+      transform 850ms cubic-bezier(.2,.7,.2,1) var(--lc-motion-delay, 0ms);
+  }
+  html.lc-motion-ready .lc-motion-item.lc-motion-shown {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Titres : apparition douce et soulignement doré */
+  .section-title h2,
+  .lc-services-header h2,
+  .area-header h2,
+  .about-company-text h2 {
+    animation: lc-title-arrive .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .section-title h2::after,
+  .lc-services-header h2::after {
+    content: "";
+    display: block;
+    width: 68px;
+    height: 3px;
+    margin: 15px auto 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #b8944d, #e5cc88, #b8944d);
+    transform-origin: center;
+    animation: lc-gold-line .9s ease .25s both;
+  }
+
+  /* Cartes : relief plus perceptible au survol */
+  .lc-service-card,
+  .service-card,
+  .advantage,
+  .price-card,
+  .review-card,
+  .area-featured,
+  .area-secondary,
+  .about-company-card,
+  .faq-item,
+  .city {
+    transition: transform .35s cubic-bezier(.2,.7,.2,1),
+                box-shadow .35s ease,
+                border-color .35s ease;
+  }
+  .lc-service-card:hover,
+  .service-card:hover,
+  .advantage:hover,
+  .price-card:hover,
+  .review-card:hover,
+  .area-featured:hover,
+  .area-secondary:hover,
+  .about-company-card:hover,
+  .faq-item:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 42px rgba(8,16,29,.13);
+  }
+  .city:hover { transform: translateY(-5px) scale(1.025); }
+
+  /* Les photos des prestations gagnent un léger zoom au survol */
+  .lc-service-image img {
+    transition: transform .65s cubic-bezier(.2,.7,.2,1);
+  }
+  .lc-service-card:hover .lc-service-image img {
+    transform: scale(1.07);
+  }
+
+  /* Boutons : reflet doré discret au passage de la souris */
+  .btn-gold,
+  .btn-white,
+  .btn-header {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-gold::after,
+  .btn-white::after,
+  .btn-header::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -75%;
+    width: 45%;
+    height: 180%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
+    transform: skewX(-20deg);
+    transition: left .65s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .btn-gold:hover::after,
+  .btn-white:hover::after,
+  .btn-header:hover::after { left: 140%; }
+
+  /* Les champs de contact réagissent clairement à la sélection */
+  input, textarea, select {
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: #b8944d !important;
+    box-shadow: 0 0 0 3px rgba(184,148,77,.16);
+    outline: none;
+  }
+}
+@keyframes lc-title-arrive {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes lc-gold-line {
+  from { opacity: 0; transform: scaleX(.15); }
+  to { opacity: 1; transform: scaleX(1); }
+}
