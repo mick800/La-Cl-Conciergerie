@@ -184,7 +184,7 @@
         // Ancienne présentation des formules
         el.textContent = el.textContent.replace(
           /Nos formules de gestion.*$/i,
-          "Notre formule Prestige est proposée à 19 %."
+          "Le tarif est établi sur devis selon les prestations de conciergerie pratique et de conseil proposées."
         );
 
       });
